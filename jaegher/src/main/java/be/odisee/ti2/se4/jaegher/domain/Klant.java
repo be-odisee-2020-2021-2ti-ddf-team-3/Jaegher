@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
+//Deze klasse steld een entity voor in de DB de variabelen zijn tabelen
 @Entity
 @Table(name = "KLANT")
 @Data
