@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Jaegher klanten</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<h1>Overzicht van de klanten</h1>
+
+
+<form method="POST" th:action="@{/klanten.html}" th:object="${klant}">
+
+</form>
+
+<div class="table-striped well">
+    <div th:each="klant: ${klanten}" class="row">
+        <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
+        <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
+    </div>
+</div>
+</body>
+</html>

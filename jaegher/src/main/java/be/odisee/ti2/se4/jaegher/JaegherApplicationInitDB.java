@@ -23,12 +23,12 @@ public class JaegherApplicationInitDB implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         List<Klant> klanten = Arrays.asList(
-                new Klant(1, "Bart"),
-                new Klant(2, "Sander"),
-                new Klant(3, "Bram"),
-                new Klant(4, "Yarne"),
-                new Klant(5, "Matthieu"),
-                new Klant(6, "Brent")
+                new Klant(1, "Bart", "meeremans"),
+                new Klant(2, "Sander", "Deneyer"),
+                new Klant(3, "Bram", "Van Pevenage"),
+                new Klant(4, "Yarne", "Valck"),
+                new Klant(5, "Matthieu", "Waal"),
+                new Klant(6, "Brent", "IDK")
         );
 
         for (Klant klant : klanten) {
