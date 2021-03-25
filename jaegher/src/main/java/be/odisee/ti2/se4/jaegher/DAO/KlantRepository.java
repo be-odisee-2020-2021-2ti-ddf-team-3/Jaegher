@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 //Repository die met de database spreekt heeft al crud operaties door JPA dingen zoals getbyid kunnen hier in komen
 public interface KlantRepository extends CrudRepository<Klant, Long> {
+
+    public Klant findById(long id);
 }

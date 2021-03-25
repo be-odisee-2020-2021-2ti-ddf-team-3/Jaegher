@@ -1,34 +1,24 @@
 package be.odisee.ti2.se4.jaegher.domain;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 
 //Deze klasse steld een entity voor in de DB de variabelen zijn tabelen
 @Entity
-@Table(name = "KLANT")
+@Table(name = "KLANTEN")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@NoArgsConstructor(force = true)
 public class Klant {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private final int id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private final long id;
 
-    private final String naam;
+    private String naam;
 
-    private final String achternaam;
-
-
-
+    private String achternaam;
 
 }
 

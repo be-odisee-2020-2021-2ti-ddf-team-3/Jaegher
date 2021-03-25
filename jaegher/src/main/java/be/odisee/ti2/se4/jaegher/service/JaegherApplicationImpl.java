@@ -20,4 +20,20 @@ public class JaegherApplicationImpl {
         return (List<Klant>) klantRepository.findAll();
 
     }
+
+    public void addKlant(Klant entryData) {
+
+        Klant entry;
+
+        if (entryData.getId() == 0) entry = new Klant();
+        else entry = klantRepository.findById(entryData.getId());
+
+        String naam = entryData.getNaam();
+        entry.setNaam(naam);
+        String achternaam = entryData.getAchternaam();
+        entry.setAchternaam(achternaam);
+
+
+        klantRepository.save(entry);
+    }
 }

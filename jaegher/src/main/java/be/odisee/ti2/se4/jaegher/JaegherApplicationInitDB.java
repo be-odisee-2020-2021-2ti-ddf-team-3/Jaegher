@@ -22,18 +22,21 @@ public class JaegherApplicationInitDB implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        /*
         List<Klant> klanten = Arrays.asList(
-                new Klant(1, "Bart", "meeremans"),
-                new Klant(2, "Sander", "Deneyer"),
-                new Klant(3, "Bram", "Van Pevenage"),
-                new Klant(4, "Yarne", "Valck"),
-                new Klant(5, "Matthieu", "Waal"),
-                new Klant(6, "Brent", "IDK")
+                new Klant("Bart", "meeremans"),
+                new Klant("Sander", "Deneyer"),
+                new Klant("Bram", "Van Pevenage"),
+                new Klant("Yarne", "Valck"),
+                new Klant("Matthieu", "Waal"),
+                new Klant("Brent", "IDK")
         );
 
         for (Klant klant : klanten) {
             klantRepository.save(klant);
         }
+
+         */
 
     }
 }
