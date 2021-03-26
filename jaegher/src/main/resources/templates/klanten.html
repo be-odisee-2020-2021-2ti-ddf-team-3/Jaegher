@@ -6,6 +6,11 @@
     <title>Jaegher klanten</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script>
+        function rowClicked(value) {
+            location.href = "/klanten/edit" + value
+        }
+    </script>
 </head>
 <body>
 <h1>Overzicht van de klanten</h1>
@@ -21,14 +26,29 @@
         <label>achternaam:&nbsp;</label><input type="text" th:field="*{achternaam}" style="width: 40em"/>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" th:if="${klant.getId()}==0">
         <button class="btn btn-primary btn-md" name="submit">Create entry</button>
+    </div>
+    <div class="form-group" th:if="${klant.getId()}!=0">
+        <button class="btn btn-primary btn-md" name="delete">Delete entry</button>
     </div>
 
 </form>
 
-<div class="table-striped well">
-    <div th:each="klant: ${klanten}" class="row">
+<div class="table-striped well" th:if="${klant.getId()}==0">
+    <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
+
+        <div class="col-md-1 text-left" th:text="${klant.getId()}"> id</div>
+        <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
+        <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
+    </div>
+</div>
+
+<div class="table-striped well" th:if="${klant.getId()}!=0">
+    <div th:each="klant: ${klant}" class="row"
+         th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
+
+        <div class="col-md-1 text-left" th:text="${klant.getId()}"> id</div>
         <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
     </div>

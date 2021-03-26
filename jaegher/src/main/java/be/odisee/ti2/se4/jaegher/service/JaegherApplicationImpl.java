@@ -2,6 +2,7 @@ package be.odisee.ti2.se4.jaegher.service;
 
 import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
+import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

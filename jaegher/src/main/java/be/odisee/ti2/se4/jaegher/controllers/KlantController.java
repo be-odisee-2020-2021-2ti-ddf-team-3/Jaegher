@@ -1,6 +1,8 @@
 package be.odisee.ti2.se4.jaegher.controllers;
 
+import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
+import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.service.JaegherApplicationImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ import java.util.Arrays;
 public class KlantController {
     @Autowired
     JaegherApplicationImpl jaegherApplication;
+    @Autowired
+    KlantRepository klantRepository;
 
     //Wanneer je de link http://localhost:8080/klanten ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/klanten.html
     @GetMapping
@@ -41,6 +45,25 @@ public class KlantController {
        jaegherApplication.addKlant(klant);
 
         model.addAttribute(klant);
+        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
+        return "klanten";
+    }
+
+    @GetMapping("/edit")
+    public String entryEditForm(@RequestParam("id") long id, Model model) {
+
+        Klant klant = new Klant();
+        klant = klantRepository.findById(id);
+        model.addAttribute(klant);
+        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
+        return "klanten";
+    }
+    @PostMapping(params = "delete")
+    public String deleteEntry(Klant entryKlant, Model model) {
+        Klant klant = new Klant();
+        klant = klantRepository.findById(entryKlant.getId());
+        klantRepository.delete(klant);
+        model.addAttribute(entryKlant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
