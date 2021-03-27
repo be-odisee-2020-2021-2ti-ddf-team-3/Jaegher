@@ -1,6 +1,8 @@
 package be.odisee.ti2.se4.jaegher.service;
 
+import be.odisee.ti2.se4.jaegher.DAO.BestellingRepository;
 import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
+import be.odisee.ti2.se4.jaegher.DAO.LichaamsmaatRepository;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,12 @@ import java.util.List;
 public class JaegherApplicationImpl {
     @Autowired
     KlantRepository klantRepository;
+
+    @Autowired
+    LichaamsmaatRepository lichaamsmaatRepository;
+
+    @Autowired
+    BestellingRepository bestellingRepository;
 
     //Returned een list van alle klanten
     public List<Klant> getAllKlanten() {

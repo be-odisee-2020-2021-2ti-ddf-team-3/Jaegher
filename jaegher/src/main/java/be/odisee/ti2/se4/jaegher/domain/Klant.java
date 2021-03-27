@@ -20,6 +20,10 @@ public class Klant {
 
     private String achternaam;
 
+    @OneToOne
+    private Lichaamsmaat lichaamsmaat;
+
+
 }
 
 
