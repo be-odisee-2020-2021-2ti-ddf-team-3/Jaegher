@@ -50,4 +50,20 @@ public class JaegherApplicationImpl {
         Klant klant = klantRepository.findById(id);
         klantRepository.delete(klant);
     }
+
+    public void updateKlant(Klant entryData, long id) {
+
+        Klant entry;
+
+        entry = klantRepository.findById(id);
+
+        String naam = entryData.getNaam();
+        entry.setNaam(naam);
+        String achternaam = entryData.getAchternaam();
+        entry.setAchternaam(achternaam);
+        String email = entryData.getEmail();
+        entry.setEmail(email);
+        klantRepository.save(entry);
+    }
+
 }

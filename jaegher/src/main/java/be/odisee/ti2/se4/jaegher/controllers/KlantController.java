@@ -48,10 +48,21 @@ public class KlantController {
         return "klanten";
     }
 
+
+    Klant klant = new Klant();
+    @PostMapping(params = "update")
+    public String updateEntry(Klant klant_, Model model) {
+
+        jaegherApplication.updateKlant(klant_, klant.getId());
+        model.addAttribute(klant);
+        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
+        return "klanten";
+    }
+
     @GetMapping("/edit")
     public String entryEditForm(@RequestParam("id") long id, Model model) {
 
-        Klant klant = new Klant();
+
         klant = klantRepository.findById(id);
         model.addAttribute(klant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
@@ -59,7 +70,7 @@ public class KlantController {
     }
 
     @PostMapping(params = "delete")
-    public String deleteEntry(Klant klant, Model model) {
+    public String deleteEntry(Model model) {
         jaegherApplication.deleteKlant(klant.getId());
 
         Klant klant_ = new Klant();

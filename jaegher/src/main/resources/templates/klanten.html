@@ -37,6 +37,7 @@
     </div>
     <div class="form-group" th:if="${klant.getId()}!=0">
         <button class="btn btn-primary btn-md" name="delete">Delete entry</button>
+        <button class="btn btn-primary btn-md" name="update">Update entry</button>
     </div>
 </form>
 
@@ -45,6 +46,7 @@
 <div class="table-striped well" >
     <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
 
+        <div class="col-md-1 text-left" th:text="${klant.getId()}"> id</div>
         <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
         <div class="col-md-1 text-left" th:text="${klant.getEmail()}"> email</div>
