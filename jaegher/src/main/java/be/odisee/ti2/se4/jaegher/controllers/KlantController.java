@@ -70,15 +70,12 @@ public class KlantController {
     }
 
     @PostMapping(params = "delete")
-    public String deleteEntry(Model model) {
-        jaegherApplication.deleteKlant(klant.getId());
-
-        Klant klant_ = new Klant();
-
-        model.addAttribute(klant_);
+    public String deleteEntry(@RequestParam("id") long id, Model model) {
+    	
+        jaegherApplication.deleteKlant(id);
+        Klant klant = new Klant();
+        model.addAttribute(klant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
-
-
 }
