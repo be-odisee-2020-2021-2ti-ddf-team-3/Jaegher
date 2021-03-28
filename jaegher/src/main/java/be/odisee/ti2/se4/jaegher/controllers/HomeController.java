@@ -17,6 +17,11 @@ public class HomeController {
 
     @Autowired
     JaegherApplicationImpl jaegherApplication;
+    
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
 
     //Wanneer je de link http://localhost:8080/home ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/home.html
     @GetMapping("/home")
