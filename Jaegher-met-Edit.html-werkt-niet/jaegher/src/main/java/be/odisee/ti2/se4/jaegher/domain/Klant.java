@@ -23,8 +23,6 @@ public class Klant {
     @OneToOne
     private Lichaamsmaat lichaamsmaat;
 
-    private String email;
-
 
 }
 

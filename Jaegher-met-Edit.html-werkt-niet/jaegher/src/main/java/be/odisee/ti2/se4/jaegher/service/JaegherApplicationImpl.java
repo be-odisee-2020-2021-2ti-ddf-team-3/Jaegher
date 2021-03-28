@@ -41,13 +41,8 @@ public class JaegherApplicationImpl {
         entry.setNaam(naam);
         String achternaam = entryData.getAchternaam();
         entry.setAchternaam(achternaam);
-        String email = entryData.getEmail();
-        entry.setEmail(email);
-        klantRepository.save(entry);
-    }
 
-    public void deleteKlant(long id){
-        Klant klant = klantRepository.findById(id);
-        klantRepository.delete(klant);
+
+        klantRepository.save(entry);
     }
 }

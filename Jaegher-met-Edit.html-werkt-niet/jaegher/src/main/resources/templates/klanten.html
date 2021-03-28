@@ -15,8 +15,7 @@
 <body>
 <h1>Overzicht van de klanten</h1>
             <button class="btn btn-primary btn-md" name="previous" onclick='window.location.href="/home";'>&laquo; Home page</button>
-            <br><br><br>
-
+            <br>
 
 <form method="POST" th:action="@{/klanten}" th:object="${klant}">
 
@@ -26,10 +25,7 @@
         <label>naam:&nbsp;</label><input type="text" th:field="*{naam}" style="width: 40em"/>
     </div>
     <div class="form-group">
-        <label>achternaam: </label><input type="text" th:field="*{achternaam}" style="width: 40em"/>
-    </div>
-    <div class="form-group">
-        <label>Email:&nbsp;</label><input type="text" th:field="*{email}" style="width: 40em"/>
+        <label>achternaam:&nbsp;</label><input type="text" th:field="*{achternaam}" style="width: 40em"/>
     </div>
 
     <div class="form-group" th:if="${klant.getId()}==0">
@@ -38,16 +34,25 @@
     <div class="form-group" th:if="${klant.getId()}!=0">
         <button class="btn btn-primary btn-md" name="delete">Delete entry</button>
     </div>
+
 </form>
 
-
-
-<div class="table-striped well" >
+<div class="table-striped well" th:if="${klant.getId()}==0">
     <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
 
+        <div class="col-md-1 text-left" th:text="${klant.getId()}"> id</div>
         <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
-        <div class="col-md-1 text-left" th:text="${klant.getEmail()}"> email</div>
+    </div>
+</div>
+
+<div class="table-striped well" th:if="${klant.getId()}!=0">
+    <div th:each="klant: ${klant}" class="row"
+         th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
+
+        <div class="col-md-1 text-left" th:text="${klant.getId()}"> id</div>
+        <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
+        <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
     </div>
 </div>
 </body>

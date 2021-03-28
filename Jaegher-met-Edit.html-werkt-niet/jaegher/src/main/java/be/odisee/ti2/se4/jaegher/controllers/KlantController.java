@@ -42,7 +42,8 @@ public class KlantController {
     @PostMapping(params = "submit")
     public String processEntry(Klant klant, Model model) {
 
-        jaegherApplication.addKlant(klant);
+       jaegherApplication.addKlant(klant);
+
         model.addAttribute(klant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
@@ -57,14 +58,12 @@ public class KlantController {
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
-
     @PostMapping(params = "delete")
-    public String deleteEntry(Klant klant, Model model) {
-        jaegherApplication.deleteKlant(klant.getId());
-
-        Klant klant_ = new Klant();
-
-        model.addAttribute(klant_);
+    public String deleteEntry(Klant entryKlant, Model model) {
+        Klant klant = new Klant();
+        klant = klantRepository.findById(entryKlant.getId());
+        klantRepository.delete(klant);
+        model.addAttribute(entryKlant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
