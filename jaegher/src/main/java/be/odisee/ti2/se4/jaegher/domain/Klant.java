@@ -1,6 +1,7 @@
 package be.odisee.ti2.se4.jaegher.domain;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -20,7 +21,7 @@ public class Klant {
 
     private String achternaam;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Lichaamsmaat lichaamsmaat;
 
     private String email;

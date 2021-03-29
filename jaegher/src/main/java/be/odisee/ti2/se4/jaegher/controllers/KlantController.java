@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
 
 
 @Slf4j
@@ -31,30 +33,39 @@ public class KlantController {
     //Wanneer je de link http://localhost:8080/klanten ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/klanten.html
     @GetMapping
     public String klant(Model model) {
-        Klant klant = new Klant();
+        EntryData entryData = new EntryData();
 
         //Dit zorgt ervoor dat je klant en klanten kan gebruiken in de home view
-        model.addAttribute(klant);
+        model.addAttribute(entryData);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
 
     @PostMapping(params = "submit")
-    public String processEntry(Klant klant, Model model) {
+    public String processEntry(EntryData entryData, Model model) {
 
-        jaegherApplication.addKlant(klant);
-        model.addAttribute(klant);
+        jaegherApplication.addKlant(entryData);
+        model.addAttribute(entryData);
+        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
+        return "klanten";
+    }
+    @PostMapping(params = "test")
+    public String processEntry(Model model) {
+        EntryData entryData = new EntryData();
+        jaegherApplication.addTest();
+        model.addAttribute(entryData);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
 
 
-    Klant klant = new Klant();
+    EntryData entryData = new EntryData();
     @PostMapping(params = "update")
-    public String updateEntry(Klant klant_, Model model) {
+    public String updateEntry(EntryData klant_, Model model) {
+        jaegherApplication.updateKlant(klant_, entryData.getId());
+        EntryData entryData = new EntryData();
 
-        jaegherApplication.updateKlant(klant_, klant.getId());
-        model.addAttribute(klant);
+        model.addAttribute(entryData);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }
@@ -62,20 +73,19 @@ public class KlantController {
     @GetMapping("/edit")
     public String entryEditForm(@RequestParam("id") long id, Model model) {
 
-
-        klant = klantRepository.findById(id);
-        model.addAttribute(klant);
-        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
+        entryData = jaegherApplication.prepareEntryDataToEdit(id);
+        model.addAttribute(entryData);
+        model.addAttribute("klanten", klantRepository.findAllById(Collections.singleton(id)));
         return "klanten";
     }
 
     @PostMapping(params = "delete")
     public String deleteEntry(Model model) {
-        jaegherApplication.deleteKlant(klant.getId());
+        jaegherApplication.deleteKlant(entryData.getId());
 
-        Klant klant_ = new Klant();
+        EntryData entryData = new EntryData();
 
-        model.addAttribute(klant_);
+        model.addAttribute(entryData);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
     }

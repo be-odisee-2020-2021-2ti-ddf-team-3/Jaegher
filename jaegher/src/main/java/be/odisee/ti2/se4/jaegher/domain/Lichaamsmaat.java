@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -11,14 +12,15 @@ import javax.persistence.*;
 @Table(name = "LICHAAMSMAATEN")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(force = true)
 public class Lichaamsmaat {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private final long id;
 
-    private String linkerBeen;
+    private Double linkerBeen;
 
-    private String rechterBeen;
+    private Double rechterBeen;
 
 }

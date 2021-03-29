@@ -18,7 +18,7 @@
             <br><br><br>
 
 
-<form method="POST" th:action="@{/klanten}" th:object="${klant}">
+<form method="POST" th:action="@{/klanten}" th:object="${entryData}">
 
     <input type="hidden" th:field="*{id}"/>
 
@@ -31,11 +31,18 @@
     <div class="form-group">
         <label>Email:&nbsp;</label><input type="text" th:field="*{email}" style="width: 40em"/>
     </div>
-
-    <div class="form-group" th:if="${klant.getId()}==0">
-        <button class="btn btn-primary btn-md" name="submit">Create entry</button>
+    <div class="form-group" th:if="${entryData.getId()}!=0">
+        <label>Lengte linkerbeen:&nbsp;</label><input type="text" th:field="*{linkerBeen}" style="width: 40em"/>
     </div>
-    <div class="form-group" th:if="${klant.getId()}!=0">
+    <div class="form-group" th:if="${entryData.getId()}!=0">
+        <label>Lengte rechterbeen:&nbsp;</label><input type="text" th:field="*{rechterBeen}" style="width: 40em"/>
+    </div>
+
+    <div class="form-group" th:if="${entryData.getId()}==0">
+        <button class="btn btn-primary btn-md" name="submit">Create entry</button>
+        <button class="btn btn-primary btn-md" name="test">Create test entry</button>
+    </div>
+    <div class="form-group" th:if="${entryData.getId()}!=0">
         <button class="btn btn-primary btn-md" name="delete">Delete entry</button>
         <button class="btn btn-primary btn-md" name="update">Update entry</button>
     </div>
@@ -50,6 +57,12 @@
         <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div class="col-md-1 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
         <div class="col-md-1 text-left" th:text="${klant.getEmail()}"> email</div>
+    </div>
+</div>
+<div class="table-striped well"  th:if="${entryData.getId()}!=0">
+    <div th:each="klant: ${klanten}" class="row">
+        <div class="col-md-1 text-left" th:text="${klant.lichaamsmaat.rechterBeen}"> rechterbeen</div>
+        <div class="col-md-1 text-left" th:text="${klant.lichaamsmaat.linkerBeen}"> linkerBeen</div>
     </div>
 </div>
 </body>
