@@ -64,9 +64,8 @@ public class JaegherApplicationImpl {
         klantRepository.save(klant);
     }
 
-    public void deleteKlant(long id){
-        Klant klant = klantRepository.findById(id);
-        klantRepository.delete(klant);
+    public void deleteKlant(long id) {
+        klantRepository.deleteById(id);        
     }
 
     public void updateKlant(EntryData entryData, long id) {
