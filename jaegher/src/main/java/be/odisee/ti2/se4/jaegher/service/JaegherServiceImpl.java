@@ -15,7 +15,7 @@ import java.util.List;
 //Deze klassen moet ook een interface krijgen enkel interface mag gebruikt worden
 @Slf4j
 @Service
-public class JaegherApplicationImpl {
+public class JaegherServiceImpl implements JaegherService {
     @Autowired
     KlantRepository klantRepository;
 
@@ -26,11 +26,13 @@ public class JaegherApplicationImpl {
     BestellingRepository bestellingRepository;
 
     //Returned een list van alle klanten
+    @Override
     public List<Klant> getAllKlanten() {
         return (List<Klant>) klantRepository.findAll();
 
     }
 
+    @Override
     public void addKlant(EntryData entryData) {
         Klant entry;
         Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
@@ -50,6 +52,7 @@ public class JaegherApplicationImpl {
         entry.setEmail(email);
         klantRepository.save(entry);
     }
+    @Override
     public void addTest() {
         Klant klant = new Klant();
         Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
@@ -64,11 +67,13 @@ public class JaegherApplicationImpl {
         klantRepository.save(klant);
     }
 
+    @Override
     public void deleteKlant(long id){
         Klant klant = klantRepository.findById(id);
         klantRepository.delete(klant);
     }
 
+    @Override
     public void updateKlant(EntryData entryData, long id) {
         Klant klant;
         klant = klantRepository.findById(id);
@@ -87,6 +92,7 @@ public class JaegherApplicationImpl {
         klantRepository.save(klant);
     }
 
+    @Override
     public EntryData prepareEntryDataToEdit(long id) {
         EntryData theEntryData = new EntryData();
         theEntryData.setId(id);
