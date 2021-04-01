@@ -43,7 +43,7 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaat.setBekkenkanteling(0.0);
         lichaamsmaat.setLinkerArm(0.0);
         lichaamsmaat.setGewicht(0.0);
-        lichaamsmaat.setRechterBeen(0.0);
+        lichaamsmaat.setRechterArm(0.0);
 
         if (entryData.getId() == 0) entry = new Klant();
         else entry = klantRepository.findById(entryData.getId());
@@ -69,15 +69,16 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaat.setLinkerBeen(85.5);
         lichaamsmaat.setRechterBeen(86.0);
         lichaamsmaat.setBekkenkanteling(15.0);
-        lichaamsmaat.setGewicht(72.4);
+        lichaamsmaat.setGewicht(72.0);
         lichaamsmaat.setLinkerArm(53.0);
-        lichaamsmaat.setRechterBeen(52.0);
+        lichaamsmaat.setRechterArm(52.0);
+        lichaamsmaat.setGroote(172.0);
 
         klant.setLichaamsmaat(lichaamsmaat);
         klant.setNaam("Voornaam");
         klant.setAchternaam("Achternaam");
         klant.setEmail("Email@gmail.com");
-        klant.setGeboortedatum("1979-5-6");
+        klant.setGeboortedatum("1979-05-06");
         klant.setAddres("GebakkeStraat 17, Edingen");
         klantRepository.save(klant);
     }
@@ -95,28 +96,43 @@ public class JaegherServiceImpl implements JaegherService {
         Lichaamsmaat lichaamsmaat;
         lichaamsmaat = klant.getLichaamsmaat();
 
-        String naam = entryData.getNaam();
-        klant.setNaam(naam);
-        String achternaam = entryData.getAchternaam();
-        klant.setAchternaam(achternaam);
-        String email = entryData.getEmail();
-        klant.setEmail(email);
+        klant.setNaam(entryData.getNaam());
+        klant.setAchternaam(entryData.getAchternaam());
+        klant.setEmail(entryData.getEmail());
+        klant.setAddres(entryData.getAddres());
+        klant.setGeboortedatum(entryData.getGeboortedatum());
+
         lichaamsmaat.setLinkerBeen(entryData.getLinkerBeen());
         lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
         lichaamsmaat.setBekkenkanteling(entryData.getBekkenkanteling());
         lichaamsmaat.setLinkerArm(entryData.getLinkerArm());
         lichaamsmaat.setGewicht(entryData.getGewicht());
-        lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
+        lichaamsmaat.setRechterArm(entryData.getRechterBeen());
+        lichaamsmaat.setGroote(entryData.getGroote());
         klant.setLichaamsmaat(lichaamsmaat);
-        klant.setAddres(entryData.getAddres());
-        klant.setAddres(entryData.getGeboortedatum());
         klantRepository.save(klant);
     }
 
     @Override
     public EntryData prepareEntryDataToEdit(long id) {
         EntryData theEntryData = new EntryData();
+        Klant klant = klantRepository.findById(id);
+        Lichaamsmaat lichaamsmaat = klant.getLichaamsmaat();
+
         theEntryData.setId(id);
+        theEntryData.setAchternaam(klant.getAchternaam());
+        theEntryData.setNaam(klant.getNaam());
+        theEntryData.setAddres(klant.getAddres());
+        theEntryData.setEmail(klant.getEmail());
+        theEntryData.setGeboortedatum(klant.getGeboortedatum());
+        theEntryData.setLinkerArm(lichaamsmaat.getLinkerArm());
+        theEntryData.setBekkenkanteling(lichaamsmaat.getBekkenkanteling());
+        theEntryData.setRechterArm(lichaamsmaat.getRechterArm());
+        theEntryData.setGewicht(lichaamsmaat.getGewicht());
+        theEntryData.setRechterBeen(lichaamsmaat.getRechterBeen());
+        theEntryData.setLinkerBeen(lichaamsmaat.getRechterBeen());
+        theEntryData.setGroote(lichaamsmaat.getGroote());
+
         return theEntryData;
     }
 

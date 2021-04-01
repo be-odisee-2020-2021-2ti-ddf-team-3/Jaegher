@@ -15,8 +15,9 @@
 <body>
 <h1 th:if="${entryData.getId()}==0">Overzicht van de klanten </h1>
 <h1 th:if="${entryData.getId()}!=0">Overzicht van </h1>
-            <button class="btn btn-primary btn-md" name="previous" onclick='window.location.href="/home";'>&laquo; Home page</button>
-            <br><br><br>
+            <button class="btn btn-primary btn-md" onclick='window.location.href="/home";'>&laquo; Home page</button>
+            <button class="btn btn-primary btn-md" th:if="${entryData.getId()}!=0" onclick='window.location.href="/klanten";'>&laquo; Terug naar klanten</button>
+<br><br><br>
 
 
 <form method="POST" th:action="@{/klanten}" th:object="${entryData}">
@@ -57,6 +58,9 @@
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>gewicht:&nbsp;</label><input type="text" th:field="*{gewicht}" style="width: 40em"/>
     </div>
+    <div class="form-group" th:if="${entryData.getId()}!=0">
+        <label>groote:&nbsp;</label><input type="text" th:field="*{groote}" style="width: 40em"/>
+    </div>
 
 
 
@@ -90,9 +94,10 @@
         <th>linkerBeen(mm)</th>
         <th>Beenlengte verschil(mm)</th>
         <th>Bekken kanteling(mm)</th>
-        <th>lenker arm(mm)</th>
+        <th>linker arm(mm)</th>
         <th>rechter arm(mm)</th>
         <th>gewicht(kg)</th>
+        <th>groote(cm)</th>
     </tr>
     </thead>
     <tbody>
@@ -102,8 +107,9 @@
         <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.linkerBeen - klant.lichaamsmaat.rechterBeen}"></td>
         <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.bekkenkanteling}"></td>
         <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.linkerArm}"></td>
-        <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.rechterBeen}"></td>
+        <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.rechterArm}"></td>
         <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.gewicht}"></td>
+        <td class="col-md-1 text-left" th:text="${klant.lichaamsmaat.groote}"></td>
     </div>
     </tbody>
 </table>
