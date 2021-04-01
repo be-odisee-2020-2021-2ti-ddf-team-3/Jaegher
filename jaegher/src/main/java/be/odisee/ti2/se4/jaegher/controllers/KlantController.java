@@ -70,7 +70,7 @@ public class KlantController {
     public String entryEditForm(@RequestParam("id") long id, Model model) {
 
         entryData = jaegherService.prepareEntryDataToEdit(id);
-        model.addAttribute(entryData);
+        model.addAttribute("entryData", entryData);
         model.addAttribute("klanten", klantRepository.findAllById(Collections.singleton(id)));
         return "klanten";
     }

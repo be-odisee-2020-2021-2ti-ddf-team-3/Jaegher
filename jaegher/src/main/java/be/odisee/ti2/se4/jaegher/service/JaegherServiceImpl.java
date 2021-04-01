@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 //Deze klassen moet ook een interface krijgen enkel interface mag gebruikt worden
@@ -39,6 +40,10 @@ public class JaegherServiceImpl implements JaegherService {
 
         lichaamsmaat.setLinkerBeen(0.0);
         lichaamsmaat.setRechterBeen(0.0);
+        lichaamsmaat.setBekkenkanteling(0.0);
+        lichaamsmaat.setLinkerArm(0.0);
+        lichaamsmaat.setGewicht(0.0);
+        lichaamsmaat.setRechterBeen(0.0);
 
         if (entryData.getId() == 0) entry = new Klant();
         else entry = klantRepository.findById(entryData.getId());
@@ -50,6 +55,10 @@ public class JaegherServiceImpl implements JaegherService {
         entry.setAchternaam(achternaam);
         String email = entryData.getEmail();
         entry.setEmail(email);
+        String addres = entryData.getAddres();
+        entry.setAddres(addres);
+        String date = entryData.getGeboortedatum();
+        entry.setGeboortedatum(date);
         klantRepository.save(entry);
     }
     @Override
@@ -57,13 +66,19 @@ public class JaegherServiceImpl implements JaegherService {
         Klant klant = new Klant();
         Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
 
-        lichaamsmaat.setLinkerBeen(5.0);
-        lichaamsmaat.setRechterBeen(7.0);
+        lichaamsmaat.setLinkerBeen(85.5);
+        lichaamsmaat.setRechterBeen(86.0);
+        lichaamsmaat.setBekkenkanteling(15.0);
+        lichaamsmaat.setGewicht(72.4);
+        lichaamsmaat.setLinkerArm(53.0);
+        lichaamsmaat.setRechterBeen(52.0);
 
         klant.setLichaamsmaat(lichaamsmaat);
         klant.setNaam("Voornaam");
         klant.setAchternaam("Achternaam");
         klant.setEmail("Email@gmail.com");
+        klant.setGeboortedatum("1979-5-6");
+        klant.setAddres("GebakkeStraat 17, Edingen");
         klantRepository.save(klant);
     }
 
@@ -88,7 +103,13 @@ public class JaegherServiceImpl implements JaegherService {
         klant.setEmail(email);
         lichaamsmaat.setLinkerBeen(entryData.getLinkerBeen());
         lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
+        lichaamsmaat.setBekkenkanteling(entryData.getBekkenkanteling());
+        lichaamsmaat.setLinkerArm(entryData.getLinkerArm());
+        lichaamsmaat.setGewicht(entryData.getGewicht());
+        lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
         klant.setLichaamsmaat(lichaamsmaat);
+        klant.setAddres(entryData.getAddres());
+        klant.setAddres(entryData.getGeboortedatum());
         klantRepository.save(klant);
     }
 

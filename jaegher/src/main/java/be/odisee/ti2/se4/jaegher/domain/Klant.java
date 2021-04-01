@@ -2,8 +2,11 @@ package be.odisee.ti2.se4.jaegher.domain;
 
 import lombok.*;
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 //Deze klasse steld een entity voor in de DB de variabelen zijn tabelen
 @Entity
@@ -26,6 +29,10 @@ public class Klant {
 
     private String email;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private String geboortedatum;
+
+    private String addres;
 
 }
 
