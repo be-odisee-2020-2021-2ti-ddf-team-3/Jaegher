@@ -8,11 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 
@@ -26,7 +25,11 @@ public class KlantController {
     @Autowired
     JaegherService jaegherService;
 
+    EntryData entryData = new EntryData();
+
+
     //Wanneer je de link http://localhost:8080/klanten ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/klanten.html
+
     @GetMapping
     public String klant(Model model) {
         EntryData entryData = new EntryData();
@@ -38,29 +41,30 @@ public class KlantController {
     }
 
     @PostMapping(params = "submit")
-    public String processEntry(EntryData entryData, Model model) {
+    public String processEntry(@ModelAttribute("entryData") @Valid EntryData entryData, BindingResult result, Model model) {
 
-        jaegherService.addKlant(entryData);
-        model.addAttribute(entryData);
-        model.addAttribute("klanten", jaegherService.getAllKlanten());
-        return "klanten";
+        if (result.hasErrors()){
+            return "klanten";
+        }
+
+        if(entryData.getId() == 0){
+            jaegherService.addKlant(entryData);
+            model.addAttribute(entryData);
+            model.addAttribute("klanten", jaegherService.getAllKlanten());
+            return "klanten";
+        }else {
+            jaegherService.updateKlant(entryData, entryData.getId());
+            EntryData entryDataUpdate = new EntryData();
+            model.addAttribute(entryDataUpdate);
+            model.addAttribute("klanten", jaegherService.getAllKlanten());
+            return "klanten";
+        }
     }
+
     @PostMapping(params = "test")
     public String processEntry(Model model) {
         EntryData entryData = new EntryData();
         jaegherService.addTest();
-        model.addAttribute(entryData);
-        model.addAttribute("klanten", jaegherService.getAllKlanten());
-        return "klanten";
-    }
-
-
-    EntryData entryData = new EntryData();
-    @PostMapping(params = "update")
-    public String updateEntry(EntryData klant_, Model model) {
-        jaegherService.updateKlant(klant_, entryData.getId());
-        EntryData entryData = new EntryData();
-
         model.addAttribute(entryData);
         model.addAttribute("klanten", jaegherService.getAllKlanten());
         return "klanten";

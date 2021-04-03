@@ -30,7 +30,6 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public List<Klant> getAllKlanten() {
         return (List<Klant>) klantRepository.findAll();
-
     }
 
     @Override
@@ -44,6 +43,7 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaat.setLinkerArm(0.0);
         lichaamsmaat.setGewicht(0.0);
         lichaamsmaat.setRechterArm(0.0);
+        lichaamsmaat.setGroote(100.0);
 
         if (entryData.getId() == 0) entry = new Klant();
         else entry = klantRepository.findById(entryData.getId());

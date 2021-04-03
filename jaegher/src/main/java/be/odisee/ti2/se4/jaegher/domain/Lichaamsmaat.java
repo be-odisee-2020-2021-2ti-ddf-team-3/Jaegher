@@ -4,9 +4,10 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "LICHAAMSMAATEN")
@@ -27,6 +28,7 @@ public class Lichaamsmaat {
 
     private Double gewicht;
 
+    @Max(value = 220, message = "Maximum groote is 220cm")
     private Double groote;
 
     private Double linkerArm;

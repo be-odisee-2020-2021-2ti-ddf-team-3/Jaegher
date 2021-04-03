@@ -26,40 +26,72 @@
 
     <div class="form-group">
         <label>naam:&nbsp;</label><input type="text" th:field="*{naam}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{naam}">
+        </span>
     </div>
     <div class="form-group">
         <label>achternaam: </label><input type="text" th:field="*{achternaam}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{achternaam}">
+        </span>
     </div>
     <div class="form-group">
-        <label>Email:&nbsp;</label><input type="text" th:field="*{email}" style="width: 40em"/>
+        <label>Email:</label><input type="text" th:field="*{email}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{email}">
+        </span>
     </div>
     <div class="form-group" >
-        <label>Gebortedatum:</label><input type="date"  th:field="*{geboortedatum}" style="width: 40em"/>
+        <label>Geboortedatum:</label><input type="date"  th:field="*{geboortedatum}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{geboortedatum}">
+        </span>
     </div>
     <div class="form-group">
-        <label>Addres:</label><input type="text" th:field="*{addres}" style="width: 40em"/>
+        <label>Addres(optioneel):</label><input type="text" th:field="*{addres}" style="width: 40em"/>
     </div>
-
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Lengte linkerbeen:&nbsp;</label><input type="text" th:field="*{linkerBeen}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{linkerBeen}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Lengte rechterbeen:&nbsp;</label><input type="text" th:field="*{rechterBeen}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{rechterBeen}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Bekken kanteling:&nbsp;</label><input type="text" th:field="*{bekkenkanteling}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{bekkenkanteling}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Lengte linkerarm:&nbsp;</label><input type="text" th:field="*{linkerArm}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{linkerArm}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Lengte rechterarm:&nbsp;</label><input type="text" th:field="*{rechterArm}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{rechterArm}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>gewicht:&nbsp;</label><input type="text" th:field="*{gewicht}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{gewicht}">
+        </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>groote:&nbsp;</label><input type="text" th:field="*{groote}" style="width: 40em"/>
+        <span class="validationError"
+              th:errors="*{groote}">
+        </span>
     </div>
 
 
@@ -70,7 +102,7 @@
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <button class="btn btn-primary btn-md" name="delete">Delete klant</button>
-        <button class="btn btn-primary btn-md" name="update">Update klant</button>
+        <button class="btn btn-primary btn-md" name="submit">Update klant</button>
     </div>
 </form>
 
