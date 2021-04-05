@@ -16,7 +16,7 @@ public class HomeController {
     JaegherServiceImpl jaegherApplication;
 
     //Wanneer je de link http://localhost:8080/home ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/home.html
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "home";
     }
@@ -30,5 +30,11 @@ public class HomeController {
         model.addAttribute(klant);
         model.addAttribute("klanten", jaegherApplication.getAllKlanten());
         return "klanten";
+    }
+
+    @GetMapping("/login-error")
+    public String loginerror(Model model) {
+        model.addAttribute("error", true);
+        return "login";
     }
 }

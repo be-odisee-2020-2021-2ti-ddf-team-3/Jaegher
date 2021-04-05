@@ -42,6 +42,7 @@ public class Klant {
 
     private String addres;
 
+
 }
 
 

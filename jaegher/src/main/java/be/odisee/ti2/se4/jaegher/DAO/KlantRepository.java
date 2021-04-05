@@ -9,5 +9,4 @@ public interface KlantRepository extends CrudRepository<Klant, Long> {
 
     public Klant findById(long id);
 
-    public Klant findFirstByOrderByIdDesc();
 }
