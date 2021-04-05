@@ -51,6 +51,10 @@ div.row {
     margin-bottom: 5px;
 }
 
+div>label {
+    width: 7%;
+}
+
 
 
 

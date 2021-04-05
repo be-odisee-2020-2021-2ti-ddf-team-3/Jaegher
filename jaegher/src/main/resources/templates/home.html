@@ -19,5 +19,8 @@
     </div>
 
     <button style="margin-top: 15px" class="btn btn-primary btn-md"><a href="klanten" style="color:white;">Klanten view </a></button>
+    <form method="POST" th:action="@{/logout}" style="margin-top: 15px">
+        <button class="btn btn-danger btn-md logout" name="logout" value="Logout">Logout</button>
+    </form>
 </body>
 </html>
