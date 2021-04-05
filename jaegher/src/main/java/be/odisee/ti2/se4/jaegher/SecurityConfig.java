@@ -28,42 +28,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("imke")
-                .password("courtois")
-                .authorities("ROLE_KLANT")
-                .and()
-                .withUser("tessa")
-                .password("wullaert")
-                .authorities("ROLE_BIKEFITTER")
-                .and()
-                .withUser("nicky")
-                .password("evrard")
-                .authorities("ROLE_BIKEFITTER");
+                .userDetailsService(userDetailsService);
     }
 
-    /*@Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("css/**").permitAll()
                 .antMatchers("/login*").permitAll()
-                .antMatchers("/admin", "/h2/**").hasRole("ADMIN")
-                .antMatchers("/css/**").permitAll()
+                .antMatchers("/h2*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login-error")
-                .defaultSuccessUrl("/home",true)
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .permitAll();
+                    .loginPage("/login")
+                    .failureUrl("/login-error")
+                    .defaultSuccessUrl("/home",true)
+                    .permitAll();
         http.csrf().disable();                                  // NEEDED FOR H2 CONSOLE
         http.headers().frameOptions().disable();                // NEEDED FOR H2 CONSOLE
     }
 
-     */
     @SuppressWarnings("deprecation")
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {
