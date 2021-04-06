@@ -1,13 +1,17 @@
 package be.odisee.ti2.se4.jaegher.service;
 
 import be.odisee.ti2.se4.jaegher.DAO.BestellingRepository;
+import be.odisee.ti2.se4.jaegher.DAO.GebruikerRepository;
 import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.DAO.LichaamsmaatRepository;
+import be.odisee.ti2.se4.jaegher.domain.Gebruiker;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,6 +29,8 @@ public class JaegherServiceImpl implements JaegherService {
 
     @Autowired
     BestellingRepository bestellingRepository;
+    @Autowired
+    GebruikerRepository gebruikerRepository;
 
     //Returned een list van alle klanten
     @Override
@@ -107,7 +113,7 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaat.setBekkenkanteling(entryData.getBekkenkanteling());
         lichaamsmaat.setLinkerArm(entryData.getLinkerArm());
         lichaamsmaat.setGewicht(entryData.getGewicht());
-        lichaamsmaat.setRechterArm(entryData.getRechterBeen());
+        lichaamsmaat.setRechterArm(entryData.getRechterArm());
         lichaamsmaat.setGroote(entryData.getGroote());
         klant.setLichaamsmaat(lichaamsmaat);
         klantRepository.save(klant);
@@ -130,10 +136,36 @@ public class JaegherServiceImpl implements JaegherService {
         theEntryData.setRechterArm(lichaamsmaat.getRechterArm());
         theEntryData.setGewicht(lichaamsmaat.getGewicht());
         theEntryData.setRechterBeen(lichaamsmaat.getRechterBeen());
-        theEntryData.setLinkerBeen(lichaamsmaat.getRechterBeen());
+        theEntryData.setLinkerBeen(lichaamsmaat.getLinkerBeen());
         theEntryData.setGroote(lichaamsmaat.getGroote());
 
         return theEntryData;
     }
+
+    public String getAuthenticatedUsername() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return currentPrincipalName;
+    }
+    private Gebruiker findAuthenticatedUser() {
+
+        String username = getAuthenticatedUsername();
+        return gebruikerRepository.findByUsername(username);
+    }
+
+    @Override
+    public String getAuthenticatedFullname() {
+
+        Gebruiker theUser = findAuthenticatedUser();
+        return theUser.getUsername();
+    }
+    @Override
+    public String getAuthenticatedRole() {
+        Gebruiker theUser = findAuthenticatedUser();
+        return theUser.getRole();
+    }
+
+
 
 }

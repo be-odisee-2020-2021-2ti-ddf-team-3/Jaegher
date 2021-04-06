@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Collections;
 
-
 @Slf4j
 @Controller
 @RequestMapping("/klanten")
@@ -27,17 +26,22 @@ public class KlantController {
 
     EntryData entryData = new EntryData();
 
+    //String role = jaegherService.getAuthenticatedRole();
 
     //Wanneer je de link http://localhost:8080/klanten ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/klanten.html
 
+
     @GetMapping
     public String klant(Model model) {
-        EntryData entryData = new EntryData();
+         EntryData entryData = new EntryData();
 
-        //Dit zorgt ervoor dat je klant en klanten kan gebruiken in de home view
-        model.addAttribute(entryData);
-        model.addAttribute("klanten", jaegherService.getAllKlanten());
-        return "klanten";
+         //Dit zorgt ervoor dat je klant en klanten kan gebruiken in de home view
+         model.addAttribute(entryData);
+         model.addAttribute("fullname", jaegherService.getAuthenticatedFullname());
+         model.addAttribute("role", jaegherService.getAuthenticatedRole());
+         model.addAttribute("klanten", jaegherService.getAllKlanten());
+         return "klanten";
+
     }
 
     @PostMapping(params = "submit")

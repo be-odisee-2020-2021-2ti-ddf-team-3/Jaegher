@@ -11,25 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 
-
     @Autowired
-    JaegherServiceImpl jaegherApplication;
+    JaegherServiceImpl jaegherServiceImpl;
 
     //Wanneer je de link http://localhost:8080/home ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/home.html
-    @GetMapping("/")
-    public String home() {
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("fullname", jaegherServiceImpl.getAuthenticatedFullname());
+        model.addAttribute("role", jaegherServiceImpl.getAuthenticatedRole());
         return "home";
-    }
-
-    //Dit werkt niet, ik probeer du button op het home view om naar de klanten view te gaan te doen werken
-    @PostMapping(params = "btnklanten")
-    public String gotToKlanten(Model model) {
-        Klant klant = new Klant();
-
-        //Dit zorgt ervoor dat je klant en klanten kan gebruiken in de home view
-        model.addAttribute(klant);
-        model.addAttribute("klanten", jaegherApplication.getAllKlanten());
-        return "klanten";
     }
 
     @GetMapping("/login-error")

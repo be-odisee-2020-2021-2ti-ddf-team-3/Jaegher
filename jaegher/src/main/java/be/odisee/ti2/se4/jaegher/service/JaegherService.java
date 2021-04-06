@@ -18,4 +18,8 @@ public interface JaegherService {
     public void updateKlant(EntryData entryData, long id);
 
     public EntryData prepareEntryDataToEdit(long id);
+
+    public String getAuthenticatedFullname();
+
+    public String getAuthenticatedRole();
 }

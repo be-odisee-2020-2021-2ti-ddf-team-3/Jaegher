@@ -13,8 +13,7 @@
     </script>
 </head>
 <body>
-<h1 th:if="${entryData.getId()}==0">Overzicht van de klanten </h1>
-<h1 th:if="${entryData.getId()}!=0">Overzicht van </h1>
+<h1>Welcome bij jaegher <span th:text="${fullname}"> username </span></h1>
             <button class="btn btn-primary btn-md" onclick='window.location.href="/home";'>&laquo; Home page</button>
             <button class="btn btn-primary btn-md" th:if="${entryData.getId()}!=0" onclick='window.location.href="/klanten";'>&laquo; Terug naar klanten</button>
 <br><br><br>
