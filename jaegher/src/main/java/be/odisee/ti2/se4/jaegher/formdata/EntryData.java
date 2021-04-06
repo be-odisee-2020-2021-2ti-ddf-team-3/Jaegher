@@ -21,6 +21,7 @@ public class EntryData {
     @NotBlank(message="achternaam verplicht")
     private String achternaam;
 
+
     @NotBlank(message="geboortedatum verplicht")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String geboortedatum;
@@ -29,6 +30,7 @@ public class EntryData {
 
     private Lichaamsmaat lichaamsmaat;
 
+    @NotBlank(message="email verplicht")
     @Email(message="Vul een geldig e-mail adres in ")
     private String email;
 
