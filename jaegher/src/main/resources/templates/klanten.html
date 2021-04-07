@@ -109,8 +109,15 @@
 </form>
 
 
-
-<div class="table-striped well" >
+<h3>Lijst van klanten:</h3>
+<div class="table-striped well">
+    <div style="font-weight: bold; margin-bottom: 10px;" class="row">
+        <div class="col-md-1 text-left">Naam</div>
+        <div class="col-md-2 text-left">Achternaam</div>
+        <div class="col-md-3 text-left">Addres</div>
+        <div class="col-md-3 text-left">Email</div>
+        <div class="col-md-3 text-left">Geboortedatum</div>
+    </div>
     <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
         <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div class="col-md-2 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
