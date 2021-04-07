@@ -32,16 +32,16 @@ public class JaegherApplicationInitDB implements CommandLineRunner {
 
         List<Gebruiker> users = Arrays.asList(
                 new Gebruiker(1, "imke",
-                        "imkeww",
+                        "{bcrypt}$2a$10$JXA4QgnyC/d5v6RT1liSl.gg0bX/GjH0y7h1mZNUndZjhjpCDtHMW", //imkeww
                         "KLANT"),
                 new Gebruiker(2,"tessa",
-                        "tessaww",
+                        "{bcrypt}$2a$10$v0AhJ0k0EFKJNsjvHDLWYu0P8hVVx7wRJRPIweQUzr8dFRALF7saC", //tessaww
                         "KLANT"),
                 new Gebruiker(3, "test",
-                        "test",
+                        "{bcrypt}$2a$10$4KgVIW.3TULRU8499sny0OeqRF.SFlmbzASQZj6X/1vdw.klEZWaG", //testww
                         "BIKEFITTER"),
                 new Gebruiker(4, "hans",
-                        "hansww",
+                        "{bcrypt}$2a$10$nLBW.FxJeC8pRPw4H2vsEuB7Q4MAqdHdi9e7dLMNtgQY4oVNK2OH2", //hansww
                         "BIKEFITTER")
         );
 
