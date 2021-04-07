@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.List;import org.springframework.security.crypto.bcrypt.BCrypt;
 
 //Deze klassen moet ook een interface krijgen enkel interface mag gebruikt worden
 @Slf4j
@@ -36,6 +36,10 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public List<Klant> getAllKlanten() {
         return (List<Klant>) klantRepository.findAll();
+    }
+    @Override
+    public List<Gebruiker> getAllGebruikers() {
+        return (List<Gebruiker>) gebruikerRepository.findAll();
     }
 
     @Override
@@ -66,6 +70,19 @@ public class JaegherServiceImpl implements JaegherService {
         String date = entryData.getGeboortedatum();
         entry.setGeboortedatum(date);
         klantRepository.save(entry);
+    }
+    public static String hash(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+    @Override
+    public void addGebruiker(Gebruiker gebruiker) {
+        Gebruiker entry = new Gebruiker();
+
+        //entry.setUsername(gebruiker.getUsername());
+        //entry.setRole(gebruiker.getRole());
+        //String pwd = hash(gebruiker.getPassword());
+        //entry.setPassword(pwd);
+        gebruikerRepository.save(entry);
     }
     @Override
     public void addTest() {

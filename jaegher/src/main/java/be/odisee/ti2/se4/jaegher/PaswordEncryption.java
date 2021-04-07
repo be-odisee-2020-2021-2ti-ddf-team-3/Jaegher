@@ -11,7 +11,7 @@ public class PaswordEncryption {
 
     public static void main(String[] args) {
 
-        String[] passwords = {"imkeww", "tessaww", "testww","hansww"};
+        String[] passwords = {"imkeww", "tessaww", "testww","hansww", "adminww"};
 
         for (String pwd : passwords ) {
             System.out.printf("%s is {bcrypt}%s%n", pwd, hash(pwd));

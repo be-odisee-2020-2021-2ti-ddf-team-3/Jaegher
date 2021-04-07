@@ -1,6 +1,7 @@
 package be.odisee.ti2.se4.jaegher.service;
 
 
+import be.odisee.ti2.se4.jaegher.domain.Gebruiker;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 
@@ -8,6 +9,8 @@ import java.util.List;
 
 public interface JaegherService {
     public List<Klant> getAllKlanten();
+
+    public List<Gebruiker> getAllGebruikers();
 
     public void addKlant(EntryData entryData);
 
@@ -22,4 +25,6 @@ public interface JaegherService {
     public String getAuthenticatedFullname();
 
     public String getAuthenticatedRole();
+
+    public void addGebruiker(Gebruiker gebruiker);
 }

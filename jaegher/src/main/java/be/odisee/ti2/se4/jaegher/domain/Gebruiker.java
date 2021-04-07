@@ -13,7 +13,7 @@ import java.util.Collection;
 @Table(name = "GEBRUIKERS")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(force = true)
 public class Gebruiker implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

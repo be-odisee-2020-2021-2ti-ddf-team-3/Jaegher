@@ -41,8 +41,11 @@ public class JaegherApplicationInitDB implements CommandLineRunner {
                         "{bcrypt}$2a$10$4KgVIW.3TULRU8499sny0OeqRF.SFlmbzASQZj6X/1vdw.klEZWaG", //testww
                         "BIKEFITTER"),
                 new Gebruiker(4, "hans",
-                        "{bcrypt}$2a$10$nLBW.FxJeC8pRPw4H2vsEuB7Q4MAqdHdi9e7dLMNtgQY4oVNK2OH2", //hansww
-                        "BIKEFITTER")
+                "{bcrypt}$2a$10$nLBW.FxJeC8pRPw4H2vsEuB7Q4MAqdHdi9e7dLMNtgQY4oVNK2OH2", //hansww
+                "BIKEFITTER"),
+                new Gebruiker(5, "admin",
+                        "{bcrypt}$2a$10$IBdzG00.GH5kqfYxYdDUEOqkUyHjBQyZZ1o7LFsLsP6sho7ANPtki", //adminww
+                        "ADMIN")
         );
 
         for (Gebruiker gebruiker : users) {
