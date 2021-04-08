@@ -15,9 +15,9 @@
 <body>
 <span>Ingelogd als: </span><span th:text="${fullname}"></span>
 <h1 style="margin-bottom: 20px;">Klanten beheer </h1>
-            <button class="btn btn-primary btn-md" onclick='window.location.href="/home";'>&laquo; Home page</button>
-            <button class="btn btn-primary btn-md" th:if="${entryData.getId()}!=0" onclick='window.location.href="/klanten";'>&laquo; Terug naar klanten</button>
-<br><br><br>
+            <button style="margin-bottom: 15px;" class="btn btn-primary btn-md" onclick='window.location.href="/home";'>&laquo; Home page</button>
+            <button style="margin-bottom: 15px;" class="btn btn-primary btn-md" th:if="${entryData.getId()}!=0" onclick='window.location.href="/klanten";'>&laquo; Terug naar klanten</button>
+
 <form method="POST" th:action="@{/logout}" style="float: right">
     <button class="btn btn-danger btn-md logout" name="logout" value="Logout">Logout</button>
 </form>
@@ -90,7 +90,7 @@
         </span>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
-        <label>groote:&nbsp;</label><input type="text" th:field="*{groote}" style="width: 40em"/>
+        <label>grootte:&nbsp;</label><input type="text" th:field="*{groote}" style="width: 40em"/>
         <span class="validationError"
               th:errors="*{groote}">
         </span>
@@ -98,13 +98,13 @@
 
 
 
-    <div class="form-group" th:if="${entryData.getId()}==0">
+    <div style="margin-top: 15px;" class="form-group" th:if="${entryData.getId()}==0">
         <button class="btn btn-primary btn-md" name="submit">Maak klant</button>
         <button class="btn btn-primary btn-md" name="test">Maak test klant</button>
     </div>
-    <div class="form-group" th:if="${entryData.getId()}!=0">
-        <button class="btn btn-primary btn-md" name="delete">Delete klant</button>
+    <div style="margin-top: 15px;" class="form-group" th:if="${entryData.getId()}!=0">
         <button class="btn btn-primary btn-md" name="submit">Update klant</button>
+        <button class="btn btn-primary btn-md" name="delete">Delete klant</button>
     </div>
 </form>
 
@@ -138,7 +138,7 @@
         <th>linker arm(mm)</th>
         <th>rechter arm(mm)</th>
         <th>gewicht(kg)</th>
-        <th>groote(cm)</th>
+        <th>grootte(cm)</th>
     </tr>
     </thead>
     <tbody>
