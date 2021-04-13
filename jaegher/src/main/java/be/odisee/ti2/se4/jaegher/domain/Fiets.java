@@ -6,25 +6,26 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "BESTELLINGEN")
+@Table(name = "FIETSEN")
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Bestelling {
+public class Fiets {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private final long id;
 
     private String status;
-
-    private String aanMaakDatum;
-
-    private Boolean goedgekeurd;
-
+    private String naam;
+    private String model;
     @ManyToOne
-    private Klant klant;
+    private Bestelling bestelling;
 
+    @OneToOne
+    private Fietssamenstelling fietssamenstelling;
 
+    @OneToOne
+    private Ontwerp ontwerp;
 }

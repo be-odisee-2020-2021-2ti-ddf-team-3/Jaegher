@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,5 +19,26 @@ public class Ontwerp {
     @Id
     private final long id;
 
+    private String status;
+
+    private String casetteAfstelling;
+
+    private String frameAfstelling;
+
+    private String pedalenAfstelling;
+
+    private Double prijs;
+
+    private String shifterAfstelling;
+
     private String zadelAfstelling;
+
+    private String stuurAfstelling;
+
+    private int frameFormaat;
+
+    private Boolean goedgekeurd;
+
+    @ManyToOne
+    private Bestelling bestelling;
 }
