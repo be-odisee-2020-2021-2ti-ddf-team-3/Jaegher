@@ -20,8 +20,8 @@
         </div>
     </div>
 
-    <button th:if="${role}!=KLANT" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="klanten" style="color:white;">Klanten view </a></button>
-    <button th:if="${role}==ADMIN" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="/Gebruikers" style="color:white;">Gebruikers view </a></button>
+    <button th:if="${role}!=KLANT" id="klanten" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="klanten" style="color:white;">Klanten view </a></button>
+    <button th:if="${role}==ADMIN" id="admin" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="/Gebruikers" style="color:white;">Gebruikers view </a></button>
     <form method="POST" th:action="@{/logout}" style="margin-top: 15px">
         <button class="btn btn-danger btn-md logout" name="logout" value="Logout">Logout</button>
     </form>
