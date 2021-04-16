@@ -27,31 +27,31 @@
     <input type="hidden" th:field="*{id}"/>
 
     <div class="form-group">
-        <label>naam:&nbsp;</label><input type="text" th:field="*{naam}" style="width: 40em"/>
+        <label>naam:&nbsp;</label><input id="naam" type="text" th:field="*{naam}" style="width: 40em"/>
         <span class="validationError"
               th:errors="*{naam}">
         </span>
     </div>
     <div class="form-group">
-        <label>achternaam: </label><input type="text" th:field="*{achternaam}" style="width: 40em"/>
+        <label>achternaam: </label><input id="achternaam" type="text" th:field="*{achternaam}" style="width: 40em"/>
         <span class="validationError"
               th:errors="*{achternaam}">
         </span>
     </div>
     <div class="form-group">
-        <label>Email:</label><input type="text" th:field="*{email}" style="width: 40em"/>
+        <label>Email:</label><input id="email" type="text" th:field="*{email}" style="width: 40em"/>
         <span class="validationError"
               th:errors="*{email}">
         </span>
     </div>
     <div class="form-group" >
-        <label>Geboortedatum:</label><input type="date"  th:field="*{geboortedatum}" style="width: 40em"/>
+        <label>Geboortedatum:</label><input id="geboortedatum" type="date"  th:field="*{geboortedatum}" style="width: 40em"/>
         <span class="validationError"
               th:errors="*{geboortedatum}">
         </span>
     </div>
     <div class="form-group">
-        <label>Addres(optioneel):</label><input type="text" th:field="*{addres}" style="width: 40em"/>
+        <label>Addres(optioneel):</label><input id="addres" type="text" th:field="*{addres}" style="width: 40em"/>
     </div>
     <div class="form-group" th:if="${entryData.getId()}!=0">
         <label>Lengte linkerbeen:&nbsp;</label><input type="text" th:field="*{linkerBeen}" style="width: 40em"/>
