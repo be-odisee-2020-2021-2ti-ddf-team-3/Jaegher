@@ -119,11 +119,11 @@
         <div class="col-md-3 text-left">Geboortedatum</div>
     </div>
     <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
-        <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
-        <div class="col-md-2 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
-        <div class="col-md-3 text-left" th:text="${klant.getAddres()}"> email</div>
-        <div class="col-md-3 text-left" th:text="${klant.getEmail()}"> addres</div>
-        <div class="col-md-3 text-left" th:text="${klant.getGeboortedatum()}"> geboortedatum</div>
+        <div id="outputNaam" class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
+        <div id="outputAchternaam" class="col-md-2 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
+        <div id="outputAddres" class="col-md-3 text-left" th:text="${klant.getAddres()}"> email</div>
+        <div id="outputEmail" class="col-md-3 text-left" th:text="${klant.getEmail()}"> addres</div>
+        <div id="outputGeboortedatum" class="col-md-3 text-left" th:text="${klant.getGeboortedatum()}"> geboortedatum</div>
         <br>
     </div>
 </div>
