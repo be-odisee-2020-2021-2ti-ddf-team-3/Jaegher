@@ -12,12 +12,13 @@ import java.util.Date;
 @Table(name = "BESTELLINGEN")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(force = true)
 public class Bestelling {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private final long id;
 
-    private String status;
+    private String naam;
 
     private String aanMaakDatum;
 

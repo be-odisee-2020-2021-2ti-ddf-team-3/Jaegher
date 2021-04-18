@@ -4,10 +4,12 @@ import be.odisee.ti2.se4.jaegher.DAO.BestellingRepository;
 import be.odisee.ti2.se4.jaegher.DAO.GebruikerRepository;
 import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.DAO.LichaamsmaatRepository;
+import be.odisee.ti2.se4.jaegher.domain.Bestelling;
 import be.odisee.ti2.se4.jaegher.domain.Gebruiker;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
+import be.odisee.ti2.se4.jaegher.formdata.EntryDataBestellingen;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;import org.springframework.security.crypto.bcrypt.BCrypt;
 
 //Deze klassen moet ook een interface krijgen enkel interface mag gebruikt worden
@@ -23,10 +29,8 @@ import java.util.List;import org.springframework.security.crypto.bcrypt.BCrypt;
 public class JaegherServiceImpl implements JaegherService {
     @Autowired
     KlantRepository klantRepository;
-
     @Autowired
     LichaamsmaatRepository lichaamsmaatRepository;
-
     @Autowired
     BestellingRepository bestellingRepository;
     @Autowired
@@ -40,6 +44,10 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public List<Gebruiker> getAllGebruikers() {
         return (List<Gebruiker>) gebruikerRepository.findAll();
+    }
+    @Override
+    public List<Bestelling> getAllBestellingen() {
+        return (List<Bestelling>) bestellingRepository.findAll();
     }
 
     @Override
@@ -183,6 +191,68 @@ public class JaegherServiceImpl implements JaegherService {
         return theUser.getRole();
     }
 
+    @Override
+    public EntryDataBestellingen prepareEntryDataBestellingenKlant(long id) {
+        EntryDataBestellingen theEntryData = new EntryDataBestellingen();
+        Klant klant = klantRepository.findById(id);
 
+        theEntryData.setId(id);
+        theEntryData.setBestellingId(0);
+        theEntryData.setAchterNaam(klant.getAchternaam());
+        theEntryData.setVoorNaam(klant.getNaam());
+        theEntryData.setKlantId(klant.getId());
+
+        return theEntryData;
+    }
+    @Override
+    public EntryDataBestellingen prepareEntryDataBestelling(long id) {
+        EntryDataBestellingen theEntryData = new EntryDataBestellingen();
+        Bestelling bestelling = bestellingRepository.findById(id);
+
+        theEntryData.setId(id);
+        theEntryData.setBestellingId(bestelling.getId());
+        theEntryData.setNaam(bestelling.getNaam());
+        theEntryData.setAanMaakDatum(bestelling.getAanMaakDatum());
+
+        return theEntryData;
+    }
+    @Override
+    public void addBestelling(EntryDataBestellingen entryData, long klantID) {
+        Bestelling entry = new Bestelling();
+
+        Klant klant = klantRepository.findById(klantID);
+        entry.setKlant(klant);
+        String naam = entryData.getNaam();
+        entry.setNaam(naam);
+        String date = entryData.getAanMaakDatum();
+        entry.setAanMaakDatum(date);
+        entry.setGoedgekeurd(false);
+
+        bestellingRepository.save(entry);
+    }
+
+    @Override
+    public void updateBestelling(EntryDataBestellingen entryData, long id) {
+        Bestelling bestelling;
+        bestelling = bestellingRepository.findById(id);
+
+        bestelling.setNaam(entryData.getNaam());
+        bestelling.setAanMaakDatum(entryData.getAanMaakDatum());
+        bestellingRepository.save(bestelling);
+    }
+    @Override
+    public void bestellingGoedkeuren(long id) {
+        Bestelling bestelling;
+        bestelling = bestellingRepository.findById(id);
+
+        bestelling.setGoedgekeurd(true);
+        bestellingRepository.save(bestelling);
+    }
+
+    @Override
+    public void deleteBestelling(long id){
+        Bestelling bestelling = bestellingRepository.findById(id);
+        bestellingRepository.delete(bestelling);
+    }
 
 }

@@ -26,7 +26,6 @@ public class KlantController {
 
     EntryData entryData = new EntryData();
 
-    //String role = jaegherService.getAuthenticatedRole();
 
     //Wanneer je de link http://localhost:8080/klanten ingeeft wordt je geredirect naar de view in locatie src/main/resources/templates/klanten.html
 
