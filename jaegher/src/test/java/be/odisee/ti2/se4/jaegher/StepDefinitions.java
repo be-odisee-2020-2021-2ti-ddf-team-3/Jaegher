@@ -41,4 +41,147 @@ public class StepDefinitions {
     public void I_should_go_to_the_home_screen() throws Throwable {
         driver.navigate().to("http://localhost:8080/home");
     }
+
+
+
+    @Given("^Ik ben op de pagina waar ik de lijst van klanten kan raadplegen$")
+    public void Ik_ben_op_de_klanten_pagina() throws Throwable {
+       // System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+
+        //driver = new FirefoxDriver();
+        //niet zeker of die moet wordne gecomment
+        driver.navigate().to("http://localhost:8080/klanten");
+    }
+
+   /* class LabelData {
+        String label;
+        String data;
+    }
+    */
+
+    //input data
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_naam_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_achternaam_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_email_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_addres_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_geboortedatum_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I press on the Submit button$")
+    public void i_press_on_the_Submit_button() throws Throwable {
+        driver.findElement(By.id("maakKlant")).click();
+    }
+
+    //output
+    @Then("^I should see the following on the screen$")
+    public void i_should_see_the_following_on_the_screen_klanten(List<LabelData> checklist) throws Throwable {
+        // wacht tot de juiste pagina geladen is
+        new WebDriverWait(driver, 10).until(ExpectedConditions
+                                                .textToBePresentInElementLocated(By.tagName("body"), "Details van persoon")); 
+
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        for (LabelData ld: checklist){
+            String text2bFound = ld.label + " " + ld.data;
+            Assert.assertTrue("Did not find this text: "+text2bFound+"\n",bodyText.contains(text2bFound));
+        }
+
+    }
+
+
+    @Given("^Ik ben op de pagina waar ik de gegevens van een klant kan wijzigen$")
+    public void Ik_ben_op_de_lichaamsmaat_pagina() throws Throwable {
+       // System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+
+        //driver = new FirefoxDriver();
+        //niet zeker of die moet wordne gecomment
+        driver.navigate().to("http://localhost:8080/klanten");
+    }
+
+    @When("^I press on the Submit button$")
+    public void i_press_on_the_Submit_button() throws Throwable {
+        driver.findElement(By.id("maakKlant")).click();
+    }
+
+   /* class LabelData {
+        String label;
+        String data;
+    }
+    */
+
+    //input data
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_lengteLinkerbeen_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_lengteRechterbeen_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_bekkenKanteling_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_lengteLinkerarm_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_lengteRechtearm_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_gewicht_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
+    public void i_enter_in_the_grootte_field(String enteredText, String fieldName) throws Throwable {
+
+        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
+    }
+    @When("^I press on the Submit button$")
+    public void i_press_on_the_Submit_button() throws Throwable {
+        driver.findElement(By.id("maakKlant")).click();
+    }
+
+
+    //output
+    @Then("^I should see the following on the screen$")
+    public void i_should_see_the_following_on_the_screen_klanten(List<LabelData> checklist) throws Throwable {
+        // wacht tot de juiste pagina geladen is
+        new WebDriverWait(driver, 10).until(ExpectedConditions
+                                                .textToBePresentInElementLocated(By.tagName("body"), "Details van persoon")); 
+
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        for (LabelData ld: checklist){
+            String text2bFound = ld.label + " " + ld.data;
+            Assert.assertTrue("Did not find this text: "+text2bFound+"\n",bodyText.contains(text2bFound));
+        }
+
+    }
+
+
 }
