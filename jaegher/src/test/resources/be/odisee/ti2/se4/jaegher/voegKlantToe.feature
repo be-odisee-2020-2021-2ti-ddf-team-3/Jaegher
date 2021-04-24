@@ -5,17 +5,13 @@ Na het toevoegen van een klant, zou de klant zichtbaar moeten zijn in de lijst v
 
 
 Scenario: Voeg een klant toe
-Given Ik ben op de pagina waar ik de lijst van klanten kan raadplegen
-When I enter "Sanne" in the voornaam field
-And I enter "Putzeys" in the familienaam field
-And I enter "selah@sue.be" in the emailadres field
-And I enter "Haachstesteenweg 195, Steenokkerzeel" in the address field
-And I enter "19-10-2000" in the geboortedatum field
-And I press on the Submit button
-Then I should see the following on the screen
-
-| Voornaam:    |  Familienaam: |   E-mailadres:     |               Address:                 |   Geboortedatum |
-|   Sanne      |    Putzeys    |   selah@sue.be     | Haachstesteenweg 195, Steenokkerzeel   |    19-10-2000   |
-
-
-And I close the browser
+  Given I am on the login page
+  When I enter "admin" in the username field
+  And I enter "adminww" in the password field
+  And I press on the Submit button
+  Then I press on the Klanten button
+  When I enter "Test" in the naam field
+  And I enter "Achternaam" in the achternaam field
+  And I enter "Email@gmail.com" in the email field
+  And I enter "2001-05-02" in the geboortedatum field
+  Then I press on the submit button klant

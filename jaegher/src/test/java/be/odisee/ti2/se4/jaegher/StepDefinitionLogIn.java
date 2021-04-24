@@ -6,6 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class StepDefinitionLogIn {
@@ -34,12 +35,16 @@ public class StepDefinitionLogIn {
 
     @Then("^I should go to the home screen$")
     public void iShouldGoToTheHomeScreen() {
-        driver = new FirefoxDriver();
         driver.navigate().to("http://localhost:8080/home");
     }
 
+    @Then("^I press on the Klanten button$")
+    public void iPressOnTheKlantenButton()  {
+        driver.findElement(By.name("klanten")).click();
+    }
 
-
-
-
+    @Then("^I press on the submit button klant$")
+    public void iPressOnTheSubmitButtonKlant() {
+        driver.findElement(By.name("submit")).click();
+    }
 }
