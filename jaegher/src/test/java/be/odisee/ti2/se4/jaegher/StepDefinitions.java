@@ -19,7 +19,7 @@ import java.util.List;
 
 public class StepDefinitions {
     WebDriver driver;
-
+    //Login
     @Given("^Ik ben op de log in pagina$")
     public void Ik_ben_op_de_log_in_pagina() throws Throwable {
         System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
@@ -43,7 +43,7 @@ public class StepDefinitions {
     }
 
 
-
+    //voegKlantToe
     @Given("^Ik ben op de pagina waar ik de lijst van klanten kan raadplegen$")
     public void Ik_ben_op_de_klanten_pagina() throws Throwable {
        // System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
@@ -89,13 +89,12 @@ public class StepDefinitions {
     public void i_press_on_the_Submit_button() throws Throwable {
         driver.findElement(By.id("maakKlant")).click();
     }
-
     //output
     @Then("^I should see the following on the screen$")
     public void i_should_see_the_following_on_the_screen_klanten(List<LabelData> checklist) throws Throwable {
         // wacht tot de juiste pagina geladen is
         new WebDriverWait(driver, 10).until(ExpectedConditions
-                                                .textToBePresentInElementLocated(By.tagName("body"), "Details van persoon")); 
+                .textToBePresentInElementLocated(By.tagName("body"), "Details van persoon"));
 
         String bodyText = driver.findElement(By.tagName("body")).getText();
         for (LabelData ld: checklist){
@@ -105,7 +104,7 @@ public class StepDefinitions {
 
     }
 
-
+    //voegLichaamsmaatToe
     @Given("^Ik ben op de pagina waar ik de gegevens van een klant kan wijzigen$")
     public void Ik_ben_op_de_lichaamsmaat_pagina() throws Throwable {
        // System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
@@ -165,6 +164,11 @@ public class StepDefinitions {
     @When("^I press on the Submit button$")
     public void i_press_on_the_Submit_button() throws Throwable {
         driver.findElement(By.id("maakKlant")).click();
+    }
+
+    @When("^I click the klant dat ik heb gewijzigd$")
+    public void iClickTheKlantDatIkHebGewijzigd() {
+        driver.findElement(By.class("gemaakteKlant")).click();
     }
 
 

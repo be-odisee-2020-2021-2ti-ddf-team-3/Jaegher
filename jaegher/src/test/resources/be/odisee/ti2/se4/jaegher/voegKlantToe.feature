@@ -14,13 +14,8 @@ And I enter "19-10-2000" in the geboortedatum field
 And I press on the Submit button
 Then I should see the following on the screen
 
+| Voornaam:    |  Familienaam: |   E-mailadres:     |               Address:                 |   Geboortedatum |
+|   Sanne      |    Putzeys    |   selah@sue.be     | Haachstesteenweg 195, Steenokkerzeel   |    19-10-2000   |
 
-
-
-| Voornaam:    | Sanne        |
-| Familienaam: | Putzeys      |
-| E-mailadres: | selah@sue.be |
-| Address:     | Haachstesteenweg 195, Steenokkerzeel  |
-| Geboortedatum| 19-10-2000                            |
 
 And I close the browser

@@ -118,7 +118,7 @@
         <div class="col-md-3 text-left">Email</div>
         <div class="col-md-3 text-left">Geboortedatum</div>
     </div>
-    <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
+    <div th:each="klant: ${klanten}" class="row gemaakteKlant" th:onclick="'window.location.href = \'' + @{/klanten/edit?id={id} (id=${klant.getId()}) } + '\''">
         <div id="outputNaam" class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
         <div id="outputAchternaam" class="col-md-2 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
         <div id="outputAddres" class="col-md-3 text-left" th:text="${klant.getAddres()}"> email</div>
