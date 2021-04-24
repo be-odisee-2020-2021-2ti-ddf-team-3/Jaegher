@@ -18,31 +18,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class StepDefinitions {
-    WebDriver driver;
+
     //Login
-    @Given("^Ik ben op de log in pagina$")
-    public void Ik_ben_op_de_log_in_pagina() throws Throwable {
-        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-
-        driver = new FirefoxDriver();
-        driver.navigate().to("http://localhost:8080/login");
-    }
-    @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
-    public void i_enter_in_the_username_field(String enteredText, String fieldName) throws Throwable {
-
-        driver.findElement(By.id(fieldName)).sendKeys(enteredText);
-    }
-    @When("^I press on the login button$")
-    public void i_press_on_the_login_button() throws Throwable {
-        driver.findElement(By.name("Login")).click();
-    }
-
-    @Then("^I should go to the home screen$")
-    public void I_should_go_to_the_home_screen() throws Throwable {
-        driver.navigate().to("http://localhost:8080/home");
-    }
+    WebDriver driver;
 
 
+    /*
     //voegKlantToe
     @Given("^Ik ben op de pagina waar ik de lijst van klanten kan raadplegen$")
     public void Ik_ben_op_de_klanten_pagina() throws Throwable {
@@ -53,11 +34,13 @@ public class StepDefinitions {
         driver.navigate().to("http://localhost:8080/klanten");
     }
 
-   /* class LabelData {
+
+   class LabelData {
+
         String label;
         String data;
     }
-    */
+
 
     //input data
     @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
@@ -119,11 +102,11 @@ public class StepDefinitions {
         driver.findElement(By.id("maakKlant")).click();
     }
 
-   /* class LabelData {
+    class LabelData {
         String label;
         String data;
     }
-    */
+
 
     //input data
     @When("^I enter \"([^\"]*)\" in the ([^\"]*) field$")
@@ -186,6 +169,9 @@ public class StepDefinitions {
         }
 
     }
+
+     */
+
 
 
 }
