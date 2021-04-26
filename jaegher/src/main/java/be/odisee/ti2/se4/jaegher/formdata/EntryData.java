@@ -16,9 +16,11 @@ public class EntryData {
 
 
     @NotBlank(message="verplichte voornaam")
+    @Size(min = 2, message = "Minimum 2 letters")
     private String naam;
 
     @NotBlank(message="achternaam verplicht")
+    @Size(min = 2, message = "Minimum 2 letters")
     private String achternaam;
 
 

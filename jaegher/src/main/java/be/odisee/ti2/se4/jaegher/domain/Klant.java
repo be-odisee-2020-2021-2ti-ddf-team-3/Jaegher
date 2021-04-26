@@ -5,11 +5,7 @@ import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-
+import javax.validation.constraints.*;
 
 
 //Deze klasse steld een entity voor in de DB de variabelen zijn tabelen
@@ -25,9 +21,11 @@ public class Klant {
     private final long id;
 
     @NotEmpty(message="verplichte voornaam")
+    @Size(min = 2, message = "Minimum 2 letters")
     private String naam;
 
     @NotEmpty(message="achternaam verplicht")
+    @Size(min = 2, message = "Minimum 2 letters")
     private String achternaam;
 
     @OneToOne(cascade = {CascadeType.ALL})
