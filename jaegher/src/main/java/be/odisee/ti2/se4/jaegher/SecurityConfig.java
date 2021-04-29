@@ -15,9 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        prePostEnabled = true
-        //securedEnabled = false,
-        //jsr250Enabled = false
+        prePostEnabled = true,
+        securedEnabled = false,
+        jsr250Enabled = false
 )
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/jaegherrest/**").permitAll()
                 .antMatchers("css/**").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/h2*").permitAll()
@@ -43,7 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .failureUrl("/login-error")
                     .defaultSuccessUrl("/home",true)
+                    .permitAll()
+                .and()
+                .logout()
+                    .invalidateHttpSession(true)
+                    .logoutSuccessUrl("/logout")
                     .permitAll();
+        http.exceptionHandling().accessDeniedPage("/403");
         http.csrf().disable();                                  // NEEDED FOR H2 CONSOLE
         http.headers().frameOptions().disable();                // NEEDED FOR H2 CONSOLE
     }

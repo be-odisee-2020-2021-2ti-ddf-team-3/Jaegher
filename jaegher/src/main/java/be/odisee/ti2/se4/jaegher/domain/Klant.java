@@ -1,5 +1,6 @@
 package be.odisee.ti2.se4.jaegher.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +30,7 @@ public class Klant {
     private String achternaam;
 
     @OneToOne(cascade = {CascadeType.ALL})
+    @JsonBackReference
     private Lichaamsmaat lichaamsmaat;
 
     @Email(message="Vul een geldig e-mail adres in ")

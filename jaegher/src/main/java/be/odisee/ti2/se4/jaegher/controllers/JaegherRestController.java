@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/jaegherrest", produces = "application/json")
-// needed for CORS cookie passing from vue front and API tester respectively
-@CrossOrigin(origins={"http://localhost:8888", "chrome-extension://aejoelaoggembcahagimdiliamlcdmfm"},
+@CrossOrigin(origins={"http://localhost:8888"},
         maxAge = 3600, allowCredentials = "true")
 public class JaegherRestController {
 
