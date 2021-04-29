@@ -47,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                 .logout()
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/logout")
-                    .permitAll();
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/logout")
+                .permitAll();
         http.exceptionHandling().accessDeniedPage("/403");
         http.csrf().disable();                                  // NEEDED FOR H2 CONSOLE
         http.headers().frameOptions().disable();                // NEEDED FOR H2 CONSOLE
