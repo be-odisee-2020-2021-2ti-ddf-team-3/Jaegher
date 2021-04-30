@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/jaegherrest/**").permitAll()
+                .antMatchers("/jaegherrest/updateklant/*").permitAll()
+                .antMatchers("/jaegherrest/deleteklant/*").permitAll()
                 .antMatchers("css/**").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/h2*").permitAll()
