@@ -20,6 +20,7 @@ public class JaegherRestController {
     private JaegherService jaegherService;
 
     @GetMapping("/{id}")
+    //@RequestMapping(value = {"/id"}, method = RequestMethod.GET)
     public Klant getEntrybyId(@PathVariable("id") Long id) {
 
         if (klantRepository.findById(id).isPresent()) {
