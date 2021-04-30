@@ -61,6 +61,14 @@ public class JaegherRestController {
         jaegherService.updateKlant(klant, id);
     }
 
+
+
+    @GetMapping("/klanten")
+    public Object getObjectives(){
+        return jaegherService.getAllKlanten();
+
+    }
+
     @RequestMapping(value={"/createtestklant"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void createTestKlant(){
@@ -79,10 +87,5 @@ public class JaegherRestController {
         klant.setAddres(adres);
         jaegherService.addKlant(klant);
         return klant;
-    }
-
-    @GetMapping("/klanten")
-    public Object getObjectives(){
-        return jaegherService.getAllKlanten();
     }
 }
