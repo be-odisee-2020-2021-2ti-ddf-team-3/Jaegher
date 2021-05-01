@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Lijst van klanten</h1>
-    <table border = "1px" style="padding: 10px">
+    <table border = "1px" style="padding: 10px; margin: 0 auto">
       <tr>
         <th  style="padding: 10px">Vooraam:</th>
         <th  style="padding: 10px">Achternaam:</th>

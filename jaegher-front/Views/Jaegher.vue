@@ -1,5 +1,6 @@
 <template>
     <div id="Jaegher">
+        <h3 style="margin-bottom: 1rem">Geef de id van een klant in aub:</h3>
         <form @submit.prevent="getIdToLookup">
             <input type="text" placeholder="id?" v-model="idToLookup" name="idToLookup">
         </form>
@@ -10,9 +11,9 @@
             Unfortunately, something went wrong<br/><br/>
         </div>
         <div v-else  >
-            We have read the <strong>entry with id </strong> {{ info.id }} from the backend:
+            We hebben de entry <strong> met id </strong> {{ info.id }} gelezen van de backend:
             <ul>
-                <li><strong>User:</strong>
+                <li><strong>Gebruiker:</strong>
                     {{ info.naam }}
                     {{ info.achternaam }}
                 </li>
