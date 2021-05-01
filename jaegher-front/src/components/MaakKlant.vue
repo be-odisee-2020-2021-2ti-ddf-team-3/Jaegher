@@ -28,7 +28,9 @@
               <label style="margin-bottom: 10px; display: block;" for="addres"><font-awesome-icon icon="address-card" /> Address</label>
               <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="addres" v-model="entry.addres"  placeholder="542 W. 15th Street">
 
-            <button clas="btn" style="background-color: #04AA6D;
+
+
+              <button clas="btn" style="background-color: #04AA6D;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -78,7 +80,8 @@ export default {
     axios.post('http://localhost:8080/jaegherrest/createklant', this.entry, headers)
     .then(response => {
     // success
-
+      alert('Klant is goed aangemaakt !')
+      window.location.href = '/JaegherListKlant/'
     console.log(response)
     }, response => {
     //error
