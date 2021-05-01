@@ -4,23 +4,23 @@
   <form @submit.prevent="createPost()">
     <div>
       <label for="naam">Naam:</label>
-      <input type="text" id="naam" v-model="formData.naam" />
+      <input type="text" id="naam" v-model="entry.naam" />
     </div>
     <div>
       <label for="achternaam">Achternaam:</label>
-      <input type="text" id="achternaam" v-model="formData.achternaam" />
+      <input type="text" id="achternaam" v-model="entry.achternaam" />
     </div>
     <div>
       <label for="email">Email:</label>
-      <input type="email" id="email" v-model="formData.email" />
+      <input type="email" id="email" v-model="entry.email" />
     </div>
     <div>
       <label for="geboortedatum">Geboortedatum:</label>
-      <input type="text" id="geboortedatum" v-model="formData.geboortedatum" />
+      <input type="text" id="geboortedatum" v-model="entry.geboortedatum" />
     </div>
     <div>
-      <label for="adres">Adres:</label>
-      <input type="text" id="adres" v-model="formData.adres" />
+      <label for="addres">Adres:</label>
+      <input type="text" id="addres" v-model="entry.addres" />
     </div>
     <button>Create Klant</button>
 
@@ -36,22 +36,27 @@ export default {
   name: 'CreatePost',
   data(){
     return{
-      formData: {
-        naam:'',
-        achternaam:'',
-        email:'',
-        geboortedatum:'',
-        adres:''
+      "entry": {
+        "naam":'voornaam',
+        "achternaam":'achternaam',
+        "email":'email@gmail.com',
+        "geboortedatum":'2001-02-05',
+        "addres":'straat',
       },
-    }
+    };
 
 
     },
   methods: {
   createPost()  {
-    axios.post('http://localhost:8080/jaegherrest/createklant', this.formData)
+    const headers = {
+      withCredentials: true
+    };
+
+    console.log(this.entry)
+    axios.post('http://localhost:8080/jaegherrest/createklant', this.entry, headers)
     .then(response => console.log(response))
-  }
+    }
   }
 }
 </script>

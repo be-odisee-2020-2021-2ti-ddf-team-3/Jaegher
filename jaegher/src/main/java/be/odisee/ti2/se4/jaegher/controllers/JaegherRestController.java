@@ -7,8 +7,10 @@ import be.odisee.ti2.se4.jaegher.service.JaegherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Date;
 
 @RestController
@@ -50,13 +52,13 @@ public class JaegherRestController {
 
     @RequestMapping(value={"/updateklant/{id}"},method=RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void putToestel(@PathVariable("id") Integer id, String naam, String achternaam, String email, String geboorteDatum, String adres){
+    public void putToestel(@PathVariable("id") Integer id, String naam, String achternaam, String email, String geboortedatum, String adres){
         EntryData klant = new EntryData();
         klant.setId(id);
         klant.setNaam(naam);
         klant.setAchternaam(achternaam);
         klant.setEmail(email);
-        klant.setGeboortedatum(geboorteDatum);
+        klant.setGeboortedatum(geboortedatum);
         klant.setAddres(adres);
         jaegherService.updateKlant(klant, id);
     }
@@ -77,14 +79,14 @@ public class JaegherRestController {
 
     @RequestMapping(value={"/createklant"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody EntryData createKlant(String naam, String achternaam, String email, String geboorteDatum, String adres)
+    public EntryData createKlant(@Valid @RequestBody EntryData entry, Errors errors)
             throws BindException {
         EntryData klant = new EntryData();
-        klant.setNaam(naam);
-        klant.setAchternaam(achternaam);
-        klant.setEmail(email);
-        klant.setGeboortedatum(geboorteDatum);
-        klant.setAddres(adres);
+        klant.setNaam(entry.getNaam());
+        klant.setAchternaam(entry.getAchternaam());
+        klant.setEmail(entry.getEmail());
+        klant.setGeboortedatum(entry.getGeboortedatum());
+        klant.setAddres(entry.getAddres());
         jaegherService.addKlant(klant);
         return klant;
     }
