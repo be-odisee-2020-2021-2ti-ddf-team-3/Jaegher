@@ -89,7 +89,8 @@
         axios.post('http://localhost:8080/jaegherrest/updateklant/ ', this.entry, headers)
                 .then(response => {
                   // success
-                  alert('Klant is goed aangemaakt !')
+                  alert('Klant is goed geupdate !')
+                  window.location.href = '/JaegherListKlant/'
                   console.log(response)
                 }, response => {
                   //error

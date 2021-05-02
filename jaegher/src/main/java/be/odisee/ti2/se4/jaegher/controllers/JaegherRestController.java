@@ -52,15 +52,15 @@ public class JaegherRestController {
 
     @RequestMapping(value={"/updateklant/"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void putToestel(Integer id, String naam, String achternaam, String email, String geboortedatum, String adres){
+    public void putToestel(@Valid @RequestBody EntryData entry, Errors errors){
         EntryData klant = new EntryData();
-        klant.setId(id);
-        klant.setNaam(naam);
-        klant.setAchternaam(achternaam);
-        klant.setEmail(email);
-        klant.setGeboortedatum(geboortedatum);
-        klant.setAddres(adres);
-        jaegherService.updateKlant(klant, id);
+        klant.setId(entry.getId());
+        klant.setNaam(entry.getNaam());
+        klant.setAchternaam(entry.getAchternaam());
+        klant.setEmail(entry.getEmail());
+        klant.setGeboortedatum(entry.getGeboortedatum());
+        klant.setAddres(entry.getAddres());
+        jaegherService.updateKlant(klant, entry.getId());
     }
 
 
