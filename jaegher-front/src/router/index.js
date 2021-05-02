@@ -3,11 +3,18 @@ import VueRouter from 'vue-router'
 import Home from '../../Views/Home.vue'  // HV mag weg later als ik HelloWorld wegwil
 import Jaegher from "../../Views/Jaegher";
 import MaakKlant from "../../Views/MaakKlant";
-import LijstKlanten from "../components/LijstKlanten";
+import LijstKlanten from "../../Views/JaegherListKlant";
+import Klantupdate from "../../Views/KlantUpdate";
+
 
 Vue.use(VueRouter);
 
   const routes = [
+    {
+      path: '/Klantupdate',
+      name: 'Klantupdate',
+      component: Klantupdate
+    },
   {
     path: '/Home',
     name: 'Home',

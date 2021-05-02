@@ -71,6 +71,9 @@ export default {
 
 
     },
+  mounted() {
+    localStorage.clear()
+  },
   methods: {
   createPost()  {
     const headers = {
@@ -85,7 +88,7 @@ export default {
     console.log(response)
     }, response => {
     //error
-    if(response.status == 422 || response.status == 500) {
+    if(response.status === 422 || response.status === 500) {
       this.errored = true
       console.log('Fout !')
 

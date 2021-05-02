@@ -50,9 +50,9 @@ public class JaegherRestController {
         jaegherService.deleteKlant(id);
     }
 
-    @RequestMapping(value={"/updateklant/{id}"},method=RequestMethod.PUT)
+    @RequestMapping(value={"/updateklant/"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void putToestel(@PathVariable("id") Integer id, String naam, String achternaam, String email, String geboortedatum, String adres){
+    public void putToestel(Integer id, String naam, String achternaam, String email, String geboortedatum, String adres){
         EntryData klant = new EntryData();
         klant.setId(id);
         klant.setNaam(naam);
