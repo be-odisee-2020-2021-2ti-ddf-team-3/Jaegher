@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Jaegher</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<h1>Welcome bij jaegher <span th:text="${fullname}"> username </span></h1>
+<h1 style="margin-bottom: 20px;">Rol: <span th:text="${role}"> role </span></h1>
+
+
+    <div class="no-padding">
+        <div class="row">
+            <div class="col-md-12">
+                <img th:src="@{/images/Jaegher-banner.jpg}" alt="placeholder 960" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+
+    <button th:if="${role}!=KLANT" name="klanten" id="klanten" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="klanten" style="color:white;">Klanten view </a></button>
+    <button th:if="${role}==ADMIN" id="admin" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="/Gebruikers" style="color:white;">Gebruikers view </a></button>
+    <button th:if="${role}!=KLANT" style="margin-top: 15px" class="btn btn-primary btn-md"><a href="/Bestellingen" style="color:white;">Bestellingen view </a></button>
+    <form method="POST" th:action="@{/logout}" style="margin-top: 15px">
+        <button class="btn btn-danger btn-md logout" name="logout" value="Logout">Logout</button>
+    </form>
+</body>
+</html>

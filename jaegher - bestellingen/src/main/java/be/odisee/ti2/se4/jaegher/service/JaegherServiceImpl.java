@@ -220,8 +220,7 @@ public class JaegherServiceImpl implements JaegherService {
     public void addBestelling(EntryDataBestellingen entryData, long klantID) {
         Bestelling entry = new Bestelling();
 
-        Klant klant = klantRepository.findById(klantID);
-        entry.setKlant(klant);
+        entry.setKlantId(klantID);
         String naam = entryData.getNaam();
         entry.setNaam(naam);
         String date = entryData.getAanMaakDatum();
@@ -234,8 +233,7 @@ public class JaegherServiceImpl implements JaegherService {
     public void addTestBestelling() {
         Bestelling entry = new Bestelling();
 
-        Klant klant = klantRepository.findById(1);
-        entry.setKlant(klant);
+        entry.setKlantId(1);
         String naam = "naam";
         entry.setNaam(naam);
         String date = "2001-05-02";

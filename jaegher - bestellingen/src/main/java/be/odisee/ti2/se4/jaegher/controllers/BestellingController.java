@@ -43,7 +43,7 @@ public class BestellingController {
         entryData = jaegherService.prepareEntryDataBestellingenKlant(id);
         klantID = entryData.getKlantId();
         model.addAttribute("entryData", entryData);
-        model.addAttribute("bestellingen", bestellingRepository.findAllByKlant_Id(klantID));
+        model.addAttribute("bestellingen", bestellingRepository.findAllByKlantId(klantID));
         model.addAttribute("EditBestelling", 0);
         return "Bestellingen";
     }
@@ -51,7 +51,7 @@ public class BestellingController {
     public String entryEditFormBestelling(@RequestParam("id") long id, Model model) {
         entryData = jaegherService.prepareEntryDataBestelling(id);
         model.addAttribute("entryData", entryData);
-        model.addAttribute("bestellingen", bestellingRepository.findAllByKlant_Id(klantID));
+        model.addAttribute("bestellingen", bestellingRepository.findAllByKlantId(klantID));
         model.addAttribute("EditBestelling", 1);
         return "Bestellingen";
     }
