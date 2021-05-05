@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="LijstKlanten" class="container mt-3">
+    <div id="LijstBestellingen" class="container mt-3">
 
       <b-container fluid>
         <b-row>
@@ -31,7 +31,7 @@
         <!-- User Interface controls -->
         <b-row>
           <b-col sm="6" md="1" class="my-1">
-            <button class="btn" @click="CreateKlant()"><font-awesome-icon icon="plus" /></button>
+            <button class="btn"><font-awesome-icon icon="plus" /></button>
           </b-col>
 
 
@@ -59,17 +59,17 @@
             {{ row.value.first }} {{ row.value.last }}
           </template>
 
-
           <template #cell(actions)="row" id="buttonsactions">
+
             <b-dropdown id="dropdown-dropright" dropright text="Kies één" variant="primary" class="m-2">
               <b-dropdown-item size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1" >
                 Info modal</b-dropdown-item>
               <b-dropdown-item size="sm" @click="row.toggleDetails" class="mr-1" >
                 {{ row.detailsShowing ? 'Hide' : 'Show' }} Details</b-dropdown-item>
               <b-dropdown-item @click="goUpdatePage(row.item.id)" size="sm" class="mr-1" >
-                Update Klant</b-dropdown-item>
-              <b-dropdown-item size="sm" @click="deleteKlantById(row.item.id)">
-                Delete Klant</b-dropdown-item>
+                Update Bestelling</b-dropdown-item>
+              <b-dropdown-item size="sm" @click="deleteBestellingById(row.item.id)">
+                Delete Bestelling</b-dropdown-item>
             </b-dropdown>
 
           </template>
@@ -81,6 +81,7 @@
               </ul>
             </b-card>
           </template>
+
         </b-table>
 
         <!-- Info modal -->
@@ -103,6 +104,7 @@
 
         </b-col></b-row>
     </div>
+
   </div>
 </template>
 
@@ -112,16 +114,15 @@
   import VueAxios from 'vue-axios'
   Vue.use(VueAxios, axios)
   export default {
-    name: "LijstKlanten",
+    name: "LijstBestellingen",
     data() {
       return {
-        "klanten": {
+        "bestellingen": {
           "id": '',
           "naam":'',
-          "achternaam": '',
-          "email": '',
-          "geboortedatum": '',
-          "addres": ''
+          "aanMaakDatum": '',
+          "goedgekeurd": '',
+          "klantId": ''
         },
         items: [],
         fields: [
@@ -136,23 +137,13 @@
 
           },
           {
-            key: 'achternaam',
-            label: 'Achternaam',
+            key: 'aanMaakDatum',
+            label: 'Aanmaakdatum',
             sortable: true
           },
           {
-            key: 'email',
-            label: 'Email',
-            sortable: true,
-          },
-          {
-            key: 'geboortedatum',
-            label: 'Geboortedatum',
-            sortable: true,
-          },
-          {
-            key: 'addres',
-            label: 'Adres',
+            key: 'goedgekeurd',
+            label: 'Goedgekeurd?',
             sortable: true,
           },
           { key: 'actions', label: 'Acties' }
@@ -177,17 +168,18 @@
 
     },
     mounted() {
-      this.getLijstKlanten()
+      this.getLijstBestellingen()
       // Set the initial number of items
       this.totalRows = this.items.length
     },
     methods: {
       goUpdatePage(id) {
         console.log(id)
-        this.$router.push({path: `/Klantupdate/${id}`})
+        this.$router.push({path: `/Bestellingupdate/${id}`})
+        // window.location.href = "/Bestellingupdate/"+id;
       },
-      getLijstKlanten() {
-        this.url = 'http://localhost:8080/jaegherrest/klanten'
+      getLijstBestellingen() {
+        this.url = 'http://localhost:8081/jaegherrestbestellingen/bestellingen'
         axios
                 .get(this.url)
                 .then(response => (
@@ -215,17 +207,14 @@
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      deleteKlantById(id) {
-        Vue.axios.delete('http://localhost:8080/jaegherrest/deleteklant/'+ id)
+      deleteBestellingById(id) {
+        Vue.axios.delete('http://localhost:8081/jaegherrestbestellingen/deletebestelling/'+ id)
                 .then((resp) => {
-                  this.getLijstKlanten()
-                  alert("Klant is verwijderd !")
+                  this.getLijstBestellingen()
+                  alert("Bestelling is verwijderd !")
                   console.warn(resp.data)
                 })
       },
-      CreateKlant() {
-        window.location.href="/MaakKlant"
-      }
     }
   }
 </script>
@@ -236,6 +225,7 @@
   button:hover {
     opacity: 0.5;
   }
+
   .btn {
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */

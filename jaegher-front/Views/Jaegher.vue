@@ -1,7 +1,7 @@
 <template>
     <div id="Jaegher">
         <h3 style="margin-bottom: 1rem">Geef de id van een klant in aub:</h3>
-        <form @submit.prevent="getIdToLookup">
+        <form @submit.prevent="getIdToLookup()">
             <input type="text" placeholder="id?" v-model="idToLookup" name="idToLookup">
         </form>
 
@@ -45,7 +45,7 @@
         },
         methods: {
             getIdToLookup() {
-                this.theUrl = 'http://localhost:8080/jaegherrest/' + this.idToLookup
+                this.theUrl = 'http://localhost:8080/jaegherrest/klanten/?' + this.idToLookup
                 axios
                     .get(this.theUrl)
                     .then(response => (this.info = response.data,

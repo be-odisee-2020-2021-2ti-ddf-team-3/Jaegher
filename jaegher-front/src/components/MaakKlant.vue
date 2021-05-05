@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h2>Maak een klant aan</h2>
+  <h2 style="margin-bottom: 2rem">Maak een klant aan</h2>
   <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -15,7 +15,7 @@
                flex-wrap: wrap;
                margin: 0 -16px;">
             <div class="col-50" style="padding: 0 16px;  flex: 50%;">
-              <h3>Klant Informatie</h3>
+              <h3 style="margin-top: 1rem">Klant Informatie</h3>
               <label style="margin-bottom: 10px; display: block;" for="naam"><font-awesome-icon icon="user" />
                Voornaam</label>
               <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="naam" v-model="entry.naam" placeholder="John">

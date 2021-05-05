@@ -1,5 +1,6 @@
 <template>
-    <div id="JaegherKlanten">
+    <div id="JaegherKlanten" class="container">
+        <h2 style="margin-top: 2rem">Overzicht van Klanten</h2>
 
         <LijstKlanten />
 

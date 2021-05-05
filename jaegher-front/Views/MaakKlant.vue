@@ -1,5 +1,5 @@
 <template>
-    <div id="MaakKlant">
+    <div id="MaakKlant" style="margin-top: 2rem">
 
         <CreatePost />
 

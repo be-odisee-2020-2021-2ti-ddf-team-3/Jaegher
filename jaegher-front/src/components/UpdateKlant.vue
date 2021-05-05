@@ -75,9 +75,8 @@
 
 
     },
-    beforeMount() {
-      let key = localStorage.getItem("ID")
-      this.getKlantByid(key)
+    created() {
+      this.getKlantByid(this.$route.params.id)
     },
     methods: {
       UpdatePost()  {

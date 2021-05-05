@@ -1,12 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/Jaegher">Zoek klant</router-link> |
-      <router-link to="/JaegherListKlant">Lijst Klanten</router-link> |
-      <router-link to="/MaakKlant">Maak klant</router-link>
+  <div>
+    <b-nav tabs align="center" pills>
+      <b-nav-item active href="/home">Home</b-nav-item>
+      <b-nav-item href="/">Zoek een klant</b-nav-item>
+      <b-nav-item-dropdown
+              id="my-nav-dropdown"
+              text="Klanten"
+              toggle-class="nav-link-custom"
+              right
+      >
+        <b-dropdown-item to="/JaegherListKlant">Lijst Klanten</b-dropdown-item>
+        <b-dropdown-item to="/MaakKlant">Maak een klant</b-dropdown-item>
+      </b-nav-item-dropdown>
+      <b-nav-item-dropdown
+              id="my-nav-dropdown"
+              text="Bestellingen"
+              toggle-class="nav-link-custom"
+              right
+      >
+        <b-dropdown-item href="/Jaegherlistbestellingen">Lijst Bestellingen</b-dropdown-item>
+        <b-dropdown-item>Maak een bestelling</b-dropdown-item>
+      </b-nav-item-dropdown>
+    </b-nav>
+  </div>
 
-    </div>
+
     <router-view/>
 
   </div>

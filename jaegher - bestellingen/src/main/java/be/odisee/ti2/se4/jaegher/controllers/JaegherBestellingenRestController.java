@@ -1,5 +1,7 @@
 package be.odisee.ti2.se4.jaegher.controllers;
 
+import be.odisee.ti2.se4.jaegher.DAO.BestellingRepository;
+import be.odisee.ti2.se4.jaegher.domain.Bestelling;
 import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.formdata.EntryDataBestellingen;
@@ -11,16 +13,20 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/jaegherrestbestellingen", produces = "application/json")
 // needed for CORS cookie passing from vue front and API tester respectively
-@CrossOrigin(origins={"http://localhost:8888"},
+@CrossOrigin(origins="http://localhost:8888",
         maxAge = 3600, allowCredentials = "true")
 public class JaegherBestellingenRestController {
 
     @Autowired
     private JaegherService jaegherService;
+
+    @Autowired
+    BestellingRepository bestellingRepository;
 
     @RequestMapping(value={"/createbestelling"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -43,8 +49,6 @@ public class JaegherBestellingenRestController {
         EntryDataBestellingen klant = new EntryDataBestellingen();
         klant.setNaam(entry.getNaam());
         klant.setKlantId(entry.getKlantId());
-        klant.setVoorNaam(entry.getVoorNaam());
-        klant.setAchterNaam(entry.getAchterNaam());
         klant.setAanMaakDatum(entry.getAanMaakDatum());
         jaegherService.updateBestelling(klant, entry.getKlantId());
         return klant;
@@ -65,14 +69,21 @@ public class JaegherBestellingenRestController {
         return null;
     }
 
+    //Gebruik deze om klant op ID op te vragen
+    @RequestMapping(value={"/bestellingdetails/{id}"},method=RequestMethod.GET)
+    public @ResponseBody Bestelling getBestelling(@PathVariable("id") Integer id) {
+        return bestellingRepository.findById(id);
+    }
+
     @RequestMapping(value={"/deletebestelling/{id}"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBestelling(@PathVariable("id") Integer id){
+    public void deleteBestelling (@PathVariable("id") Integer id){
         jaegherService.deleteBestelling(id);
     }
 
     @GetMapping("/bestellingen")
-    public Object getObjectives(){
+    public @ResponseBody
+    List<Bestelling> getObjectives(){
         return jaegherService.getAllBestellingen();
     }
 
