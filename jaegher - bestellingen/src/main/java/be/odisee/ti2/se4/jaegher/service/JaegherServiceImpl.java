@@ -250,7 +250,7 @@ public class JaegherServiceImpl implements JaegherService {
 
         bestelling.setNaam(entryData.getNaam());
         bestelling.setAanMaakDatum(entryData.getAanMaakDatum());
-        bestelling.setKlantId(entryData.getKlantId2());
+        bestelling.setKlantId(entryData.getKlantId());
         bestelling.setGoedgekeurd(entryData.getGoedgekeurd());
         bestellingRepository.save(bestelling);
     }
