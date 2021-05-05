@@ -246,7 +246,7 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public void updateBestelling(EntryDataBestellingen entryData, long id) {
         Bestelling bestelling;
-        bestelling = bestellingRepository.findById(id);
+        bestelling = bestellingRepository.findById(entryData.getId());
 
         bestelling.setNaam(entryData.getNaam());
         bestelling.setAanMaakDatum(entryData.getAanMaakDatum());

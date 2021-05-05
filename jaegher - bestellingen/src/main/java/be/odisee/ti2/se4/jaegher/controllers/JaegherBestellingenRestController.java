@@ -47,6 +47,7 @@ public class JaegherBestellingenRestController {
     public EntryDataBestellingen updateBestelling(@Valid @RequestBody EntryDataBestellingen entry, Errors errors)
             throws BindException {
         EntryDataBestellingen bestelling = new EntryDataBestellingen();
+        bestelling.setId(entry.getId());
         bestelling.setNaam(entry.getNaam());
         bestelling.setKlantId(entry.getKlantId());
         bestelling.setAanMaakDatum(entry.getAanMaakDatum());
