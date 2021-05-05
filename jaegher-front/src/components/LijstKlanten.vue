@@ -89,7 +89,7 @@
         </b-modal>
 
       </b-container>
-      <b-row style="margin-top: 30rem">
+      <b-row class="fixed-bottom">
         <b-col  sm="4" md="12" class="my-1">
           <b-pagination
                   v-model="currentPage"
@@ -185,10 +185,6 @@
     },
     methods: {
       goUpdatePage(id) {
-        console.log(id)
-        this.$router.push({path: `/Klantupdate/${id}`})
-      },
-      goCreateBestelling(id) {
         console.log(id)
         this.$router.push({path: `/Klantupdate/${id}`})
       },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 3rem">
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -33,7 +33,7 @@
 
 
 
-                <button clas="btn" style="background-color: #04AA6D;
+                <button clas="btn" style="background-color: dodgerblue;
   color: white;
   padding: 12px;
   margin: 10px 0;

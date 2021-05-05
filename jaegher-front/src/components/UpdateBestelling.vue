@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 3rem">
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -24,7 +24,7 @@
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="naam" v-model="bestellingen.naam" placeholder="John">
                 <label style="margin-bottom: 10px; display: block;" for="aanMaakDatum"><font-awesome-icon icon="calendar-alt" /> Aanmaakdatum</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="date" id="aanMaakDatum" v-model="bestellingen.aanMaakDatum" placeholder="2020-05-05">
-                <label style="margin-bottom: 10px; display: block;" for="goedgekeurd"><font-awesome-icon icon="envelope" /> Goedgekeurd?</label>
+                <label style="margin-bottom: 10px; display: block;"><font-awesome-icon icon="envelope" /> Goedgekeurd?</label>
                 <b-form-radio-group
                         v-model="bestellingen.goedgekeurd"
                         :options="options"
@@ -33,12 +33,11 @@
                         text-field="name"
                         disabled-field="notEnabled"
                 ></b-form-radio-group>
-                <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="goedgekeurd" v-model="bestellingen.goedgekeurd" name="goedgekeurd" placeholder="true">
                 <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="number" id="klantid" v-model="bestellingen.klantId" >
 
 
-                <button clas="btn" id="updateklant" style="background-color: #04AA6D;
+                <button clas="btn" id="updatebestelling" style="background-color: dodgerblue;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -46,7 +45,7 @@
   width: 100%;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 17px;">Update Klant</button>
+  font-size: 17px;">Update Bestelling</button>
               </div>
             </div>
 
@@ -67,7 +66,6 @@
 
     data(){
       return{
-        selected:'',
         options: [
           { item: 'true', name: 'True' },
           { item: 'false', name: 'False' }],
@@ -95,7 +93,7 @@
         axios.post('http://localhost:8081/jaegherrestbestellingen/updatebestelling/ ', this.bestellingen, headers)
                 .then(response => {
                   // success
-                  alert('Klant is goed geupdate !')
+                  alert('Bestelling is goed geupdate !')
                   window.location.href = '/Jaegherlistbestellingen/'
                   console.log(response)
                 }, response => {

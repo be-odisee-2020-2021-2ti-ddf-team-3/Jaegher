@@ -30,7 +30,7 @@
 
 
 
-              <button clas="btn" style="background-color: #04AA6D;
+              <button clas="btn" style="background-color: dodgerblue;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -72,7 +72,7 @@ export default {
 
     },
   mounted() {
-    localStorage.clear()
+
   },
   methods: {
   createPost()  {

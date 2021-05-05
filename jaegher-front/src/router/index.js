@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../../Views/Home.vue'  // HV mag weg later als ik HelloWorld wegwil
 import Jaegher from "../../Views/Jaegher"
 import MaakKlant from "../../Views/MaakKlant"
+import MaakBestelling from "../../Views/MaakBestelling"
 import lijstbestellingen from "../../Views/JaegherListBestellingen"
 import LijstKlanten from "../../Views/JaegherListKlant"
 import Klantupdate from "../../Views/KlantUpdate"
@@ -22,7 +23,6 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter);
 
   const routes = [
-
     {
       path: '/Klantupdate/:id',
       name: 'Klantupdate',
@@ -33,26 +33,26 @@ Vue.use(VueRouter);
       name: 'Bestellingupdate',
       component: Bestellingupdate
     },
-
-  {
+    {
     path: '/Home',
     name: 'Home',
     component: Home
-  },
-  {
+    },
+    {
     path: '/',
     name: 'Jaegher',
     component: Jaegher
-  },
-
-
+    },
     {
       path: '/MaakKlant',
       name: 'MaakKlant',
       component: MaakKlant
     },
-
-
+    {
+      path: '/MaakBestelling',
+      name: 'MaakBestelling',
+      component: MaakBestelling
+    },
     {
       path: '/Jaegherlistbestellingen',
       name: 'Jaegherlistbestellingen',

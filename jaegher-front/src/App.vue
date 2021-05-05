@@ -2,6 +2,7 @@
   <div id="app">
   <div>
     <b-nav tabs align="center" pills v-bind:class="active" v-on:click.prevent>
+
       <b-nav-item class="home btnsmenu" v-on:click="makeActive('home')" to="/home">Home</b-nav-item>
       <b-nav-item class="zoekklant btnsmenu" v-on:click="makeActive('zoekklant')" to="/">Zoek een klant</b-nav-item>
       <b-nav-item-dropdown

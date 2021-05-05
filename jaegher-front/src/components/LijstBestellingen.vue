@@ -31,7 +31,7 @@
         <!-- User Interface controls -->
         <b-row>
           <b-col sm="6" md="1" class="my-1">
-            <button class="btn"><font-awesome-icon icon="plus" /></button>
+            <button class="btn" @click="goCreateBestelling"><font-awesome-icon icon="plus" /></button>
           </b-col>
 
 
@@ -44,7 +44,7 @@
                 :items="items"
                 :fields="fields"
                 :current-page="currentPage"
-                :per-page="perPage"
+                :per-page="15"
                 :filter="filter"
                 :filter-included-fields="filterOn"
                 :sort-by.sync="sortBy"
@@ -90,7 +90,7 @@
         </b-modal>
 
       </b-container>
-      <b-row style="margin-top: 30rem">
+      <b-row class="fixed-bottom">
         <b-col  sm="4" md="12" class="my-1">
           <b-pagination
                   v-model="currentPage"
@@ -177,6 +177,10 @@
         console.log(id)
         this.$router.push({path: `/Bestellingupdate/${id}`})
         // window.location.href = "/Bestellingupdate/"+id;
+      },
+      goCreateBestelling() {
+        window.location.href = "/MaakBestelling"
+        this.makeActive('Bestellingen')
       },
       getLijstBestellingen() {
         this.url = 'http://localhost:8081/jaegherrestbestellingen/bestellingen'
