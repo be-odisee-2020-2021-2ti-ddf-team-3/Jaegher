@@ -13,6 +13,7 @@ public class EntryDataBestellingen {
     private long id = 0;
 
     private long klantId;
+    private long klantId2;
     private long bestellingId;
 
     private String VoorNaam;

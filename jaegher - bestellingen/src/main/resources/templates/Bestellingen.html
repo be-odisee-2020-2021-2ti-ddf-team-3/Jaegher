@@ -46,12 +46,14 @@
         <div style="font-weight: bold; margin-bottom: 10px;" class="row">
             <div class="col-md-3 text-left">Naam</div>
             <div class="col-md-3 text-left">Goedgekeurd?</div>
+            <div class="col-md-3 text-left">id</div>
+            <div class="col-md-3 text-left">klantid2</div>
         </div>
         <div th:each="bestelling: ${bestellingen}" class="row" th:onclick="'window.location.href = \'' + @{/Bestellingen/editBestelling?id={id} (id=${bestelling.getId()}) } + '\''">
             <div class="col-md-3 text-left" th:text="${bestelling.getNaam()}"> naam</div>
             <div class="col-md-3 text-left" th:text="${bestelling.getGoedgekeurd()}"> naam</div>
-
             <div class="col-md-3 text-left" th:text="${bestelling.getId()}"> id</div>
+            <div class="col-md-3 text-left" th:text="${bestelling.getKlantId()}"> id</div>
             <br>
         </div>
     </div>
@@ -68,6 +70,9 @@
     </div>
     <div class="form-group" >
         <label>Aanmaak datum:</label><input type="date"  th:field="*{aanMaakDatum}" style="width: 40em"/>
+    </div>
+    <div class="form-group" >
+        <label>Klant id:</label><input type="text"  th:field="*{klantId2}" style="width: 40em"/>
     </div>
     <div class="form-group" th:if="${EditBestelling == 1}" >
         <label>Goedgekeurd?</label><input type="checkbox" th:field="*{goedgekeurd}" style="width: 40em"/>
