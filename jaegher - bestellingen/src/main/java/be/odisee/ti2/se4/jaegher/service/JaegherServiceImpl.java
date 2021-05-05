@@ -220,7 +220,7 @@ public class JaegherServiceImpl implements JaegherService {
     public void addBestelling(EntryDataBestellingen entryData, long klantID) {
         Bestelling entry = new Bestelling();
 
-        entry.setKlantId(entryData.getKlantId2());
+        entry.setKlantId(entryData.getKlantId());
         String naam = entryData.getNaam();
         entry.setNaam(naam);
         String date = entryData.getAanMaakDatum();
