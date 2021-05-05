@@ -31,7 +31,7 @@
         <!-- User Interface controls -->
         <b-row>
           <b-col sm="6" md="1" class="my-1">
-            <button class="btn" @click="CreateKlant()"><font-awesome-icon icon="plus" /></button>
+            <button class="btn" @click="CreateKlant()" ><font-awesome-icon icon="plus" /></button>
           </b-col>
 
 
@@ -107,6 +107,8 @@
 </template>
 
 <script>
+
+
   import Vue from 'vue';
   import axios from 'axios'
   import VueAxios from 'vue-axios'
@@ -115,7 +117,7 @@
     name: "LijstKlanten",
     data() {
       return {
-        "klanten": {
+          "klanten": {
           "id": '',
           "naam":'',
           "achternaam": '',
@@ -186,6 +188,10 @@
         console.log(id)
         this.$router.push({path: `/Klantupdate/${id}`})
       },
+      goCreateBestelling(id) {
+        console.log(id)
+        this.$router.push({path: `/Klantupdate/${id}`})
+      },
       getLijstKlanten() {
         this.url = 'http://localhost:8080/jaegherrest/klanten'
         axios
@@ -216,7 +222,7 @@
         this.currentPage = 1
       },
       deleteKlantById(id) {
-        Vue.axios.delete('http://localhost:8080/jaegherrest/deleteklant/'+ id)
+        Vue.axios.delete('http://localhost:8080/jaegherrest/deleteklant/' + id)
                 .then((resp) => {
                   this.getLijstKlanten()
                   alert("Klant is verwijderd !")
@@ -224,7 +230,8 @@
                 })
       },
       CreateKlant() {
-        window.location.href="/MaakKlant"
+        window.location.href = "/MaakKlant"
+        this.makeActive('Klanten')
       }
     }
   }
