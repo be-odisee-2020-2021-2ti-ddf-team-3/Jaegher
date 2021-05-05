@@ -34,7 +34,7 @@ public class JaegherBestellingenRestController {
             throws BindException {
         EntryDataBestellingen klant = new EntryDataBestellingen();
         klant.setNaam(entry.getNaam());
-        klant.setKlantId2(entry.getKlantId2());
+        klant.setKlantId(entry.getKlantId());
         klant.setVoorNaam(entry.getVoorNaam());
         klant.setAchterNaam(entry.getAchterNaam());
         klant.setAanMaakDatum(entry.getAanMaakDatum());
