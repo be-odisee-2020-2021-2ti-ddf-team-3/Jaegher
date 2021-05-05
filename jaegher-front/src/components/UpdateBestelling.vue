@@ -35,9 +35,7 @@
                 ></b-form-radio-group>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="goedgekeurd" v-model="bestellingen.goedgekeurd" name="goedgekeurd" placeholder="true">
                 <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
-                <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="klantid" v-model="bestellingen.klantId" >
-
-
+                <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="klantid" v-model="bestellingen.klantId2" >
 
 
                 <button clas="btn" id="updateklant" style="background-color: #04AA6D;
@@ -78,7 +76,7 @@
           "naam":'',
           "aanMaakDatum": '',
           "goedgekeurd": '',
-          "klantId": '',
+          "klantId2": '',
         }
       };
 
@@ -116,6 +114,7 @@
                   this.bestellingen.naam = resp.data.naam,
                   this.bestellingen.aanMaakDatum = resp.data.aanMaakDatum,
                   this.bestellingen.goedgekeurd = resp.data.goedgekeurd,
+                  this.bestellingen.klantId2 = resp.data.klantId2,
                   console.warn(resp.data)
 
           })

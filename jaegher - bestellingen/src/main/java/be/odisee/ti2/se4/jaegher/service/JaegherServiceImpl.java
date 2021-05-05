@@ -220,7 +220,7 @@ public class JaegherServiceImpl implements JaegherService {
     public void addBestelling(EntryDataBestellingen entryData, long klantID) {
         Bestelling entry = new Bestelling();
 
-        entry.setKlantId(klantID);
+        entry.setKlantId(entryData.getKlantId2());
         String naam = entryData.getNaam();
         entry.setNaam(naam);
         String date = entryData.getAanMaakDatum();
@@ -250,6 +250,8 @@ public class JaegherServiceImpl implements JaegherService {
 
         bestelling.setNaam(entryData.getNaam());
         bestelling.setAanMaakDatum(entryData.getAanMaakDatum());
+        bestelling.setKlantId(entryData.getKlantId2());
+        bestelling.setGoedgekeurd(entryData.getGoedgekeurd());
         bestellingRepository.save(bestelling);
     }
     @Override

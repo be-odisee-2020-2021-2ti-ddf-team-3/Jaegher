@@ -34,11 +34,11 @@ public class JaegherBestellingenRestController {
             throws BindException {
         EntryDataBestellingen klant = new EntryDataBestellingen();
         klant.setNaam(entry.getNaam());
-        klant.setKlantId(entry.getKlantId());
+        klant.setKlantId2(entry.getKlantId2());
         klant.setVoorNaam(entry.getVoorNaam());
         klant.setAchterNaam(entry.getAchterNaam());
         klant.setAanMaakDatum(entry.getAanMaakDatum());
-        jaegherService.addBestelling(klant, entry.getKlantId());
+        jaegherService.addBestelling(klant, 1);
         return klant;
     }
 
@@ -46,12 +46,13 @@ public class JaegherBestellingenRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public EntryDataBestellingen updateBestelling(@Valid @RequestBody EntryDataBestellingen entry, Errors errors)
             throws BindException {
-        EntryDataBestellingen klant = new EntryDataBestellingen();
-        klant.setNaam(entry.getNaam());
-        klant.setKlantId(entry.getKlantId());
-        klant.setAanMaakDatum(entry.getAanMaakDatum());
-        jaegherService.updateBestelling(klant, entry.getKlantId());
-        return klant;
+        EntryDataBestellingen bestelling = new EntryDataBestellingen();
+        bestelling.setNaam(entry.getNaam());
+        bestelling.setKlantId2(entry.getKlantId2());
+        bestelling.setAanMaakDatum(entry.getAanMaakDatum());
+        bestelling.setGoedgekeurd(entry.getGoedgekeurd());
+        jaegherService.updateBestelling(bestelling, 1);
+        return bestelling;
     }
 
     @RequestMapping(value={"/bestellinggoedkeuren"},method=RequestMethod.PUT)

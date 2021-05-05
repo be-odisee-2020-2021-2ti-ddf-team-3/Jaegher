@@ -43,7 +43,7 @@ public class BestellingController {
         entryData = jaegherService.prepareEntryDataBestellingenKlant(id);
         klantID = entryData.getKlantId();
         model.addAttribute("entryData", entryData);
-        model.addAttribute("bestellingen", bestellingRepository.findAllByKlantId(klantID));
+        model.addAttribute("bestellingen", jaegherService.getAllBestellingen());
         model.addAttribute("EditBestelling", 0);
         return "Bestellingen";
     }
