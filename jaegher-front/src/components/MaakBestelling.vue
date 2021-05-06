@@ -31,8 +31,19 @@
                       text-field="name"
                       disabled-field="notEnabled"
               ></b-form-radio-group>
-              <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
-              <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="number" id="klantid"  v-model="bestellingen.klantId">
+              <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant:</label>
+              <div style="width: 20%;  margin: 0 auto">
+                <v-select v-model="selecedklant" :options="items"
+                          label="naam"
+                          return-object
+                          style="margin-bottom: 1rem">
+
+                </v-select>
+                <span id="klantid">Selected ID: {{getValue(selectedID)}}</span>
+              </div>
+
+
+
 
 
               <button clas="btn" style="background-color: dodgerblue;
@@ -58,15 +69,27 @@
 
 
 <script>
-  import axios from 'axios'
 
+  import "vue-select/dist/vue-select.css";
+
+  import axios from 'axios'
+  //import Vue from "vue";
+  import Vue from "vue";
+  import vSelect from "vue-select";
+
+
+
+  Vue.component("v-select", vSelect);
 export default {
+
   name: 'CreatePost',
   data(){
     return{
       selected:'false',
       options: [
         { item: 'false', name: 'False' }],
+      selecedklant:'',
+      selecedklantid:'',
       "bestellingen": {
         "id": '',
         "naam":'',
@@ -74,14 +97,30 @@ export default {
         "goedgekeurd": '',
         "klantId": ''
       },
+      item:null,
+      items: []
+
     };
 
 
     },
   mounted() {
+    this.getLijstKlanten()
+  },
+  computed: {
+    selectedID: function () {
+      return this.selecedklant.id
+    },
+
 
   },
   methods: {
+    getValue: function(value){
+      return value,
+      this.bestellingen.klantId = value
+    },
+
+
   createPost()  {
     const headers = {
       withCredentials: true
@@ -101,7 +140,23 @@ export default {
 
     }
     })
-    }
+    },
+
+    getLijstKlanten() {
+      this.url = 'http://localhost:8080/jaegherrest/klanten'
+      axios
+              .get(this.url)
+              .then(response => (
+                      this.items = response.data
+
+                             ))
+              .catch(error => (
+                      this.items = "fout",
+                              this.status = error.response.status,
+                              this.errorMsg = error.response.data.message
+              ))
+    },
+
   }
 }
 

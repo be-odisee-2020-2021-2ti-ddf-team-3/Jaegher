@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../../Views/Home.vue'  // HV mag weg later als ik HelloWorld wegwil
-import Jaegher from "../../Views/Jaegher"
+import zoekklant from "../../Views/Jaegher"
 import MaakKlant from "../../Views/MaakKlant"
 import MaakBestelling from "../../Views/MaakBestelling"
 import lijstbestellingen from "../../Views/JaegherListBestellingen"
@@ -39,9 +39,9 @@ Vue.use(VueRouter);
     component: Home
     },
     {
-    path: '/',
-    name: 'Jaegher',
-    component: Jaegher
+    path: '/zoekklant',
+    name: 'zoekklant',
+    component: zoekklant
     },
     {
       path: '/MaakKlant',

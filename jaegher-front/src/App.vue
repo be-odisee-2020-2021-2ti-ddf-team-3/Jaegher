@@ -4,7 +4,7 @@
     <b-nav tabs align="center" pills v-bind:class="active" v-on:click.prevent>
 
       <b-nav-item class="home btnsmenu" v-on:click="makeActive('home')" to="/home">Home</b-nav-item>
-      <b-nav-item class="zoekklant btnsmenu" v-on:click="makeActive('zoekklant')" to="/">Zoek een klant</b-nav-item>
+      <b-nav-item class="zoekklant btnsmenu" v-on:click="makeActive('zoekklant')" to="/zoekklant">Zoek een klant</b-nav-item>
       <b-nav-item-dropdown
               id="my-nav-dropdown"
               text="Klanten"
@@ -21,7 +21,7 @@
               right class="Bestellingen"
       >
         <b-dropdown-item to="/Jaegherlistbestellingen" v-on:click="makeActive('Bestellingen')">Lijst Bestellingen</b-dropdown-item>
-        <b-dropdown-item v-on:click="makeActive('Bestellingen')">Maak een bestelling</b-dropdown-item>
+        <b-dropdown-item to="/MaakBestelling" v-on:click="makeActive('Bestellingen')">Maak een bestelling</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-nav>
   </div>

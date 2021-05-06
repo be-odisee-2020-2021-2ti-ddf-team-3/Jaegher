@@ -33,9 +33,13 @@
                         text-field="name"
                         disabled-field="notEnabled"
                 ></b-form-radio-group>
-                <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
-                <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="number" id="klantid" v-model="bestellingen.klantId" >
-
+                <div class="d-flex justify-content-center">
+                <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
+                  <span id="klantid" style="margin-top: 1rem; color: dodgerblue">{{this.klanten.id}}</span>
+                  <label style="margin-top: 1rem; margin-left: 1rem;" for="klantid"><font-awesome-icon icon="user" /> Klant Naam:</label>
+                  <span style="margin-top: 1rem; margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{this.klanten.naam}}</span>
+                  <span style="margin-top: 1rem;  color: dodgerblue">{{this.klanten.achternaam}}</span>
+                </div>
 
                 <button clas="btn" id="updatebestelling" style="background-color: dodgerblue;
   color: white;
@@ -66,7 +70,8 @@
 
     data(){
       return{
-        options: [
+
+          options: [
           { item: 'true', name: 'True' },
           { item: 'false', name: 'False' }],
         "bestellingen": {
@@ -75,13 +80,23 @@
           "aanMaakDatum": '',
           "goedgekeurd": '',
           "klantId": '',
-        }
+        },
+        "klanten": {
+          "id": '',
+          "naam":'',
+          "achternaam":'',
+          "email": '',
+          "geboortedatum": '',
+          "addres": ''
+        },
+
       };
 
 
     },
     created() {
       this.getBestellingByid(this.$route.params.id)
+
     },
     methods: {
       UpdatePost()  {
@@ -113,11 +128,20 @@
                   this.bestellingen.aanMaakDatum = resp.data.aanMaakDatum,
                   this.bestellingen.goedgekeurd = resp.data.goedgekeurd,
                   this.bestellingen.klantId = resp.data.klantId,
-                  console.warn(resp.data)
-
+                  console.warn(resp.data),
+                  this.getKlantByID(this.bestellingen.klantId)
           })
-      }
+      },
+  getKlantByID(id){
+      console.log(id)
+      Vue.axios.get('http://localhost:8080/jaegherrest/klantdetails/'+ id)
+              .then((resp) => {
+                this.klanten = resp.data,
+                console.warn(resp.data)
+
+              })
     }
+  }
   }
 </script>
 
