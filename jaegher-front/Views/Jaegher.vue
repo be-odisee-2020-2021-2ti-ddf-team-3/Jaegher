@@ -26,8 +26,11 @@
 </template>
 
 <script>
-    import * as axios from "axios";
 
+    import Vue from 'vue';
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
+    Vue.use(VueAxios, axios)
     export default {
         name: "Jaegher",
         data () {
@@ -40,12 +43,12 @@
             }
         },
         mounted () {
-            this.idToLookup = '1'
+            this.idToLookup = '1',
             this.getIdToLookup()
         },
         methods: {
             getIdToLookup() {
-                this.theUrl = 'http://localhost:8080/jaegherrest/klanten/?' + this.idToLookup
+                this.theUrl = 'http://localhost:8080/jaegherrest/klantdetails/' + this.idToLookup
                 axios
                     .get(this.theUrl)
                     .then(response => (this.info = response.data,

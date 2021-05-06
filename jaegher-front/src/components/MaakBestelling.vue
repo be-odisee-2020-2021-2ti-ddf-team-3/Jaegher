@@ -1,5 +1,14 @@
 <template>
   <div>
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Bestelling is goed aangemaakt !
+    </b-alert>
   <h2 style="margin-bottom: 2rem">Maak een bestelling aan</h2>
   <div class="row" style="display: flex;
     flex-wrap: wrap;
@@ -9,7 +18,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-        <form @submit.prevent="createPost()" >
+        <form @submit.prevent="createPost(),showAlert()" >
 
           <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -46,7 +55,7 @@
 
 
 
-              <button clas="btn" style="background-color: dodgerblue;
+              <button clas="btn" @click="showAlert" style="background-color: dodgerblue;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -55,6 +64,7 @@
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;">Create Bestelling</button>
+
             </div>
           </div>
 
@@ -98,8 +108,9 @@ export default {
         "klantId": ''
       },
       item:null,
-      items: []
-
+      items: [],
+      dismissSecs: 2,
+      dismissCountDown: 0,
     };
 
 
@@ -119,7 +130,12 @@ export default {
       return value,
       this.bestellingen.klantId = value
     },
-
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs
+    },
 
   createPost()  {
     const headers = {
@@ -129,8 +145,11 @@ export default {
     axios.post('http://localhost:8081/jaegherrestbestellingen/createbestelling', this.bestellingen, headers)
     .then(response => {
     // success
-      alert('Bestelling is goed aangemaakt !')
-      window.location.href = '/Jaegherlistbestellingen/'
+    // alert('Bestelling is goed aangemaakt !')
+      setInterval(() => {
+        window.location.href = '/Jaegherlistbestellingen/'
+      }, 2000);
+
     console.log(response)
     }, response => {
     //error

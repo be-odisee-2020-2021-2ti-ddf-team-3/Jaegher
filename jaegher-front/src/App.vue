@@ -3,7 +3,7 @@
   <div>
     <b-nav tabs align="center" pills v-bind:class="active" v-on:click.prevent>
 
-      <b-nav-item class="home btnsmenu" v-on:click="makeActive('home')" to="/home">Home</b-nav-item>
+      <b-nav-item class="home btnsmenu" v-on:click="makeActive('home')" to="/">Home</b-nav-item>
       <b-nav-item class="zoekklant btnsmenu" v-on:click="makeActive('zoekklant')" to="/zoekklant">Zoek een klant</b-nav-item>
       <b-nav-item-dropdown
               id="my-nav-dropdown"
@@ -27,6 +27,8 @@
   </div>
 
     <router-view/>
+
+
 
   </div>
 

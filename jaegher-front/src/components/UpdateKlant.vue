@@ -1,5 +1,14 @@
 <template>
-  <div style="margin-top: 3rem">
+  <div style="margin-top: 1rem">
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Klant is goed geupdate !
+    </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -8,7 +17,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-          <form @submit.prevent="UpdatePost()">
+          <form @submit.prevent="UpdatePost(),showAlert()">
 
             <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -42,6 +51,15 @@
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;">Update Klant</button>
+<!--                <button clas="btn" style="background-color: dodgerblue;-->
+<!--  color: white;-->
+<!--  padding: 12px;-->
+<!--  margin: 10px 0;-->
+<!--  border: none;-->
+<!--  width: 100%;-->
+<!--  border-radius: 3px;-->
+<!--  cursor: pointer;-->
+<!--  font-size: 17px;">Update Lichaamsmaat</button>-->
               </div>
             </div>
 
@@ -70,7 +88,9 @@
           "geboortedatum":'',
           "addres":''
         },
-        errored: false
+        errored: false,
+        dismissSecs: 2,
+        dismissCountDown: 0,
       };
 
 
@@ -79,6 +99,12 @@
       this.getKlantByid(this.$route.params.id)
     },
     methods: {
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
       UpdatePost()  {
         const headers = {
           withCredentials: true,
@@ -88,9 +114,12 @@
         axios.post('http://localhost:8080/jaegherrest/updateklant/ ', this.entry, headers)
                 .then(response => {
                   // success
-                  alert('Klant is goed geupdate !')
-                  window.location.href = '/JaegherListKlant/'
                   console.log(response)
+                  setInterval(() => {
+                    window.location.href = '/JaegherListKlant/'
+                  }, 2000);
+                  // alert('Klant is goed geupdate !')
+
                 }, response => {
                   //error
                   if(response.status === 422 || response.status === 500) {

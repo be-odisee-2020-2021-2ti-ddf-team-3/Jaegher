@@ -1,5 +1,14 @@
 <template>
   <div style="margin-top: 3rem">
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Bestelling is goed geupdate !
+    </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -8,7 +17,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-          <form @submit.prevent="UpdatePost()">
+          <form @submit.prevent="UpdatePost(),showAlert()">
 
             <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -89,6 +98,8 @@
           "geboortedatum": '',
           "addres": ''
         },
+        dismissSecs: 2,
+        dismissCountDown: 0
 
       };
 
@@ -99,6 +110,12 @@
 
     },
     methods: {
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
       UpdatePost()  {
         const headers = {
           withCredentials: true,
@@ -108,9 +125,12 @@
         axios.post('http://localhost:8081/jaegherrestbestellingen/updatebestelling/ ', this.bestellingen, headers)
                 .then(response => {
                   // success
-                  alert('Bestelling is goed geupdate !')
-                  window.location.href = '/Jaegherlistbestellingen/'
                   console.log(response)
+                  // alert('Bestelling is goed geupdate !'),
+                  setInterval(() => {
+                    window.location.href = '/Jaegherlistbestellingen/'
+                  }, 2000);
+
                 }, response => {
                   //error
                   if(response.status === 422 || response.status === 500) {

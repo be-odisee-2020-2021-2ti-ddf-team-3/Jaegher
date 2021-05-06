@@ -44,7 +44,7 @@
                 :items="items"
                 :fields="fields"
                 :current-page="currentPage"
-                :per-page="15"
+                :per-page="perPage"
                 :filter="filter"
                 :filter-included-fields="filterOn"
                 :sort-by.sync="sortBy"
@@ -150,8 +150,7 @@
         ],
         totalRows: 1,
         currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
+        perPage: 10,
         sortBy: '',
         sortDesc: false,
         sortDirection: 'asc',

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Klant is goed aangemaakt !
+    </b-alert>
   <h2 style="margin-bottom: 2rem">Maak een klant aan</h2>
   <div class="row" style="display: flex;
     flex-wrap: wrap;
@@ -9,7 +18,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-        <form @submit.prevent="createPost()" >
+        <form @submit.prevent="createPost(),showAlert()" >
 
           <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -66,7 +75,9 @@ export default {
         "geboortedatum":'',
         "addres":''
       },
-      errored: false
+      errored: false,
+      dismissSecs: 2,
+      dismissCountDown: 0,
     };
 
 
@@ -75,6 +86,13 @@ export default {
 
   },
   methods: {
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs
+    },
+
   createPost()  {
     const headers = {
       withCredentials: true
@@ -83,9 +101,11 @@ export default {
     axios.post('http://localhost:8080/jaegherrest/createklant', this.entry, headers)
     .then(response => {
     // success
-      alert('Klant is goed aangemaakt !')
-      window.location.href = '/JaegherListKlant/'
-    console.log(response)
+      console.log(response)
+      setInterval(() => {
+        window.location.href = '/JaegherListKlant/'
+      }, 2000);
+
     }, response => {
     //error
     if(response.status === 422 || response.status === 500) {
