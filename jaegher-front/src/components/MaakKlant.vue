@@ -133,7 +133,7 @@ export default {
       const headers = {
         withCredentials: true
       };
-      axios.post('http://localhost:8082/jaegherrestlichaamsmaat/createlichaamsmaat', this.lichaamsmaten,  headers)
+      axios.post('http://localhost:8082/jaegherrestlichaamsmaat/createlichaamsmaat',  headers)
               .then(response => {
                 // success
                 // alert('Bestelling is goed aangemaakt !')
