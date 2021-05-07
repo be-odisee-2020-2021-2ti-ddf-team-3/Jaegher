@@ -1,13 +1,9 @@
 package be.odisee.ti2.se4.jaegher.formdata;
 
-import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 public class EntryData {

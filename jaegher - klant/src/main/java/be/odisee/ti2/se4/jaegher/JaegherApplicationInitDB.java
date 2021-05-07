@@ -3,15 +3,11 @@ package be.odisee.ti2.se4.jaegher;
 import be.odisee.ti2.se4.jaegher.DAO.GebruikerRepository;
 import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.domain.Gebruiker;
-import be.odisee.ti2.se4.jaegher.domain.Klant;
-import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
