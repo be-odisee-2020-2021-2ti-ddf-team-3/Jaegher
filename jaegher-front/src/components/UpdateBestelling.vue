@@ -9,6 +9,15 @@
     >
       Bestelling is goed geupdate !
     </b-alert>
+    <b-alert
+            :show="dismissCountDown2"
+            dismissible
+            fade
+            variant="danger"
+            @dismiss-count-down="countDownChanged2"
+    >
+      Bestelling is niet geupdate ! Probeer opnieuw met juiste gegevens...
+    </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -99,7 +108,9 @@
           "addres": ''
         },
         dismissSecs: 2,
-        dismissCountDown: 0
+        dismissCountDown: 0,
+        dismissSecs2: 3,
+        dismissCountDown2: 0,
 
       };
 
@@ -115,6 +126,12 @@
       },
       showAlert() {
         this.dismissCountDown = this.dismissSecs
+      },
+      countDownChanged2(dismissCountDown2) {
+        this.dismissCountDown2 = dismissCountDown2
+      },
+      showAlert2() {
+        this.dismissCountDown2 = this.dismissSecs2
       },
       UpdatePost()  {
         const headers = {
@@ -132,14 +149,11 @@
                     window.location.href = '/Jaegherlistbestellingen/'
                   }, 2000);
 
-                }, response => {
+                }) .catch(response => {
                   //error
-                  if(response.status === 422 || response.status === 500) {
-                    this.errored = true
-                    console.log('Fout !')
-
-                  }
-         })
+                  console.log(response),
+                  this.showAlert2()
+        })
       },
       getBestellingByid(id) {
         Vue.axios.get('http://localhost:8081/jaegherrestbestellingen/bestellingdetails/'+ id)

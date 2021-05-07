@@ -9,6 +9,15 @@
     >
       Bestelling is goed aangemaakt !
     </b-alert>
+    <b-alert
+            :show="dismissCountDown2"
+            dismissible
+            fade
+            variant="danger"
+            @dismiss-count-down="countDownChanged2"
+    >
+      Bestelling is niet gemaakt ! Probeer opnieuw met juiste gegevens...
+    </b-alert>
   <h2 style="margin-bottom: 2rem">Maak een bestelling aan</h2>
   <div class="row" style="display: flex;
     flex-wrap: wrap;
@@ -111,6 +120,8 @@ export default {
       items: [],
       dismissSecs: 2,
       dismissCountDown: 0,
+      dismissSecs2: 3,
+      dismissCountDown2: 0,
     };
 
 
@@ -136,6 +147,12 @@ export default {
     showAlert() {
       this.dismissCountDown = this.dismissSecs
     },
+    countDownChanged2(dismissCountDown2) {
+      this.dismissCountDown2 = dismissCountDown2
+    },
+    showAlert2() {
+      this.dismissCountDown2 = this.dismissSecs2
+    },
 
   createPost()  {
     const headers = {
@@ -156,8 +173,8 @@ export default {
       .catch(response => {
       //error
 
-      console.log(response)
-        // this.showAlert2()
+      console.log(response),
+      this.showAlert2()
       })
   },
 

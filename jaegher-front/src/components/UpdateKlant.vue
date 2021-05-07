@@ -139,8 +139,8 @@
                   // alert('Klant is goed geupdate !')
 
                 }) .catch(response => {
-          //error
-          console.log(response),
+                  //error
+                  console.log(response),
                   this.showAlert2()
          })
       },

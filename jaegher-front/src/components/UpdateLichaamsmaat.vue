@@ -1,14 +1,5 @@
 <template>
   <div style="margin-top: 3rem">
-    <b-alert
-            :show="dismissCountDown"
-            dismissible
-            fade
-            variant="success"
-            @dismiss-count-down="countDownChanged"
-    >
-      Lichaamsmaat is goed geupdate !
-    </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -17,13 +8,31 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-          <form @submit.prevent="UpdatePost(),showAlert()">
+          <form @submit.prevent="UpdatePost()">
 
             <div class="row" style="display: flex;
                flex-wrap: wrap;
                margin: 0 -16px;">
               <div class="col-50" style="padding: 0 16px;  flex: 50%;">
                 <h3 style="margin-bottom: 1rem">Wijzig Informatie</h3>
+                <b-alert
+                        :show="dismissCountDown"
+                        dismissible
+                        fade
+                        variant="success"
+                        @dismiss-count-down="countDownChanged"
+                >
+                  Lichaamsmaat is goed geupdate !
+                </b-alert>
+                <b-alert
+                        :show="dismissCountDown2"
+                        dismissible
+                        fade
+                        variant="danger"
+                        @dismiss-count-down="countDownChanged2"
+                >
+                  Lichaamsmaat is niet geupdate ! Probeer opnieuw met juiste gegevens...
+                </b-alert>
                 <label style="margin-bottom: 10px; display: block;" for="LinkerBeen"><font-awesome-icon icon="user" />
                   LinkerBeen</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="LinkerBeen" v-model="lichaamsmaten.linkerBeen">
@@ -98,7 +107,9 @@
           "addres": ''
         },
         dismissSecs: 2,
-        dismissCountDown: 0
+        dismissCountDown: 0,
+        dismissSecs2: 3,
+        dismissCountDown2: 0,
 
       };
 
@@ -115,6 +126,12 @@
       showAlert() {
         this.dismissCountDown = this.dismissSecs
       },
+      countDownChanged2(dismissCountDown2) {
+        this.dismissCountDown2 = dismissCountDown2
+      },
+      showAlert2() {
+        this.dismissCountDown2 = this.dismissSecs2
+      },
       UpdatePost()  {
         const headers = {
           withCredentials: true,
@@ -124,20 +141,18 @@
         axios.post('http://localhost:8082/jaegherrestlichaamsmaat/updatelichaamsmaat/ ', this.lichaamsmaten, headers)
                 .then(response => {
                   // success
-                  console.log(response)
+                  console.log(response),
+                  this.showAlert(),
                   // alert('Bestelling is goed geupdate !'),
                   setInterval(() => {
                     window.location.href = '/JaegherListKlant/'
                   }, 2000);
 
-                }, response => {
-                  //error
-                  if(response.status === 422 || response.status === 500) {
-                    this.errored = true
-                    console.log('Fout !')
-
-                  }
-         })
+                }) .catch(response => {
+                   //error
+                  console.log(response),
+                  this.showAlert2()
+        })
       },
       getLichaamsmaatByKlantid(id) {
         Vue.axios.get('http://localhost:8082/jaegherrestlichaamsmaat/lichaamsmaatdetails/'+ id)
