@@ -49,5 +49,6 @@ public interface JaegherService {
     public void addLichaamsmaat(Lichaamsmaat lichaamsmaat);
     public void updateLichaamsmaat(Lichaamsmaat entry);
 
+    public void addInitialLichaamsmaat();
 
 }

@@ -292,5 +292,19 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaatRepository.save(lichaamsmaat);
     }
 
+    @Override
+    public void addInitialLichaamsmaat() {
+        Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
+        lichaamsmaat.setLinkerBeen(0.0);
+        lichaamsmaat.setRechterBeen(0.0);
+        lichaamsmaat.setBekkenkanteling(0.0);
+        lichaamsmaat.setLinkerArm(0.0);
+        lichaamsmaat.setGewicht(0.0);
+        lichaamsmaat.setRechterArm(0.0);
+        lichaamsmaat.setGroote(100.0);
+
+        lichaamsmaatRepository.save(lichaamsmaat);
+    }
+
 
 }

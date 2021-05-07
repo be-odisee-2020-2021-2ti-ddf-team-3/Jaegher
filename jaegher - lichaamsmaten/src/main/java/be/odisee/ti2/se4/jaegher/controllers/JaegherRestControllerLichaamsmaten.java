@@ -48,7 +48,7 @@ public class JaegherRestControllerLichaamsmaten {
     @ResponseStatus(HttpStatus.CREATED)
     public Lichaamsmaat createKlant(@Valid @RequestBody Lichaamsmaat lichaamsmaat, Errors errors)
             throws BindException {
-        jaegherService.addLichaamsmaat(lichaamsmaat);
+        jaegherService.addInitialLichaamsmaat();
         return lichaamsmaat;
     }
 
