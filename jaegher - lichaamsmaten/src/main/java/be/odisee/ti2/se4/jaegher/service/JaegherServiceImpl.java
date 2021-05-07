@@ -223,20 +223,6 @@ public class JaegherServiceImpl implements JaegherService {
         return theEntryData;
     }
     @Override
-    public void addBestelling(EntryDataBestellingen entryData, long klantID) {
-        Bestelling entry = new Bestelling();
-
-        Klant klant = klantRepository.findById(klantID);
-        entry.setKlant(klant);
-        String naam = entryData.getNaam();
-        entry.setNaam(naam);
-        String date = entryData.getAanMaakDatum();
-        entry.setAanMaakDatum(date);
-        entry.setGoedgekeurd(false);
-
-        bestellingRepository.save(entry);
-    }
-    @Override
     public void addTestBestelling() {
         Bestelling entry = new Bestelling();
 
@@ -245,6 +231,20 @@ public class JaegherServiceImpl implements JaegherService {
         String naam = "naam";
         entry.setNaam(naam);
         String date = "2001-05-02";
+        entry.setAanMaakDatum(date);
+        entry.setGoedgekeurd(false);
+
+        bestellingRepository.save(entry);
+    }
+    @Override
+    public void addBestelling(EntryDataBestellingen entryData, long klantID) {
+        Bestelling entry = new Bestelling();
+
+        Klant klant = klantRepository.findById(klantID);
+        entry.setKlant(klant);
+        String naam = entryData.getNaam();
+        entry.setNaam(naam);
+        String date = entryData.getAanMaakDatum();
         entry.setAanMaakDatum(date);
         entry.setGoedgekeurd(false);
 
@@ -287,9 +287,10 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public void updateLichaamsmaat(Lichaamsmaat entry) {
         Lichaamsmaat lichaamsmaat;
-        lichaamsmaat = lichaamsmaatRepository.findById(entry.getId());
+        lichaamsmaat = lichaamsmaatRepository.findById(entry.getKlantId());
         lichaamsmaat = entry;
         lichaamsmaatRepository.save(lichaamsmaat);
     }
+
 
 }

@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LichaamsmaatRepository extends CrudRepository<Lichaamsmaat, Long> {
     public Lichaamsmaat findById(long id);
+
 }
