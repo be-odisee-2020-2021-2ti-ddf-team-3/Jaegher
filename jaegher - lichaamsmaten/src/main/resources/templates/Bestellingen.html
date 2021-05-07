@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Jaegher bestellingen</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script>
+        function rowClicked(value) {
+            location.href = "/Bestellingen/edit" + value
+        }
+    </script>
+</head>
+<body>
+<button style="margin-bottom: 15px;" class="btn btn-primary btn-md" onclick='window.location.href="/home";'>&laquo; Home page</button>
+<button style="margin-bottom: 15px;" class="btn btn-primary btn-md" th:if="${entryData.getId()}!=0" onclick='window.location.href="/Bestellingen";'>&laquo; terug naar bestellingen</button>
+
+<div th:if="${EditBestelling == 0}">
+<div th:if="${entryData.getId()}==0">
+    <h3>Lijst van klanten:</h3>
+    <p>Klik op een klant om zijn bestellingen te beheren</p>
+    <br>
+    <div class="table-striped well" th:if="${entryData.getId()}==0" >
+        <div style="font-weight: bold; margin-bottom: 10px;" class="row">
+            <div class="col-md-1 text-left">Naam</div>
+            <div class="col-md-2 text-left">Achternaam</div>
+            <div class="col-md-3 text-left">Geboortedatum</div>
+        </div>
+        <div th:each="klant: ${klanten}" class="row" th:onclick="'window.location.href = \'' + @{/Bestellingen/edit?id={id} (id=${klant.getId()}) } + '\''">
+            <div class="col-md-1 text-left" th:text="${klant.getNaam()}"> naam</div>
+            <div class="col-md-2 text-left" th:text="${klant.getAchternaam()}"> achternaam</div>
+            <div class="col-md-3 text-left" th:text="${klant.getGeboortedatum()}"> geboortedatum</div>
+            <br>
+        </div>
+    </div>
+</div>
+<div th:if="${entryData.getId()}!=0" th:object="${entryData}">
+    <div class="form-group">
+        <label>naam:&nbsp;</label><input th:readonly="true" type="text" th:field="*{voorNaam}" style="width: 40em"/>
+        <label>achternaam:&nbsp;</label><input th:readonly="true" type="text" th:field="*{achterNaam}" style="width: 40em"/>
+    </div>
+    <h3>Lijst van bestellingen:</h3>
+    <br>
+    <div class="table-striped well" >
+        <div style="font-weight: bold; margin-bottom: 10px;" class="row">
+            <div class="col-md-3 text-left">Naam</div>
+            <div class="col-md-3 text-left">Goedgekeurd?</div>
+        </div>
+        <div th:each="bestelling: ${bestellingen}" class="row" th:onclick="'window.location.href = \'' + @{/Bestellingen/editBestelling?id={id} (id=${bestelling.getId()}) } + '\''">
+            <div class="col-md-3 text-left" th:text="${bestelling.getNaam()}"> naam</div>
+            <div class="col-md-3 text-left" th:text="${bestelling.getGoedgekeurd()}"> naam</div>
+
+            <div class="col-md-3 text-left" th:text="${bestelling.getId()}"> id</div>
+            <br>
+        </div>
+    </div>
+</div>
+</div>
+<p>Bestelling gegevens</p>
+<form method="POST" th:action="@{/Bestellingen}" th:object="${entryData}" th:if="${entryData.getId()}!=0">
+
+    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{klantId}"/>
+
+    <div class="form-group">
+        <label>Naam bestelling:</label><input type="text" th:field="*{naam}" style="width: 40em"/>
+    </div>
+    <div class="form-group" >
+        <label>Aanmaak datum:</label><input type="date"  th:field="*{aanMaakDatum}" style="width: 40em"/>
+    </div>
+    <div class="form-group" th:if="${EditBestelling == 1}" >
+        <label>Goedgekeurd?</label><input type="checkbox" th:field="*{goedgekeurd}" style="width: 40em"/>
+    </div>
+
+    <div style="margin-top: 15px;" class="form-group">
+        <button class="btn btn-primary btn-md" th:if="${EditBestelling != 1}" name="submit">Bestelling toevoegen</button>
+        <button class="btn btn-primary btn-md" th:if="${EditBestelling == 1}" name="update">Bestelling updaten</button>
+        <button class="btn btn-primary btn-md" th:if="${EditBestelling == 1}" name="goedkeuren">Bestelling goedkeueren</button>
+        <button class="btn btn-primary btn-md" th:if="${EditBestelling == 1}" name="delete">Bestelling verwijderen</button>
+    </div>
+</form>
+
+
+
+</body>
+</html>
