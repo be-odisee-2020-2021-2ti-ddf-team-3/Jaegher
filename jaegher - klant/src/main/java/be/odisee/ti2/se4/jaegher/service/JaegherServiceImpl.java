@@ -53,20 +53,9 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public void addKlant(EntryData entryData) {
         Klant entry;
-        Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
-
-        lichaamsmaat.setLinkerBeen(0.0);
-        lichaamsmaat.setRechterBeen(0.0);
-        lichaamsmaat.setBekkenkanteling(0.0);
-        lichaamsmaat.setLinkerArm(0.0);
-        lichaamsmaat.setGewicht(0.0);
-        lichaamsmaat.setRechterArm(0.0);
-        lichaamsmaat.setGroote(100.0);
-
         if (entryData.getId() == 0) entry = new Klant();
         else entry = klantRepository.findById(entryData.getId());
 
-        entry.setLichaamsmaat(lichaamsmaat);
         String naam = entryData.getNaam();
         entry.setNaam(naam);
         String achternaam = entryData.getAchternaam();
@@ -95,17 +84,6 @@ public class JaegherServiceImpl implements JaegherService {
     @Override
     public void addTest() {
         Klant klant = new Klant();
-        Lichaamsmaat lichaamsmaat = new Lichaamsmaat();
-
-        lichaamsmaat.setLinkerBeen(85.5);
-        lichaamsmaat.setRechterBeen(86.0);
-        lichaamsmaat.setBekkenkanteling(15.0);
-        lichaamsmaat.setGewicht(72.0);
-        lichaamsmaat.setLinkerArm(53.0);
-        lichaamsmaat.setRechterArm(52.0);
-        lichaamsmaat.setGroote(172.0);
-
-        klant.setLichaamsmaat(lichaamsmaat);
         klant.setNaam("Voornaam");
         klant.setAchternaam("Achternaam");
         klant.setEmail("Email@gmail.com");
@@ -124,8 +102,6 @@ public class JaegherServiceImpl implements JaegherService {
     public void updateKlant(EntryData entryData, long id) {
         Klant klant;
         klant = klantRepository.findById(id);
-        Lichaamsmaat lichaamsmaat;
-        lichaamsmaat = klant.getLichaamsmaat();
 
         klant.setNaam(entryData.getNaam());
         klant.setAchternaam(entryData.getAchternaam());
@@ -133,14 +109,6 @@ public class JaegherServiceImpl implements JaegherService {
         klant.setAddres(entryData.getAddres());
         klant.setGeboortedatum(entryData.getGeboortedatum());
 
-        lichaamsmaat.setLinkerBeen(entryData.getLinkerBeen());
-        lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
-        lichaamsmaat.setBekkenkanteling(entryData.getBekkenkanteling());
-        lichaamsmaat.setLinkerArm(entryData.getLinkerArm());
-        lichaamsmaat.setGewicht(entryData.getGewicht());
-        lichaamsmaat.setRechterArm(entryData.getRechterArm());
-        lichaamsmaat.setGroote(entryData.getGroote());
-        klant.setLichaamsmaat(lichaamsmaat);
         klantRepository.save(klant);
     }
 
@@ -148,7 +116,6 @@ public class JaegherServiceImpl implements JaegherService {
     public EntryData prepareEntryDataToEdit(long id) {
         EntryData theEntryData = new EntryData();
         Klant klant = klantRepository.findById(id);
-        Lichaamsmaat lichaamsmaat = klant.getLichaamsmaat();
 
         theEntryData.setId(id);
         theEntryData.setAchternaam(klant.getAchternaam());
@@ -156,13 +123,6 @@ public class JaegherServiceImpl implements JaegherService {
         theEntryData.setAddres(klant.getAddres());
         theEntryData.setEmail(klant.getEmail());
         theEntryData.setGeboortedatum(klant.getGeboortedatum());
-        theEntryData.setLinkerArm(lichaamsmaat.getLinkerArm());
-        theEntryData.setBekkenkanteling(lichaamsmaat.getBekkenkanteling());
-        theEntryData.setRechterArm(lichaamsmaat.getRechterArm());
-        theEntryData.setGewicht(lichaamsmaat.getGewicht());
-        theEntryData.setRechterBeen(lichaamsmaat.getRechterBeen());
-        theEntryData.setLinkerBeen(lichaamsmaat.getLinkerBeen());
-        theEntryData.setGroote(lichaamsmaat.getGroote());
 
         return theEntryData;
     }

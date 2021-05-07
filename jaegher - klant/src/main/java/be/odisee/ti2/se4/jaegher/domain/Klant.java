@@ -32,11 +32,6 @@ public class Klant {
     @XmlElement(name="achternaam")
     private String achternaam;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JsonBackReference
-    @XmlElement(name="lichaamsmaat")
-    private Lichaamsmaat lichaamsmaat;
-
     @Email(message="Vul een geldig e-mail adres in ")
     @XmlElement(name="email")
     private String email;

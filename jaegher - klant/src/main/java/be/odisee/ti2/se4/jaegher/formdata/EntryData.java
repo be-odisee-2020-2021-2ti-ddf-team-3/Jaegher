@@ -30,24 +30,9 @@ public class EntryData {
 
     private String addres;
 
-    private Lichaamsmaat lichaamsmaat;
 
     @NotBlank(message="email verplicht")
     @Email(message="Vul een geldig e-mail adres in ")
     private String email;
 
-    private Double linkerBeen;
-
-    private Double rechterBeen;
-
-    private Double bekkenkanteling;
-
-    private Double gewicht;
-
-    @Max(value = 220, message = "Maximum groote is 220cm")
-    private Double groote;
-
-    private Double linkerArm;
-
-    private Double rechterArm;
 }
