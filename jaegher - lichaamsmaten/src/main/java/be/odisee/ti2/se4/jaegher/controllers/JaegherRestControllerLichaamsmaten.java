@@ -46,10 +46,8 @@ public class JaegherRestControllerLichaamsmaten {
 
     @RequestMapping(value={"/createlichaamsmaat"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Lichaamsmaat createKlant(@Valid @RequestBody Lichaamsmaat lichaamsmaat, Errors errors)
-            throws BindException {
+    public void createLichaamsmaat(){
         jaegherService.addInitialLichaamsmaat();
-        return lichaamsmaat;
     }
 
     @RequestMapping(value={"/updatelichaamsmaat/"},method=RequestMethod.POST)
