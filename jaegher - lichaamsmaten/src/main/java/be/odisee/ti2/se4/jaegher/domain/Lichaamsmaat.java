@@ -32,6 +32,6 @@ public class Lichaamsmaat {
     private Double rechterArm;
 
     @Id
-    private long KlantId;
+    private final long KlantId;
 
 }
