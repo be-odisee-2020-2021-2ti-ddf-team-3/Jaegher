@@ -7,7 +7,7 @@
             variant="success"
             @dismiss-count-down="countDownChanged"
     >
-      Bestelling is goed geupdate !
+      Lichaamsmaat is goed geupdate !
     </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
@@ -58,7 +58,7 @@
   width: 100%;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 17px;">Update Bestelling</button>
+  font-size: 17px;">Update Lichaamsmaat</button>
               </div>
             </div>
 
@@ -80,7 +80,6 @@
     data(){
       return{
         "lichaamsmaten": {
-          "id": '',
           "linkerBeen":'',
           "rechterBeen": '',
           "bekkenkanteling": '',
@@ -121,14 +120,14 @@
           withCredentials: true,
 
         };
-        console.log(this.bestellingen)
-        axios.post('http://localhost:8081/jaegherrestbestellingen/updatebestelling/ ', this.bestellingen, headers)
+        console.log(this.lichaamsmaten)
+        axios.post('http://localhost:8082/jaegherrestlichaamsmaat/updatelichaamsmaat/ ', this.lichaamsmaten, headers)
                 .then(response => {
                   // success
                   console.log(response)
                   // alert('Bestelling is goed geupdate !'),
                   setInterval(() => {
-                    window.location.href = '/Jaegherlistbestellingen/'
+                    window.location.href = '/JaegherListKlant/'
                   }, 2000);
 
                 }, response => {

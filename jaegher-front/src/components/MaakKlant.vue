@@ -75,18 +75,6 @@ export default {
         "geboortedatum":'',
         "addres":''
       },
-      "lichaamsmaten": {
-        "klantId": '',
-        "linkerBeen":'',
-        "rechterBeen": '',
-        "bekkenkanteling": '',
-        "gewicht": '',
-        "groote":'',
-        "linkerArm": '',
-        "rechterArm": ''
-
-      },
-
       errored: false,
       dismissSecs: 2,
       dismissCountDown: 0,
@@ -144,8 +132,8 @@ export default {
                   this.errored = true
                   console.log('Fout !')
 
-                }
-              })
+            }
+        })
     },
   }
 }
