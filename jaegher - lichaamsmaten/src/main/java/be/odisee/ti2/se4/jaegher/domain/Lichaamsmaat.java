@@ -32,6 +32,7 @@ public class Lichaamsmaat {
     private Double rechterArm;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private final long KlantId;
 
 }
