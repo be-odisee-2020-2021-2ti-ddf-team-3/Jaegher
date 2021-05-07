@@ -7,10 +7,11 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faUser,faEnvelope,faAddressCard,faCalendarAlt, faPlus)
+library.add(faUser,faEnvelope,faAddressCard,faCalendarAlt, faPlus,faRulerVertical)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

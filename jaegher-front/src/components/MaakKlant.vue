@@ -75,6 +75,18 @@ export default {
         "geboortedatum":'',
         "addres":''
       },
+      "lichaamsmaten": {
+        "klantId": '',
+        "linkerBeen":'',
+        "rechterBeen": '',
+        "bekkenkanteling": '',
+        "gewicht": '',
+        "groote":'',
+        "linkerArm": '',
+        "rechterArm": ''
+
+      },
+
       errored: false,
       dismissSecs: 2,
       dismissCountDown: 0,
@@ -101,7 +113,8 @@ export default {
     axios.post('http://localhost:8080/jaegherrest/createklant', this.entry, headers)
     .then(response => {
     // success
-      console.log(response)
+      console.log(response),
+      this.createInitLichaamsmaat(),
       setInterval(() => {
         window.location.href = '/JaegherListKlant/'
       }, 2000);
@@ -114,7 +127,26 @@ export default {
 
     }
     })
-    }
+    },
+
+    createInitLichaamsmaat()  {
+      const headers = {
+        withCredentials: true
+      };
+      axios.post('http://localhost:8082/jaegherrestlichaamsmaat/createlichaamsmaat', this.lichaamsmaten,  headers)
+              .then(response => {
+                // success
+                // alert('Bestelling is goed aangemaakt !')
+                console.log(response)
+              }, response => {
+                //error
+                if(response.status === 422 || response.status === 500) {
+                  this.errored = true
+                  console.log('Fout !')
+
+                }
+              })
+    },
   }
 }
 

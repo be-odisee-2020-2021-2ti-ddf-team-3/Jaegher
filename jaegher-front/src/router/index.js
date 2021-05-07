@@ -4,10 +4,13 @@ import Home from '../../Views/Home.vue'  // HV mag weg later als ik HelloWorld w
 import zoekklant from "../../Views/Jaegher"
 import MaakKlant from "../../Views/MaakKlant"
 import MaakBestelling from "../../Views/MaakBestelling"
+import MaakLichaamsmaat from "../../Views/MaakLichaamsmaat"
 import lijstbestellingen from "../../Views/JaegherListBestellingen"
 import LijstKlanten from "../../Views/JaegherListKlant"
 import Klantupdate from "../../Views/KlantUpdate"
 import Bestellingupdate from "../../Views/BestellingUpdate"
+import Lichaamsmaatupdate from "../../Views/LichaamsmaatUpdate"
+
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -34,6 +37,11 @@ Vue.use(VueRouter);
       component: Bestellingupdate
     },
     {
+      path: '/Lichaamsmaatupdate/:id',
+      name: 'Lichaamsmaatupdate',
+      component: Lichaamsmaatupdate
+    },
+    {
     path: '/',
     name: 'Home',
     component: Home
@@ -47,6 +55,11 @@ Vue.use(VueRouter);
       path: '/MaakKlant',
       name: 'MaakKlant',
       component: MaakKlant
+    },
+    {
+      path: '/MaakLichaamsmaat',
+      name: 'MaakLichaamsmaat',
+      component: MaakLichaamsmaat
     },
     {
       path: '/MaakBestelling',

@@ -35,6 +35,7 @@
           </b-col>
 
 
+
         </b-row>
 
 
@@ -61,15 +62,18 @@
 
 
           <template #cell(actions)="row" id="buttonsactions">
-            <b-dropdown id="dropdown-dropright" dropright text="Kies één" variant="primary" class="m-2">
+            <b-dropdown id="dropdown-dropright" dropright text="Klant" variant="primary" class="m-2">
               <b-dropdown-item size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1" >
                 Info modal</b-dropdown-item>
               <b-dropdown-item size="sm" @click="row.toggleDetails" class="mr-1" >
                 {{ row.detailsShowing ? 'Hide' : 'Show' }} Details</b-dropdown-item>
               <b-dropdown-item @click="goUpdatePage(row.item.id)" size="sm" class="mr-1" >
                 Update Klant</b-dropdown-item>
+              <b-dropdown-item @click="goUpdateLichaamsmaatPage(row.item.id)" size="sm" class="mr-1" >
+                Update Lichaamsmaat</b-dropdown-item>
               <b-dropdown-item size="sm" @click="deleteKlantById(row.item.id)">
                 Delete Klant</b-dropdown-item>
+
             </b-dropdown>
 
           </template>
@@ -125,7 +129,19 @@
           "geboortedatum": '',
           "addres": ''
         },
+        "lichaamsmaten": {
+          "id": '',
+          "linkerBeen":'',
+          "rechterBeen": '',
+          "bekkenkanteling": '',
+          "gewicht": '',
+          "groote":'',
+          "linkerArm": '',
+          "rechterArm": '',
+          "klantId": ''
+        },
         items: [],
+        items2:[],
         fields: [
           {
             key: 'id',
@@ -178,11 +194,19 @@
 
     },
     mounted() {
-      this.getLijstKlanten()
+      this.getLijstKlanten(),
+      this.getLijstLichaamsmaat(),
+
       // Set the initial number of items
       this.totalRows = this.items.length
+
     },
     methods: {
+
+      goUpdateLichaamsmaatPage(id) {
+        console.log(id)
+        this.$router.push({path: `/Lichaamsmaatupdate/${id}`})
+      },
       goUpdatePage(id) {
         console.log(id)
         this.$router.push({path: `/Klantupdate/${id}`})
@@ -198,6 +222,21 @@
                 ))
                 .catch(error => (
                         this.items = "fout",
+                                this.status = error.response.status,
+                                this.errorMsg = error.response.data.message
+                ))
+      },
+      getLijstLichaamsmaat() {
+        this.url = 'http://localhost:8082/jaegherrestlichaamsmaat/lichaamsmaten'
+        axios
+                .get(this.url)
+                .then(response => (
+                        this.items2 = response.data,
+                                console.log(response.data),
+                                this.status = response.status
+                ))
+                .catch(error => (
+                        this.items2 = "fout",
                                 this.status = error.response.status,
                                 this.errorMsg = error.response.data.message
                 ))
@@ -224,8 +263,20 @@
                   console.warn(resp.data)
                 })
       },
+      deleteLichaamsmaatById(id) {
+        Vue.axios.delete('http://localhost:8082/jaegherrestlichaamsmaat/deletelichaamsmaat/' + id)
+                .then((resp) => {
+                  this.getLijstKlanten()
+                  alert("Lichaamsmaat is verwijderd !")
+                  console.warn(resp.data)
+                })
+      },
       CreateKlant() {
         window.location.href = "/MaakKlant"
+        this.makeActive('Klanten')
+      },
+      CreateLichaamsmaat() {
+        window.location.href = "/MaakLichaamsmaat"
         this.makeActive('Klanten')
       }
     }
