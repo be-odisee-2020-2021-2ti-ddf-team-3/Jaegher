@@ -10,6 +10,7 @@ import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.formdata.EntryDataBestellingen;
+import be.odisee.ti2.se4.jaegher.formdata.EntryDataLichaamsmaat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -285,10 +286,16 @@ public class JaegherServiceImpl implements JaegherService {
         lichaamsmaatRepository.save(lichaamsmaat);
     }
     @Override
-    public void updateLichaamsmaat(Lichaamsmaat entry) {
+    public void updateLichaamsmaat(EntryDataLichaamsmaat entryData) {
         Lichaamsmaat lichaamsmaat;
-        lichaamsmaat = lichaamsmaatRepository.findById(entry.getKlantId());
-        lichaamsmaat = entry;
+        lichaamsmaat = lichaamsmaatRepository.findById(entryData.getId());
+        lichaamsmaat.setLinkerBeen(entryData.getLinkerBeen());
+        lichaamsmaat.setRechterBeen(entryData.getRechterBeen());
+        lichaamsmaat.setBekkenkanteling(entryData.getBekkenkanteling());
+        lichaamsmaat.setLinkerArm(entryData.getLinkerArm());
+        lichaamsmaat.setGewicht(entryData.getGewicht());
+        lichaamsmaat.setRechterArm(entryData.getRechterArm());
+        lichaamsmaat.setGroote(entryData.getGroote());
         lichaamsmaatRepository.save(lichaamsmaat);
     }
 

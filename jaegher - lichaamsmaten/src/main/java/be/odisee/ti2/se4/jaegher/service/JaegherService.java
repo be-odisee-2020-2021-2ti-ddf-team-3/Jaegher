@@ -7,6 +7,7 @@ import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
 import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.formdata.EntryDataBestellingen;
+import be.odisee.ti2.se4.jaegher.formdata.EntryDataLichaamsmaat;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public interface JaegherService {
 
     public void deleteLichaamsmaat(long id);
     public void addLichaamsmaat(Lichaamsmaat lichaamsmaat);
-    public void updateLichaamsmaat(Lichaamsmaat entry);
+    public void updateLichaamsmaat(EntryDataLichaamsmaat entry);
 
     public void addInitialLichaamsmaat();
 

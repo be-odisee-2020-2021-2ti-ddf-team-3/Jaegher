@@ -15,6 +15,9 @@ import javax.validation.constraints.*;
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 public class Lichaamsmaat {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private final long Id;
 
     private Double linkerBeen;
 
@@ -31,8 +34,6 @@ public class Lichaamsmaat {
 
     private Double rechterArm;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private final long KlantId;
+
 
 }

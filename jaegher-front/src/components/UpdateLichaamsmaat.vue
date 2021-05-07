@@ -87,7 +87,7 @@
           "groote":'',
           "linkerArm": '',
           "rechterArm": '',
-          "klantId": ''
+          "Id": ''
         },
         "klanten": {
           "id": '',
@@ -144,7 +144,7 @@
                 .then((resp) => {
                   this.lichaamsmaten = resp.data,
                   console.warn(resp.data),
-                  this.getKlantByID(this.lichaamsmaten.klantId)
+                  this.getKlantByID(this.lichaamsmaten.Id)
           })
       },
   getKlantByID(id){
