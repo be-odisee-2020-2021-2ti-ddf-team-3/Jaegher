@@ -17,7 +17,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-          <form @submit.prevent="UpdatePost(),showAlert()">
+          <form @submit.prevent="UpdatePost()">
 
             <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -125,7 +125,8 @@
         axios.post('http://localhost:8081/jaegherrestbestellingen/updatebestelling/ ', this.bestellingen, headers)
                 .then(response => {
                   // success
-                  console.log(response)
+                  console.log(response),
+                  this.showAlert(),
                   // alert('Bestelling is goed geupdate !'),
                   setInterval(() => {
                     window.location.href = '/Jaegherlistbestellingen/'

@@ -1,5 +1,23 @@
 <template>
   <div>
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Klant is goed verwijdert !
+    </b-alert>
+    <b-alert
+            :show="dismissCountDown2"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged2"
+    >
+      Lichaamsmaat is goed verwijdert !
+    </b-alert>
     <div id="LijstKlanten" class="container mt-3">
 
       <b-container fluid>
@@ -71,7 +89,7 @@
                 Update Klant</b-dropdown-item>
               <b-dropdown-item @click="goUpdateLichaamsmaatPage(row.item.id)" size="sm" class="mr-1" >
                 Update Lichaamsmaat</b-dropdown-item>
-              <b-dropdown-item size="sm" @click="deleteKlantById(row.item.id)">
+              <b-dropdown-item size="sm" @click="deleteKlantById(row.item.id), showAlert()">
                 Delete Klant</b-dropdown-item>
 
             </b-dropdown>
@@ -187,7 +205,12 @@
           id: 'info-modal',
           title: '',
           content: ''
-        }
+        },
+        dismissSecs: 2.5,
+        dismissCountDown: 0,
+        dismissSecs2: 2.5,
+        dismissCountDown2: 0,
+        status:null
       }
     },
     computed: {
@@ -195,7 +218,6 @@
     },
     mounted() {
       this.getLijstKlanten(),
-      this.getLijstLichaamsmaat(),
 
       // Set the initial number of items
       this.totalRows = this.items.length
@@ -226,21 +248,6 @@
                                 this.errorMsg = error.response.data.message
                 ))
       },
-      getLijstLichaamsmaat() {
-        this.url = 'http://localhost:8082/jaegherrestlichaamsmaat/lichaamsmaten'
-        axios
-                .get(this.url)
-                .then(response => (
-                        this.items2 = response.data,
-                                console.log(response.data),
-                                this.status = response.status
-                ))
-                .catch(error => (
-                        this.items2 = "fout",
-                                this.status = error.response.status,
-                                this.errorMsg = error.response.data.message
-                ))
-      },
       info(item, index, button) {
         this.infoModal.title = `Row index: ${index}`
         this.infoModal.content = JSON.stringify(item, null, 2)
@@ -258,16 +265,16 @@
       deleteKlantById(id) {
         Vue.axios.delete('http://localhost:8080/jaegherrest/deleteklant/' + id)
                 .then((resp) => {
-                  this.getLijstKlanten()
-                  alert("Klant is verwijderd !")
+                  this.showAlert(),
+                  this.deleteLichaamsmaatById(id),
+                  this.showAlert2(),
+                  this.getLijstKlanten(),
                   console.warn(resp.data)
                 })
       },
       deleteLichaamsmaatById(id) {
         Vue.axios.delete('http://localhost:8082/jaegherrestlichaamsmaat/deletelichaamsmaat/' + id)
                 .then((resp) => {
-                  this.getLijstKlanten()
-                  alert("Lichaamsmaat is verwijderd !")
                   console.warn(resp.data)
                 })
       },
@@ -275,10 +282,18 @@
         window.location.href = "/MaakKlant"
         this.makeActive('Klanten')
       },
-      CreateLichaamsmaat() {
-        window.location.href = "/MaakLichaamsmaat"
-        this.makeActive('Klanten')
-      }
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
+      countDownChanged2(dismissCountDown2) {
+        this.dismissCountDown2 = dismissCountDown2
+      },
+      showAlert2() {
+        this.dismissCountDown2 = this.dismissSecs2
+      },
     }
   }
 </script>

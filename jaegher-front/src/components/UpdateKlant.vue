@@ -9,6 +9,15 @@
     >
       Klant is goed geupdate !
     </b-alert>
+    <b-alert
+            :show="dismissCountDown2"
+            dismissible
+            fade
+            variant="danger"
+            @dismiss-count-down="countDownChanged2"
+    >
+      Klant is niet geupdate ! Probeer opnieuw met juiste gegevens...
+    </b-alert>
     <div class="row" style="display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;">
@@ -17,7 +26,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-          <form @submit.prevent="UpdatePost(),showAlert()">
+          <form @submit.prevent="UpdatePost()">
 
             <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -91,6 +100,8 @@
         errored: false,
         dismissSecs: 2,
         dismissCountDown: 0,
+        dismissSecs2: 3,
+        dismissCountDown2: 0,
       };
 
 
@@ -105,6 +116,12 @@
       showAlert() {
         this.dismissCountDown = this.dismissSecs
       },
+      countDownChanged2(dismissCountDown2) {
+        this.dismissCountDown2 = dismissCountDown2
+      },
+      showAlert2() {
+        this.dismissCountDown2 = this.dismissSecs2
+      },
       UpdatePost()  {
         const headers = {
           withCredentials: true,
@@ -114,19 +131,17 @@
         axios.post('http://localhost:8080/jaegherrest/updateklant/ ', this.entry, headers)
                 .then(response => {
                   // success
-                  console.log(response)
+                  console.log(response),
+                  this.showAlert(),
                   setInterval(() => {
                     window.location.href = '/JaegherListKlant/'
                   }, 2000);
                   // alert('Klant is goed geupdate !')
 
-                }, response => {
-                  //error
-                  if(response.status === 422 || response.status === 500) {
-                    this.errored = true
-                    console.log('Fout !')
-
-                  }
+                }) .catch(response => {
+          //error
+          console.log(response),
+                  this.showAlert2()
          })
       },
       getKlantByid(id) {

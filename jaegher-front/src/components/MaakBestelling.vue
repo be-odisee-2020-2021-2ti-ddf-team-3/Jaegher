@@ -18,7 +18,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-        <form @submit.prevent="createPost(),showAlert()" >
+        <form @submit.prevent="createPost()" >
 
           <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -55,7 +55,7 @@
 
 
 
-              <button clas="btn" @click="showAlert" style="background-color: dodgerblue;
+              <button clas="btn" style="background-color: dodgerblue;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -146,20 +146,21 @@ export default {
     .then(response => {
     // success
     // alert('Bestelling is goed aangemaakt !')
+      this.showAlert(),
       setInterval(() => {
         window.location.href = '/Jaegherlistbestellingen/'
       }, 2000);
 
     console.log(response)
-    }, response => {
-    //error
-    if(response.status === 422 || response.status === 500) {
-      this.errored = true
-      console.log('Fout !')
-
-    }
     })
-    },
+      .catch(response => {
+      //error
+
+      console.log(response)
+        // this.showAlert2()
+      })
+  },
+
 
     getLijstKlanten() {
       this.url = 'http://localhost:8080/jaegherrest/klanten'

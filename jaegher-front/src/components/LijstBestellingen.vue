@@ -1,5 +1,14 @@
 <template>
   <div>
+    <b-alert
+            :show="dismissCountDown"
+            dismissible
+            fade
+            variant="success"
+            @dismiss-count-down="countDownChanged"
+    >
+      Bestelling is goed verwijdert !
+    </b-alert>
     <div id="LijstBestellingen" class="container mt-3">
 
       <b-container fluid>
@@ -160,7 +169,9 @@
           id: 'info-modal',
           title: '',
           content: ''
-        }
+        },
+        dismissSecs: 2.5,
+        dismissCountDown: 0,
       }
     },
     computed: {
@@ -172,6 +183,12 @@
       this.totalRows = this.items.length
     },
     methods: {
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
       goUpdatePage(id) {
         console.log(id)
         this.$router.push({path: `/Bestellingupdate/${id}`})
@@ -214,7 +231,7 @@
         Vue.axios.delete('http://localhost:8081/jaegherrestbestellingen/deletebestelling/'+ id)
                 .then((resp) => {
                   this.getLijstBestellingen()
-                  alert("Bestelling is verwijderd !")
+                  this.showAlert(),
                   console.warn(resp.data)
                 })
       },

@@ -87,7 +87,7 @@
           "groote":'',
           "linkerArm": '',
           "rechterArm": '',
-          "Id": ''
+          "id": ''
         },
         "klanten": {
           "id": '',
@@ -144,11 +144,11 @@
                 .then((resp) => {
                   this.lichaamsmaten = resp.data,
                   console.warn(resp.data),
-                  this.getKlantByID(this.lichaamsmaten.Id)
+                  this.getKlantByID(this.lichaamsmaten.id)
           })
       },
   getKlantByID(id){
-      console.log(id)
+      console.log(id),
       Vue.axios.get('http://localhost:8080/jaegherrest/klantdetails/'+ id)
               .then((resp) => {
                 this.klanten = resp.data,

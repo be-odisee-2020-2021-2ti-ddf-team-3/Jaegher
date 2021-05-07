@@ -9,6 +9,15 @@
     >
       Klant is goed aangemaakt !
     </b-alert>
+    <b-alert
+            :show="dismissCountDown2"
+            dismissible
+            fade
+            variant="danger"
+            @dismiss-count-down="countDownChanged2"
+    >
+     Klant is niet gemaakt ! Probeer opnieuw met juiste gegevens...
+    </b-alert>
   <h2 style="margin-bottom: 2rem">Maak een klant aan</h2>
   <div class="row" style="display: flex;
     flex-wrap: wrap;
@@ -18,7 +27,7 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;">
-        <form @submit.prevent="createPost(),showAlert()" >
+        <form @submit.prevent="createPost()" >
 
           <div class="row" style="display: flex;
                flex-wrap: wrap;
@@ -78,6 +87,8 @@ export default {
       errored: false,
       dismissSecs: 2,
       dismissCountDown: 0,
+      dismissSecs2: 3,
+      dismissCountDown2: 0,
     };
 
 
@@ -92,6 +103,12 @@ export default {
     showAlert() {
       this.dismissCountDown = this.dismissSecs
     },
+    countDownChanged2(dismissCountDown2) {
+      this.dismissCountDown2 = dismissCountDown2
+    },
+    showAlert2() {
+      this.dismissCountDown2 = this.dismissSecs2
+    },
 
   createPost()  {
     const headers = {
@@ -102,18 +119,19 @@ export default {
     .then(response => {
     // success
       console.log(response),
+      this.showAlert(),
       this.createInitLichaamsmaat(),
       setInterval(() => {
         window.location.href = '/JaegherListKlant/'
       }, 2000);
 
-    }, response => {
+    }) .catch(response => {
     //error
-    if(response.status === 422 || response.status === 500) {
-      this.errored = true
-      console.log('Fout !')
 
-    }
+      console.log(response),
+      this.showAlert2()
+
+
     })
     },
 
