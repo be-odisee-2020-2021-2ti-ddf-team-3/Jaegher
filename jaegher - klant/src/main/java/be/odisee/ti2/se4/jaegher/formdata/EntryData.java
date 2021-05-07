@@ -24,11 +24,11 @@ public class EntryData {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String geboortedatum;
 
+    @NotBlank(message="address verplicht")
     private String addres;
 
 
     @NotBlank(message="email verplicht")
-    @Email(message="Vul een geldig e-mail adres in ")
     private String email;
 
 }

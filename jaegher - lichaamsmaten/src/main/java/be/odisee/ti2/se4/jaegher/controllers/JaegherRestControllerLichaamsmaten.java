@@ -1,15 +1,11 @@
 package be.odisee.ti2.se4.jaegher.controllers;
 
-import be.odisee.ti2.se4.jaegher.DAO.KlantRepository;
 import be.odisee.ti2.se4.jaegher.DAO.LichaamsmaatRepository;
-import be.odisee.ti2.se4.jaegher.domain.Klant;
 import be.odisee.ti2.se4.jaegher.domain.Lichaamsmaat;
-import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.formdata.EntryDataLichaamsmaat;
 import be.odisee.ti2.se4.jaegher.service.JaegherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 

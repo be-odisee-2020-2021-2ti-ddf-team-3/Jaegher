@@ -18,20 +18,19 @@ public class Lichaamsmaat {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private final long Id;
-
+    @Min(value = 0, message = "min 0")
     private Double linkerBeen;
-
+    @Min(value = 0, message = "min 0")
     private Double rechterBeen;
-
+    @Min(value = 0, message = "min 0")
     private Double bekkenkanteling;
-
+    @Min(value = 0, message = "min 0")
     private Double gewicht;
-
-    @Max(value = 220, message = "Maximum groote is 220cm")
+    @Min(value = 0, message = "min 0")
     private Double groote;
-
+    @Min(value = 0, message = "min 0")
     private Double linkerArm;
-
+    @Min(value = 0, message = "min 0")
     private Double rechterArm;
 
 

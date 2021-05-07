@@ -32,6 +32,7 @@ public class Klant {
     @XmlElement(name="achternaam")
     private String achternaam;
 
+    @NotEmpty(message="email verplicht")
     @Email(message="Vul een geldig e-mail adres in ")
     @XmlElement(name="email")
     private String email;
@@ -41,6 +42,7 @@ public class Klant {
     @XmlElement(name="geboortedatum")
     private String geboortedatum;
 
+    @NotBlank(message="address verplicht")
     @XmlElement(name="addres")
     private String addres;
 
