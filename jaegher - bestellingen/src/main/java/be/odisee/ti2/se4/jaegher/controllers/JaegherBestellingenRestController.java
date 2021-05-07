@@ -2,8 +2,6 @@ package be.odisee.ti2.se4.jaegher.controllers;
 
 import be.odisee.ti2.se4.jaegher.DAO.BestellingRepository;
 import be.odisee.ti2.se4.jaegher.domain.Bestelling;
-import be.odisee.ti2.se4.jaegher.domain.Klant;
-import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.formdata.EntryDataBestellingen;
 import be.odisee.ti2.se4.jaegher.service.JaegherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +64,7 @@ public class JaegherBestellingenRestController {
 
     @RequestMapping(value={"/bestellinggoedkeuren/{id}"},method=RequestMethod.PUT)
     public @ResponseBody
-    Klant getKlant(@PathVariable("id") Integer id) {
+    Bestelling goedkeurenBestelling(@PathVariable("id") Integer id) {
         jaegherService.bestellingGoedkeuren(id);
         return null;
     }

@@ -2,7 +2,6 @@ package be.odisee.ti2.se4.jaegher.controllers;
 
 import be.odisee.ti2.se4.jaegher.DAO.GebruikerRepository;
 import be.odisee.ti2.se4.jaegher.domain.Gebruiker;
-import be.odisee.ti2.se4.jaegher.formdata.EntryData;
 import be.odisee.ti2.se4.jaegher.service.JaegherServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

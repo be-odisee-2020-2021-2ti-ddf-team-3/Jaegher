@@ -1,11 +1,7 @@
 package be.odisee.ti2.se4.jaegher.formdata;
 
-import be.odisee.ti2.se4.jaegher.domain.Klant;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Data
 public class EntryDataBestellingen {
