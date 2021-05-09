@@ -8,14 +8,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 //Deze klasse steld een entity voor in de DB de variabelen zijn tabelen
 @Entity
 @Table(name = "KLANTEN")
+@XmlRootElement(name = "klant")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Klant {
 
     @Id
