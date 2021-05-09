@@ -57,7 +57,22 @@
                           style="margin-bottom: 1rem">
 
                 </v-select>
-                <span id="klantid">Selected ID: {{getValue(selectedID)}}</span>
+                <span id="klantid" style="margin-bottom: 10px;">Selected ID: {{getValue(selectedID)}}</span>
+              </div>
+              <label style="margin-top: 10px; display: block;" for="selectedplan"><font-awesome-icon icon="user" /> Planning:</label>
+              <div style="width: 20%;  margin: 0 auto">
+                <v-select v-model="selectedplanning" :options="itemsplanning"
+                          label="id"
+                          return-object
+                          style="margin-bottom: 1rem">
+
+                </v-select>
+                <span id="selectedplan">Selected Planning: {{getValuePlanning(selectedIDPlanning)}}</span> <br>
+                <span id="selecteddatum">Datum: {{selectedDatumPlanning}}</span> <br>
+                <span id="selectedtoestand">Toestand: {{selectedToestandPlanning}}</span> <br>
+                <span id="selectedchauffeur">Chauffeur: {{selectedChauffeurID}}</span>
+
+
               </div>
 
 
@@ -108,16 +123,23 @@ export default {
       options: [
         { item: 'false', name: 'False' }],
       selecedklant:'',
-      selecedklantid:'',
+      selectedplanning:'',
       "bestellingen": {
         "id": '',
         "naam":'',
         "aanMaakDatum": '',
         "goedgekeurd": '',
-        "klantId": ''
+        "klantId": '',
+        "planning_id":''
       },
-      item:null,
+      "planningen": {
+        "id": '',
+        "datum":'',
+        "toestand": '',
+        "chauffeur": ''
+      },
       items: [],
+      itemsplanning: [],
       dismissSecs: 2,
       dismissCountDown: 0,
       dismissSecs2: 3,
@@ -127,12 +149,27 @@ export default {
 
     },
   mounted() {
-    this.getLijstKlanten()
+    this.getLijstKlanten(),
+    this.getLijstPlanningen()
+
   },
   computed: {
     selectedID: function () {
       return this.selecedklant.id
     },
+    selectedIDPlanning: function () {
+      return this.selectedplanning.id
+    },
+    selectedDatumPlanning: function () {
+      return this.selectedplanning.datum
+    },
+    selectedToestandPlanning: function () {
+      return this.selectedplanning.toestand
+    },
+    selectedChauffeurID: function () {
+      return this.selectedplanning.chauffeur
+    },
+
 
 
   },
@@ -140,6 +177,10 @@ export default {
     getValue: function(value){
       return value,
       this.bestellingen.klantId = value
+    },
+    getValuePlanning: function(value){
+      return value,
+      this.bestellingen.planning_id = value
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
@@ -191,6 +232,19 @@ export default {
                       this.items = "fout",
                               this.status = error.response.status,
                               this.errorMsg = error.response.data.message
+              ))
+    },
+    getLijstPlanningen() {
+      this.url = 'http://localhost:8083/quatraplanningrest/plannings'
+      axios
+              .get(this.url)
+              .then(response => (
+                      this.itemsplanning = response.data,
+                      console.log(response.data)
+              ))
+              .catch(error => (
+                      this.itemsplanning = "fout",
+                              this.status = error.response.status
               ))
     },
 
