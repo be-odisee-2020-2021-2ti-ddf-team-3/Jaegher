@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/materialize.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title th:text="${title} + ' planning'"/>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}" style="float: right">
+    <button class="btn btn-danger btn-md logout" name="logout" value="Logout">Logout</button>
+</form>
+    <div class="row">
+        <h1 th:text="${title} + ' planning'"/>
+        <form class="col s12" method="POST" th:object="${formPlanning}">
+            <div id="form-datum" class="input-field col s12">
+                <div class="row"><label for="datum">Datum</label></div>
+                <input type="date" class="form-control" id="datum" name="datum" th:field="*{datum}"/>
+                <span style="color: #ff0000;" class="text-danger" th:if="#{fields.hasErrors('datum')}" th:errors="*{datum}"></span>
+            </div>
+            <div id="form-chauffeur" class="input-field col s12" th:if="${chauffeurs}">
+                <div class="row"><label for="chauffeur">Chauffeur</label></div>
+                <select class="browser-default" id="chauffeur" name="chauffeur" th:field="*{chauffeur}">
+                    <option value="" selected>Kies een chauffeur</option>
+                    <option th:each="chauffeur : ${chauffeurs}" th:value="${chauffeur.id}" th:text="${chauffeur.naam}">chauffeur</option>
+                </select>
+                <span style="color: #ff0000;" class="text-danger" th:if="#{fields.hasErrors('chauffeur')}" th:errors="*{chauffeur}"></span>
+            </div>
+            <div id="form-afspraken" class="input-field col s12" th:if="${afsprakenZonderPlanning} or ${formPlanning.m_Afspraken}">
+                <div class="row">
+                    <p id="afspraken-zonder-planning" th:each="aZonderPlanning : ${afsprakenZonderPlanning}">
+                        <label>
+                            <input type="checkbox" name="aZonderPlanning" th:value="${aZonderPlanning.id}"/>
+                            <span th:text="${aZonderPlanning.klant.bedrijfsNaam}">aZonderPlanning</span>
+                        </label>
+                    </p>
+                    <div id="afspraken-in-planning" th:each="aInPlanning : ${afsprakenInPlanning}">
+                        <p class="afspraken-in-planning">
+                            <label>
+                                <input th:id="'aInPlanning-' + ${aInPlanning.id}" name="aInPlanning" type="checkbox" th:value="${aInPlanning.id}" onChange="checkbox_logica(this.id)" checked/>
+                                <span th:text="${aInPlanning.klant.bedrijfsNaam}">aInPlanning</span>
+                            </label>
+                        </p>
+                        <p class="hidden-afspraken-in-planning">
+                            <input th:id="'hidden-aInPlanning-' + ${aInPlanning.id}" class="_aInPlanning" name="_aInPlanning" type="hidden" th:value="${aInPlanning.id}" style="display: none" disabled>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="form-planner" class="input-field col s12"  style="display: none">
+                <!-- TODO: Change this to a text input -->
+                <label for="planner">Planner</label>
+                <!-- Keeping this field is necessary in order for the formPlanning object to retain its planner prop (because without it it'll fail validation) -->
+                <select class="browser-default" id="planner" name="planner" th:field="*{planner}">
+                    <option th:value="*{planner.id}" th:text="*{planner.naam}">planner</option>
+                </select>
+                <span style="color: #ff0000;" class="text-danger" th:if="#{fields.hasErrors('planner')}" th:errors="*{planner}"></span>
+            </div>
+            <div id="form-submit" class="col s12">
+                <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons right">send</i>Submit</button>
+            </div>
+        </form>
+    </div>
+    <script th:href="@{/js/materialize.min.js}">
+        function checkbox_logica(clicked_elem) { document.getElementById('hidden-' + clicked_elem).disabled = document.getElementById(clicked_elem).checked; }
+    </script>
+</body>
+</html>

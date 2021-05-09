@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lijst van klanten</title>
+</head>
+<body>
+<h1>Lijst van klanten</h1>
+<ul style="list-style-type: none;">
+    <li th:each="klant : ${klanten}">
+        <ul>
+            <a th:href="@{/klant.html(id=${klant.id})}">
+                <span th:text="${klant.naam}">vn</span>
+                <span th:text="${klant.bedrijfsNaam}">vn</span>
+                <span th:text="${klant.telefoonnummer}">vn</span>
+            </a>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

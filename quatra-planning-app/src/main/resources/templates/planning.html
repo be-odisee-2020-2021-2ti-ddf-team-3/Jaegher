@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/materialize.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Planning</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <div class="row"><span class="card-title"><i class="material-icons left">article</i>Planning</span></div>
+                    <div class="row"><p><b>Id:</b> <span th:text="${planning.id}">id</span></p></div>
+                    <div class="row"><p><b>Chauffeur:</b> <span th:text="${planning.chauffeur} != null ? ${planning.chauffeur.naam} : 'geen chauffeur'">chauffeur</span></p></div>
+                    <div class="row"><p><b>Planner:</b> <span th:text="${planning.planner.naam}">planner</span></p></div>
+                    <div class="row"><p><b>Datum:</b> <span th:text="${planning.datum}">datum</span></p></div>
+                    <div class="row"><p><b>Toestand:</b> <span th:text="${planning.toestand}">toestand</span></p></div>
+                    <ul class="collapsible black-text">
+                        <li th:id="'collapsible-' + ${afspraak.id}" th:each="afspraak : ${afspraken}">
+                            <div class="collapsible-header" th:text="${afspraak.klant.bedrijfsNaam}" onClick="collapsible_click(this.parentNode.id)"/>
+                            <div class="collapsible-body" style="background-color: white">
+                                <div class="row"><p><b>Id:</b> <span th:text="${afspraak.id}">id</span></p></div>
+                                <div class="row"><p><b>Adres:</b> <span th:text="${afspraak.klant.adres}">adres</span></p></div>
+                                <div class="row"><p><b>Toestand:</b> <span th:text="${planning.toestand}">toestand</span></p></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-action">
+                    <div class="row" style="margin-bottom: 0px">
+                        <a class="left" th:href="@{/wijzigPlanning(id=${planning.id})}"><i class="material-icons left">edit</i>Wijzig</a>
+                        <a class="left" th:href="@{/verwijderPlanning(id=${planning.id})}"><i class="material-icons left">delete</i>Verwijder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <a class="waves-effect waves-light btn" th:href="@{/planningLijst}"><i class="material-icons left">list</i>Lijst van alle plannings</a>
+        </div>
+    </div>
+    <script th:href="@{/js/materialize.min.js}">
+        function collapsible_click(clicked_elem) {
+            var bodyOfClicked = document.getElementById(clicked_elem).querySelector('.collapsible-body');
+            if (bodyOfClicked.style.display == 'block') {
+                document.querySelectorAll('.collapsible-body').forEach(element => element.style.display = 'none');
+            } else {
+                document.querySelectorAll('.collapsible-body').forEach(element => element.style.display = 'none');
+                bodyOfClicked.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

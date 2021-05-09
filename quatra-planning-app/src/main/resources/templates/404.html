@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/materialize.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title th:text="'Fout: ' + ${objectType} + ' niet gevonden'"/>
+</head>
+<body>
+    <div class="col s6">
+        <h1 th:text="'Fout: ' + ${objectType} + ' niet gevonden'"/>
+        <p th:text="${objectType} + ' object met id=' + ${onbestaandId} + ' bestaat niet.'"/>
+    </div>
+    <script th:href="@{/js/materialize.min.js}"></script>
+</body>
+</html>

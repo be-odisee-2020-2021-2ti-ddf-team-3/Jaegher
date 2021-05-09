@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lijst van afspraken</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <h1>Lijst van afspraken</h1>
+    <ul style="list-style-type: none;">
+        <li class="afsprakenList" th:each="afspraak : ${afspraken}">
+            <a th:href="@{/afspraak.html(id=${afspraak.id})}">
+                <span th:text="${afspraak.gewensteDatum}">vn</span>
+                <span th:text="${afspraak.toestand}">vn</span>
+                <span th:text="${afspraak.klant}">vn</span>
+            </a>
+        </li>
+    </ul>
+
+</body>
+</html>
