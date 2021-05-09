@@ -87,6 +87,7 @@ public class JaegherServiceImpl implements JaegherService {
         Bestelling entry = new Bestelling();
 
         entry.setKlantId(entryData.getKlantId());
+        entry.setPlanningId(entryData.getPlanningId());
         String naam = entryData.getNaam();
         entry.setNaam(naam);
         String date = entryData.getAanMaakDatum();

@@ -48,6 +48,7 @@ public class JaegherBestellingenRestController {
         bestelling.setId(entry.getId());
         bestelling.setNaam(entry.getNaam());
         bestelling.setKlantId(entry.getKlantId());
+        bestelling.setPlanningId(entry.getPlanningId());
         bestelling.setAanMaakDatum(entry.getAanMaakDatum());
         bestelling.setGoedgekeurd(entry.getGoedgekeurd());
         jaegherService.updateBestelling(bestelling, 1);

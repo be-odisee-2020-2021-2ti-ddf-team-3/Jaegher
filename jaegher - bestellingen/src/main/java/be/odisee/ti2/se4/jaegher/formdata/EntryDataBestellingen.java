@@ -12,6 +12,8 @@ public class EntryDataBestellingen {
     private long klantId2;
     private long bestellingId;
 
+    private long planningId;
+
     private String VoorNaam;
 
     private String AchterNaam;

@@ -29,5 +29,7 @@ public class Bestelling {
     @Min(value = 1)
     private long klantId;
 
+    private long planningId;
+
 
 }
