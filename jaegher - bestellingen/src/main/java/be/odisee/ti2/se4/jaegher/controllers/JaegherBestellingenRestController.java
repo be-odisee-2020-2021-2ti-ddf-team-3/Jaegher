@@ -33,6 +33,7 @@ public class JaegherBestellingenRestController {
         EntryDataBestellingen klant = new EntryDataBestellingen();
         klant.setNaam(entry.getNaam());
         klant.setKlantId(entry.getKlantId());
+        klant.setPlanningId(entry.getPlanningId());
         klant.setVoorNaam(entry.getVoorNaam());
         klant.setAchterNaam(entry.getAchterNaam());
         klant.setAanMaakDatum(entry.getAanMaakDatum());

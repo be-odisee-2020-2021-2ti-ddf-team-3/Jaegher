@@ -130,7 +130,7 @@ export default {
         "aanMaakDatum": '',
         "goedgekeurd": '',
         "klantId": '',
-        "planning_id":''
+        "planningId":''
       },
       "planningen": {
         "id": '',
@@ -180,7 +180,7 @@ export default {
     },
     getValuePlanning: function(value){
       return value,
-      this.bestellingen.planning_id = value
+      this.bestellingen.planningId = value
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
