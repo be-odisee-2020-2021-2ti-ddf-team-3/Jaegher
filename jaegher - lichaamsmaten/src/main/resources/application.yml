@@ -9,9 +9,7 @@ spring:
     properties:
       hibernate:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        #Niet optimaal, maar werkt
-        #https://stackoverflow.com/questions/51100543/caused-by-java-lang-classnotfoundexception-could-not-load-requested-class-or
-        #current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 app:
   db-init: true
