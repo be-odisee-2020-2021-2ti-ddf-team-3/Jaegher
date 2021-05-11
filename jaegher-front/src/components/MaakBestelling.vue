@@ -52,14 +52,24 @@
               <label style="margin-bottom: 10px; display: block;" for="klantid"><font-awesome-icon icon="user" /> Klant:</label>
               <div style="width: 20%;  margin: 0 auto">
                 <v-select v-model="selecedklant" :options="items"
-                          label="naam"
+                          label="email"
                           return-object
                           style="margin-bottom: 1rem">
 
                 </v-select>
-                <span id="klantid" style="margin-bottom: 10px;">Selected ID: {{getValue(selectedID)}}</span>
+            </div>
+              <div v-if="selecedklant != null">
+                <label for="klantid"><font-awesome-icon icon="fingerprint" /> Selected ID:</label>
+                <span id="klantid" style="color: dodgerblue"> {{getValue(selectedID)}}</span>
               </div>
-              <label style="margin-top: 10px; display: block;" for="selectedplan"><font-awesome-icon icon="user" /> Planning:</label>
+              <div v-if="selecedklant != null" class="d-flex justify-content-lg-center">
+                <label style="margin-left: 1rem;" for="klantid"><font-awesome-icon icon="id-card-alt" /> Klant Naam:</label>
+                <span style="margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{selectednaam}}</span>
+                <span style="color: dodgerblue">{{selectedachternaam}}</span>
+                <label style="margin-left: 1rem;" ><font-awesome-icon icon="envelope" /> Klant Mail:</label>
+                <span style=" margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{selectedemail}}</span>
+              </div>
+              <label style="margin-top: 10px; display: block;" for="selectedplan"><font-awesome-icon icon="calendar-alt" /> Planning:</label>
               <div style="width: 20%;  margin: 0 auto">
                 <v-select v-model="selectedplanning" :options="itemsplanning"
                           label="id"
@@ -67,12 +77,18 @@
                           style="margin-bottom: 1rem">
 
                 </v-select>
-                <span id="selectedplan">Selected Planning: {{getValuePlanning(selectedIDPlanning)}}</span> <br>
-                <span id="selecteddatum">Datum: {{selectedDatumPlanning}}</span> <br>
-                <span id="selectedtoestand">Toestand: {{selectedToestandPlanning}}</span> <br>
-                <span id="selectedchauffeur">Chauffeur: {{selectedChauffeurID}}</span>
-
-
+              </div>
+              <div v-if="selectedplanning != null">
+                <label for="selectedplan"><font-awesome-icon icon="fingerprint" /> Selected ID:</label>
+                <span id="selectedplan" style="color: dodgerblue"> {{getValuePlanning(selectedIDPlanning)}}</span>
+              </div>
+              <div v-if="selectedplanning != null" class="d-flex justify-content-center">
+                <label style=" margin-left: 1rem; margin-right: 0.5rem;"  for="selecteddatum"><font-awesome-icon icon="calendar-alt" /> Datum:</label>
+                <span id="selecteddatum" style="color: dodgerblue">{{selectedDatumPlanning}}</span> <br>
+                <label style="margin-left: 1rem; margin-right: 0.5rem;"  for="selectedtoestand"><font-awesome-icon icon="satellite-dish" /> Toestand:</label>
+                <span id="selectedtoestand" style="color: dodgerblue">{{selectedToestandPlanning}}</span> <br>
+                <label style="margin-left: 1rem; margin-right: 0.5rem;"  for="selectedchauffeur"><font-awesome-icon icon="user" /> Chauffeur:</label>
+                <span id="selectedchauffeur" style="margin-top: 1rem; color: dodgerblue">{{selectedChauffeurID}}</span>
               </div>
 
 
@@ -122,8 +138,8 @@ export default {
       selected:'false',
       options: [
         { item: 'false', name: 'False' }],
-      selecedklant:'',
-      selectedplanning:'',
+      selecedklant: null,
+      selectedplanning: null,
       "bestellingen": {
         "id": '',
         "naam":'',
@@ -144,6 +160,8 @@ export default {
       dismissCountDown: 0,
       dismissSecs2: 3,
       dismissCountDown2: 0,
+      error: null,
+      error2: null
     };
 
 
@@ -156,6 +174,15 @@ export default {
   computed: {
     selectedID: function () {
       return this.selecedklant.id
+    },
+    selectednaam: function () {
+      return this.selecedklant.naam
+    },
+    selectedachternaam: function () {
+      return this.selecedklant.achternaam
+    },
+    selectedemail: function () {
+      return this.selecedklant.email
     },
     selectedIDPlanning: function () {
       return this.selectedplanning.id
@@ -213,7 +240,7 @@ export default {
     })
       .catch(response => {
       //error
-
+      this.error = 'Error',
       console.log(response),
       this.showAlert2()
       })
@@ -231,7 +258,7 @@ export default {
               .catch(error => (
                       this.items = "fout",
                               this.status = error.response.status,
-                              this.errorMsg = error.response.data.message
+                              this.error2 = 'Error'
               ))
     },
     getLijstPlanningen() {

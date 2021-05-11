@@ -33,7 +33,7 @@
                margin: 0 -16px;">
               <div class="col-50" style="padding: 0 16px;  flex: 50%;">
                 <h3 style="margin-bottom: 1rem">Wijzig Informatie</h3>
-                <label style="margin-bottom: 10px; display: block;"><font-awesome-icon icon="user" />
+                <label style="margin-bottom: 10px; display: block;"><font-awesome-icon icon="fingerprint" />
                  ID:</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="id" v-model="bestellingen.id" placeholder="id" readonly>
 
@@ -52,11 +52,23 @@
                         disabled-field="notEnabled"
                 ></b-form-radio-group>
                 <div class="d-flex justify-content-center">
-                <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
+                <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="klantid"><font-awesome-icon icon="fingerprint" /> Klant ID:</label>
                   <span id="klantid" style="margin-top: 1rem; color: dodgerblue">{{this.klanten.id}}</span>
-                  <label style="margin-top: 1rem; margin-left: 1rem;" for="klantid"><font-awesome-icon icon="user" /> Klant Naam:</label>
+                  <label style="margin-top: 1rem; margin-left: 1rem;" for="klantid"><font-awesome-icon icon="id-card-alt" /> Klant Naam:</label>
                   <span style="margin-top: 1rem; margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{this.klanten.naam}}</span>
                   <span style="margin-top: 1rem;  color: dodgerblue">{{this.klanten.achternaam}}</span>
+                  <label style="margin-top: 1rem; margin-left: 1rem;" ><font-awesome-icon icon="envelope" /> Klant Mail:</label>
+                  <span style="margin-top: 1rem; margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{this.klanten.email}}</span>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="selectedplan"><font-awesome-icon icon="fingerprint" /> Planning ID:</label>
+                  <span id="selectedplan" style="margin-top: 1rem; color: dodgerblue">{{planningen.id}}</span> <br>
+                  <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;"  for="selecteddatum"><font-awesome-icon icon="calendar-alt" /> Datum:</label>
+                  <span id="selecteddatum" style="margin-top: 1rem; color: dodgerblue">{{planningen.datum}}</span> <br>
+                  <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;"  for="selectedtoestand"><font-awesome-icon icon="satellite-dish" /> Toestand:</label>
+                  <span id="selectedtoestand" style="margin-top: 1rem; color: dodgerblue">{{planningen.toestand}}</span> <br>
+                  <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;"  for="selectedchauffeur"><font-awesome-icon icon="user" /> Chauffeur:</label>
+                  <span id="selectedchauffeur" style="margin-top: 1rem; color: dodgerblue">{{planningen.chauffeur}}</span>
                 </div>
 
                 <button clas="btn" id="updatebestelling" style="background-color: dodgerblue;
@@ -98,6 +110,7 @@
           "aanMaakDatum": '',
           "goedgekeurd": '',
           "klantId": '',
+          "planningId":''
         },
         "klanten": {
           "id": '',
@@ -106,6 +119,12 @@
           "email": '',
           "geboortedatum": '',
           "addres": ''
+        },
+        "planningen": {
+          "id": '',
+          "datum":'',
+          "toestand": '',
+          "chauffeur": ''
         },
         dismissSecs: 2,
         dismissCountDown: 0,
@@ -163,8 +182,12 @@
                   this.bestellingen.aanMaakDatum = resp.data.aanMaakDatum,
                   this.bestellingen.goedgekeurd = resp.data.goedgekeurd,
                   this.bestellingen.klantId = resp.data.klantId,
+                  this.bestellingen.planningId = resp.data.planningId,
+
                   console.warn(resp.data),
-                  this.getKlantByID(this.bestellingen.klantId)
+                  this.getKlantByID(this.bestellingen.klantId),
+                  this.getPlanningByID(this.bestellingen.planningId)
+
           })
       },
   getKlantByID(id){
@@ -175,7 +198,16 @@
                 console.warn(resp.data)
 
               })
-    }
+    },
+      getPlanningByID(id){
+        console.log(id)
+        Vue.axios.get('http://localhost:8083/quatraplanningrest/planning/'+ id)
+                .then((resp) => {
+                  this.planningen = resp.data,
+                          console.warn(resp.data)
+
+                })
+      }
   }
   }
 </script>

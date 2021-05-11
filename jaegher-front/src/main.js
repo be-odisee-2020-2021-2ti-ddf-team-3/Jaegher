@@ -8,10 +8,14 @@ import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
+import { faIdCardAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSatelliteDish } from '@fortawesome/free-solid-svg-icons'
+import { faFingerprint } from '@fortawesome/free-solid-svg-icons'
+import { faWeightHanging } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faUser,faEnvelope,faAddressCard,faCalendarAlt, faPlus,faRulerVertical)
+library.add(faUser,faEnvelope,faAddressCard,faCalendarAlt, faPlus,faRulerVertical,faIdCardAlt,faSatelliteDish,faFingerprint,faWeightHanging);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

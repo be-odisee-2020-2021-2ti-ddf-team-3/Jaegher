@@ -33,28 +33,28 @@
                 >
                   Lichaamsmaat is niet geupdate ! Probeer opnieuw met juiste gegevens...
                 </b-alert>
-                <label style="margin-bottom: 10px; display: block;" for="LinkerBeen"><font-awesome-icon icon="user" />
-                  LinkerBeen</label>
+                <label style="margin-bottom: 10px; display: block;" for="LinkerBeen"><font-awesome-icon icon="ruler-vertical" />
+                  LinkerBeen (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="LinkerBeen" v-model="lichaamsmaten.linkerBeen">
-                <label style="margin-bottom: 10px; display: block;" for="rechterBeen"><font-awesome-icon icon="calendar-alt" /> RechterBeen</label>
+                <label style="margin-bottom: 10px; display: block;" for="rechterBeen"><font-awesome-icon icon="ruler-vertical" /> RechterBeen (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="rechterBeen" v-model="lichaamsmaten.rechterBeen">
-                <label style="margin-bottom: 10px; display: block;" for="Bekkenkanteling"><font-awesome-icon icon="user" />
-                  Bekkenkanteling</label>
+                <label style="margin-bottom: 10px; display: block;" for="Bekkenkanteling"><font-awesome-icon icon="ruler-vertical" />
+                  Bekkenkanteling (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="Bekkenkanteling" v-model="lichaamsmaten.bekkenkanteling">
-                <label style="margin-bottom: 10px; display: block;" for="Gewicht"><font-awesome-icon icon="calendar-alt" /> Gewicht</label>
+                <label style="margin-bottom: 10px; display: block;" for="Gewicht"><font-awesome-icon icon="weight-hanging" /> Gewicht (kg)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="Gewicht" v-model="lichaamsmaten.gewicht">
-                <label style="margin-bottom: 10px; display: block;" for="Grootte"><font-awesome-icon icon="user" />
-                  Grootte</label>
+                <label style="margin-bottom: 10px; display: block;" for="Grootte"><font-awesome-icon icon="ruler-vertical" />
+                  Grootte (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="Grootte" v-model="lichaamsmaten.groote">
-                <label style="margin-bottom: 10px; display: block;" for="LinkerArm"><font-awesome-icon icon="calendar-alt" /> LinkerArm</label>
+                <label style="margin-bottom: 10px; display: block;" for="LinkerArm"><font-awesome-icon icon="ruler-vertical" /> LinkerArm (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="LinkerArm" v-model="lichaamsmaten.linkerArm">
-                <label style="margin-bottom: 10px; display: block;" for="RechterArm"><font-awesome-icon icon="calendar-alt" /> RechterArm</label>
+                <label style="margin-bottom: 10px; display: block;" for="RechterArm"><font-awesome-icon icon="ruler-vertical" /> RechterArm (cm)</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="RechterArm" v-model="lichaamsmaten.rechterArm">
 
                 <div class="d-flex justify-content-center">
-                <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="klantid"><font-awesome-icon icon="user" /> Klant ID:</label>
+                <label style="margin-top: 1rem; margin-left: 1rem; margin-right: 0.5rem;" for="klantid"><font-awesome-icon icon="fingerprint" /> Klant ID:</label>
                   <span id="klantid" style="margin-top: 1rem; color: dodgerblue">{{this.klanten.id}}</span>
-                  <label style="margin-top: 1rem; margin-left: 1rem;" for="klantid"><font-awesome-icon icon="user" /> Klant Naam:</label>
+                  <label style="margin-top: 1rem; margin-left: 1rem;" for="klantid"><font-awesome-icon icon="id-card-alt" /> Klant Naam:</label>
                   <span style="margin-top: 1rem; margin-left: 0.5rem; margin-right: 0.5rem;  color: dodgerblue">{{this.klanten.naam}}</span>
                   <span style="margin-top: 1rem;  color: dodgerblue">{{this.klanten.achternaam}}</span>
                 </div>

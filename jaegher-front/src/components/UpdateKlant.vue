@@ -33,7 +33,7 @@
                margin: 0 -16px;">
               <div class="col-50" style="padding: 0 16px;  flex: 50%;">
                 <h3 style="margin-bottom: 1rem">Wijzig Informatie</h3>
-                <label style="margin-bottom: 10px; display: block;"><font-awesome-icon icon="user" />
+                <label style="margin-bottom: 10px; display: block;"><font-awesome-icon icon="fingerprint" />
                  ID:</label>
                 <input style="width: 40%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" type="text" id="id" v-model="entry.id" placeholder="id" readonly>
 
