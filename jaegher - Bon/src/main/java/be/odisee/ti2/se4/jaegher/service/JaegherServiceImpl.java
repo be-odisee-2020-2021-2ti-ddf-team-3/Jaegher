@@ -11,7 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;import org.springframework.security.crypto.bcrypt.BCrypt;
+import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 //Deze klassen moet ook een interface krijgen enkel interface mag gebruikt worden
 @Slf4j
@@ -71,11 +78,21 @@ public class JaegherServiceImpl implements JaegherService {
     }
 
     @Override
-    public void addBestelling(EntryDataBestellingen entryData, long klantID) {
+    public void addBon() {
         Bestelling entry = new Bestelling();
 
-        String date = entryData.getDatum();
-        entry.setDatum(date);
+        Calendar cal = Calendar.getInstance();
+        Date cdate = cal.getTime();
+        // get next year
+        cal.add(Calendar.YEAR, 1);
+        Date nyear = cal.getTime();
+        entry.setDatum(nyear.toString());
+
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+
+        entry.setCode(generatedString);
 
         bestellingRepository.save(entry);
     }

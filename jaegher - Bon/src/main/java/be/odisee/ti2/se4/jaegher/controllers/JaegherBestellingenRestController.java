@@ -28,12 +28,9 @@ public class JaegherBestellingenRestController {
 
     @RequestMapping(value={"/createbon"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public EntryDataBestellingen createBestelling(@Valid @RequestBody EntryDataBestellingen entry, Errors errors)
+    public void createBestelling()
             throws BindException {
-        EntryDataBestellingen klant = new EntryDataBestellingen();
-        klant.setDatum(entry.getDatum());
-        jaegherService.addBestelling(klant, 1);
-        return klant;
+        jaegherService.addBon();
     }
 
     @RequestMapping(value={"/bondetails/{id}"},method=RequestMethod.GET)

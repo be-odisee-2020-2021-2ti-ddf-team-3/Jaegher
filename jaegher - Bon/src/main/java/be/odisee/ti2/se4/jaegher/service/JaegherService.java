@@ -19,7 +19,7 @@ public interface JaegherService {
 
     public void addGebruiker(Gebruiker gebruiker);
 
-    public void addBestelling(EntryDataBestellingen entryData, long klantID);
+    public void addBon();
 
 
 

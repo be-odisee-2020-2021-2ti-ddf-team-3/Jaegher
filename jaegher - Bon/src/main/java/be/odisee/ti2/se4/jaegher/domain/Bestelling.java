@@ -21,6 +21,6 @@ public class Bestelling {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private final long id;
     private String Datum;
-
+    private String Code;
 
 }

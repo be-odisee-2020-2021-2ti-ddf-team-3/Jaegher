@@ -11,5 +11,7 @@ public class EntryDataBestellingen {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String Datum;
 
+    private String Code;
+
 
 }
