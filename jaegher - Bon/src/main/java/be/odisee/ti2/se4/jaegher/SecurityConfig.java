@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/jaegherrest/**").permitAll()
                 .antMatchers("/jaegherrestbestellingen/**").permitAll()
+                .antMatchers("/jaegherbonnen/**").permitAll()
                 .antMatchers("css/**").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/h2*").permitAll()
