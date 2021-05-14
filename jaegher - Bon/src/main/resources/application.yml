@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jaegherbon
+    username: juser
+    password: juserpwd
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+app:
+  db-init: true
+server:
+  port: 8081
