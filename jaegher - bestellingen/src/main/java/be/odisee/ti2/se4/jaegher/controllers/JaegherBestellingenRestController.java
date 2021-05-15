@@ -30,15 +30,15 @@ public class JaegherBestellingenRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public EntryDataBestellingen createBestelling(@Valid @RequestBody EntryDataBestellingen entry, Errors errors)
             throws BindException {
-        EntryDataBestellingen klant = new EntryDataBestellingen();
-        klant.setNaam(entry.getNaam());
-        klant.setKlantId(entry.getKlantId());
-        klant.setPlanningId(entry.getPlanningId());
-        klant.setVoorNaam(entry.getVoorNaam());
-        klant.setAchterNaam(entry.getAchterNaam());
-        klant.setAanMaakDatum(entry.getAanMaakDatum());
-        jaegherService.addBestelling(klant, 1);
-        return klant;
+        EntryDataBestellingen bestelling = new EntryDataBestellingen();
+        bestelling.setNaam(entry.getNaam());
+        bestelling.setKlantId(entry.getKlantId());
+        bestelling.setPlanningId(entry.getPlanningId());
+        bestelling.setVoorNaam(entry.getVoorNaam());
+        bestelling.setAchterNaam(entry.getAchterNaam());
+        bestelling.setAanMaakDatum(entry.getAanMaakDatum());
+        jaegherService.addBestelling(bestelling, 1);
+        return bestelling;
     }
 
     @RequestMapping(value={"/updatebestelling"},method=RequestMethod.POST)
@@ -54,14 +54,6 @@ public class JaegherBestellingenRestController {
         bestelling.setGoedgekeurd(entry.getGoedgekeurd());
         jaegherService.updateBestelling(bestelling, 1);
         return bestelling;
-    }
-
-    @RequestMapping(value={"/bestellinggoedkeuren"},method=RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.CREATED)
-    public EntryDataBestellingen bestellingGoedkeueren(@Valid @RequestBody long id, Errors errors)
-            throws BindException {
-        jaegherService.bestellingGoedkeuren(id);
-        return null;
     }
 
     @RequestMapping(value={"/bestellinggoedkeuren/{id}"},method=RequestMethod.PUT)
