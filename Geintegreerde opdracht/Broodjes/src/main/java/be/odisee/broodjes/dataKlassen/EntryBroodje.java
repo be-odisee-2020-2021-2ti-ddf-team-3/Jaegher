@@ -14,4 +14,5 @@ public class EntryBroodje {
     private String beschrijving;
     @Min(value = 0, message = "Een prijs moet groter dan of gelijk aan 0 zijn")
     private Double prijs;
+    private boolean beschikbaar;
 }

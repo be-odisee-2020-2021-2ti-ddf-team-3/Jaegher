@@ -81,6 +81,12 @@ public class BroodjesRestController {
         broodjeService.deleteBroodje(id);
     }
 
+    @RequestMapping(value={"/veranderstatus/{id}"},method=RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateStatus(@PathVariable("id") Integer id){
+        broodjeService.updateStatus(id);
+    }
+
 
 
     @RequestMapping(value={"/createtestbroodje"},method= RequestMethod.POST)

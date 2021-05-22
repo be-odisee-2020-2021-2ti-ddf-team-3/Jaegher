@@ -11,4 +11,5 @@ public interface BroodjeService {
     public List<Broodje> getAllBroodjes();
     public Broodje updateBroodje(EntryBroodje entryData, long id);
     public void deleteBroodje(long id);
+    public void updateStatus(long id);
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.List;
 
 @Slf4j
@@ -37,6 +38,7 @@ public class BroodjeServiceImpl implements BroodjeService {
         entry.setBeschrijving(beschrijving);
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
+        entry.setBeschikbaar(false);
         broodjeRepository.save(entry);
         return entry;
     }
@@ -57,5 +59,17 @@ public class BroodjeServiceImpl implements BroodjeService {
     public void deleteBroodje(long id){
         Broodje broodje = broodjeRepository.findById(id);
         broodjeRepository.delete(broodje);
+    }
+
+    @Override
+    public void updateStatus(long id){
+        Broodje broodje = broodjeRepository.findById(id);
+        if (broodje.isBeschikbaar()){
+            broodje.setBeschikbaar(false);
+        }
+        else{
+            broodje.setBeschikbaar(true);
+        }
+        broodjeRepository.save(broodje);
     }
 }
