@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BroodjeService {
     public void addTest();
-    public Broodje addBroodje(Broodje entryData);
+    public Broodje addBroodje(EntryBroodje entryData);
     public List<Broodje> getAllBroodjes();
     public Broodje updateBroodje(EntryBroodje entryData, long id);
     public void deleteBroodje(long id);

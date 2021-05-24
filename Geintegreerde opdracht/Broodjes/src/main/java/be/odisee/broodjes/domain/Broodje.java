@@ -27,4 +27,7 @@ public class Broodje {
 
     private boolean beschikbaar;
 
+    @ManyToOne
+    private Category category;
+
 }

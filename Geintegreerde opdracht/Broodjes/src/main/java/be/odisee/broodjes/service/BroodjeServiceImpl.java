@@ -1,6 +1,7 @@
 package be.odisee.broodjes.service;
 
 import be.odisee.broodjes.DAO.BroodjeRepository;
+import be.odisee.broodjes.DAO.CategoryRepository;
 import be.odisee.broodjes.dataKlassen.EntryBroodje;
 import be.odisee.broodjes.domain.Broodje;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,9 @@ public class BroodjeServiceImpl implements BroodjeService {
     @Autowired
     BroodjeRepository broodjeRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @Override
     public List<Broodje> getAllBroodjes() {
         return (List<Broodje>) broodjeRepository.findAll();
@@ -29,7 +33,7 @@ public class BroodjeServiceImpl implements BroodjeService {
         broodjeRepository.save(klant);
     }
     @Override
-    public Broodje addBroodje(Broodje entryData) {
+    public Broodje addBroodje(EntryBroodje entryData) {
         Broodje entry = new Broodje();
 
         String naam = entryData.getNaam();
@@ -39,6 +43,7 @@ public class BroodjeServiceImpl implements BroodjeService {
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
         entry.setBeschikbaar(false);
+        entry.setCategory(categoryRepository.getById(entryData.getCategoryId()));
         broodjeRepository.save(entry);
         return entry;
     }

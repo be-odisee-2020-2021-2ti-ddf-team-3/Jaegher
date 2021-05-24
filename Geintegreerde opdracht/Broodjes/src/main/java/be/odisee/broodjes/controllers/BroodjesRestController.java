@@ -35,7 +35,7 @@ public class BroodjesRestController {
 
     @RequestMapping(value={"/createbroodje"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createBroodje(@Valid @RequestBody Broodje entry, Errors errors) {
+    public String createBroodje(@Valid @RequestBody EntryBroodje entry, Errors errors) {
         StringBuilder message=new StringBuilder();
 
         try {
