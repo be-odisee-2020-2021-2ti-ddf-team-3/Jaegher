@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-public class Broodje {
+public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private final long id;

@@ -1,9 +1,9 @@
 package be.odisee.producten.controllers;
 
-import be.odisee.producten.DAO.BroodjeRepository;
-import be.odisee.producten.dataKlassen.EntryBroodje;
-import be.odisee.producten.domain.Broodje;
-import be.odisee.producten.service.BroodjeService;
+import be.odisee.producten.DAO.ProductenRepository;
+import be.odisee.producten.dataKlassen.EntryProduct;
+import be.odisee.producten.domain.Product;
+import be.odisee.producten.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path="/broodjes", produces = "application/json")
+@RequestMapping(path="/producten", produces = "application/json")
 public class BroodjesRestController {
     @Autowired
-    private BroodjeService broodjeService;
+    private ProductService productService;
     @Autowired
-    private BroodjeRepository broodjeRepository;
+    private ProductenRepository productenRepository;
 
 
     /**
@@ -25,22 +25,22 @@ public class BroodjesRestController {
      */
     @GetMapping("/list")
     public Object getObjectives(){
-        return broodjeService.getAllBroodjes();
+        return productService.getAllBroodjes();
     }
     /**
      * Returned een lijst van alle producten afhankelijk van hun categorie
      */
     @RequestMapping(value={"/listcategory/{id}"},method=RequestMethod.GET)
     public Object getBroodjes2(@PathVariable("id") Integer id) {
-        return broodjeRepository.findAllByCategory_Id(id);
+        return productenRepository.findAllByCategory_Id(id);
     }
     /**
      * Returned een product a.d.h.v het ID
      */
     @RequestMapping(value={"/productdetails/{id}"},method=RequestMethod.GET)
     public @ResponseBody
-    Broodje getBroodje(@PathVariable("id") Integer id) {
-        return broodjeRepository.findById(id);
+    Product getBroodje(@PathVariable("id") Integer id) {
+        return productenRepository.findById(id);
     }
     /**
      * Aanmaken van een product
@@ -48,7 +48,7 @@ public class BroodjesRestController {
      */
     @RequestMapping(value={"/createproduct"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createBroodje(@Valid @RequestBody EntryBroodje entry, Errors errors) {
+    public String createBroodje(@Valid @RequestBody EntryProduct entry, Errors errors) {
         StringBuilder message=new StringBuilder();
 
         try {
@@ -59,8 +59,8 @@ public class BroodjesRestController {
                 }
                 throw new IllegalArgumentException();
             }
-            Broodje broodje = broodjeService.addBroodje(entry);
-            message = new StringBuilder("Het product " + broodje.getNaam() + " is succesvol aangemaakt");
+            Product product = productService.addBroodje(entry);
+            message = new StringBuilder("Het product " + product.getNaam() + " is succesvol aangemaakt");
 
         } catch (IllegalArgumentException e) {
         }
@@ -72,7 +72,7 @@ public class BroodjesRestController {
      */
     @RequestMapping(value={"/updateproduct"},method=RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public String putBroodje(@Valid @RequestBody EntryBroodje entry, Errors errors){
+    public String putBroodje(@Valid @RequestBody EntryProduct entry, Errors errors){
         StringBuilder message=new StringBuilder();
 
         try {
@@ -83,8 +83,8 @@ public class BroodjesRestController {
                 }
                 throw new IllegalArgumentException();
             }
-            Broodje broodje = broodjeService.updateBroodje(entry, entry.getId());
-            message = new StringBuilder("Het product " + broodje.getNaam() + " is succesvol aangepast");
+            Product product = productService.updateBroodje(entry, entry.getId());
+            message = new StringBuilder("Het product " + product.getNaam() + " is succesvol aangepast");
 
         } catch (IllegalArgumentException e) {
         }
@@ -97,7 +97,7 @@ public class BroodjesRestController {
     @RequestMapping(value={"/deleteproduct/{id}"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBroodje(@PathVariable("id") Integer id){
-        broodjeService.deleteBroodje(id);
+        productService.deleteBroodje(id);
     }
 
 
@@ -107,7 +107,7 @@ public class BroodjesRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
     void createTestKlant(){
-        broodjeService.addTest();
+        productService.addTest();
     }
 
 }

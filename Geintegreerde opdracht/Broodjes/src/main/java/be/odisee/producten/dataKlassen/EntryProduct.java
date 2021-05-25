@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-public class EntryBroodje {
+public class EntryProduct {
     private long id = 0;
 
     @NotEmpty(message="naam van het product is verplicht")
