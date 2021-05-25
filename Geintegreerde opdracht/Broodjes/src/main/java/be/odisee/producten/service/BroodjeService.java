@@ -1,7 +1,7 @@
-package be.odisee.broodjes.service;
+package be.odisee.producten.service;
 
-import be.odisee.broodjes.dataKlassen.EntryBroodje;
-import be.odisee.broodjes.domain.Broodje;
+import be.odisee.producten.dataKlassen.EntryBroodje;
+import be.odisee.producten.domain.Broodje;
 
 import java.util.List;
 
@@ -11,5 +11,4 @@ public interface BroodjeService {
     public List<Broodje> getAllBroodjes();
     public Broodje updateBroodje(EntryBroodje entryData, long id);
     public void deleteBroodje(long id);
-    public void updateStatus(long id);
 }

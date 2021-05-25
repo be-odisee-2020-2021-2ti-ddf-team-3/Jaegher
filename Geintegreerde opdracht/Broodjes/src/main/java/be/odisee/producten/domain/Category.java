@@ -1,4 +1,4 @@
-package be.odisee.broodjes.domain;
+package be.odisee.producten.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

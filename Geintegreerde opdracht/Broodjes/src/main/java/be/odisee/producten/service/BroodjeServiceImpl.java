@@ -1,14 +1,14 @@
-package be.odisee.broodjes.service;
+package be.odisee.producten.service;
 
-import be.odisee.broodjes.DAO.BroodjeRepository;
-import be.odisee.broodjes.DAO.CategoryRepository;
-import be.odisee.broodjes.dataKlassen.EntryBroodje;
-import be.odisee.broodjes.domain.Broodje;
+import be.odisee.producten.DAO.BroodjeRepository;
+import be.odisee.producten.DAO.CategoryRepository;
+import be.odisee.producten.dataKlassen.EntryBroodje;
+import be.odisee.producten.domain.Broodje;
+import be.odisee.producten.domain.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.List;
 
 @Slf4j
@@ -42,7 +42,7 @@ public class BroodjeServiceImpl implements BroodjeService {
         entry.setBeschrijving(beschrijving);
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
-        entry.setBeschikbaar(false);
+        entry.setFotolink(entryData.getFotolink());
         entry.setCategory(categoryRepository.getById(entryData.getCategoryId()));
         broodjeRepository.save(entry);
         return entry;
@@ -55,6 +55,8 @@ public class BroodjeServiceImpl implements BroodjeService {
         broodje.setNaam(entryData.getNaam());
         broodje.setBeschrijving(entryData.getBeschrijving());
         broodje.setPrijs(entryData.getPrijs());
+        broodje.setFotolink(entryData.getFotolink());
+        broodje.setCategory(categoryRepository.getById(entryData.getCategoryId()));
 
         broodjeRepository.save(broodje);
         return broodje;
@@ -66,15 +68,4 @@ public class BroodjeServiceImpl implements BroodjeService {
         broodjeRepository.delete(broodje);
     }
 
-    @Override
-    public void updateStatus(long id){
-        Broodje broodje = broodjeRepository.findById(id);
-        if (broodje.isBeschikbaar()){
-            broodje.setBeschikbaar(false);
-        }
-        else{
-            broodje.setBeschikbaar(true);
-        }
-        broodjeRepository.save(broodje);
-    }
 }

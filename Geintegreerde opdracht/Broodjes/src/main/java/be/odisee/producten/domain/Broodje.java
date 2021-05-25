@@ -1,4 +1,4 @@
-package be.odisee.broodjes.domain;
+package be.odisee.producten.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,14 +18,15 @@ public class Broodje {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private final long id;
 
-    @NotEmpty(message="naam van het broodje is verplicht")
+    @NotEmpty(message="naam van het product is verplicht")
     private String naam;
-    @NotEmpty(message="beschrijving van het broodje is verplicht")
+
     private String beschrijving;
+
     @Min(value = 0, message = "Een prijs moet groter dan of gelijk aan 0 zijn")
     private Double prijs;
 
-    private boolean beschikbaar;
+    private String fotolink;
 
     @ManyToOne
     private Category category;

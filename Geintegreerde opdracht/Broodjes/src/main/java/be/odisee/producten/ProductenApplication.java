@@ -1,7 +1,7 @@
-package be.odisee.broodjes;
+package be.odisee.producten;
 
-import be.odisee.broodjes.DAO.CategoryRepository;
-import be.odisee.broodjes.domain.Category;
+import be.odisee.producten.DAO.CategoryRepository;
+import be.odisee.producten.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,15 +13,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import java.util.Calendar;
-import java.util.Date;
-
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled=true)
-public class BroodjesApplication extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
+public class ProductenApplication extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
 
     public static void main(String[] args) {
-        SpringApplication.run(BroodjesApplication.class, args);
+        SpringApplication.run(ProductenApplication.class, args);
     }
 
     @Bean
