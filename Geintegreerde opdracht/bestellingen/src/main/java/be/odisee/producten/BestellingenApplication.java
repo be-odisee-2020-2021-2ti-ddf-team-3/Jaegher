@@ -1,7 +1,8 @@
 package be.odisee.producten;
 
-import be.odisee.producten.DAO.CategoryRepository;
-import be.odisee.producten.domain.Category;
+import be.odisee.producten.DAO.BestellingRepository;
+import be.odisee.producten.DAO.BestellingLijnRepository;
+import be.odisee.producten.domain.Bestelling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,20 +16,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled=true)
-public class ProductenApplication extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
+public class BestellingenApplication extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProductenApplication.class, args);
+        SpringApplication.run(BestellingenApplication.class, args);
     }
 
     @Bean
-    CommandLineRunner init(CategoryRepository repo) {
+    CommandLineRunner init(BestellingRepository repo, BestellingLijnRepository repo2) {
         return (evt) -> {
-            repo.save(new Category(1, "broodjes"));
-            repo.save(new Category(2, "snacks"));
-            repo.save(new Category(3, "desserten"));
-            repo.save(new Category(4, "drinken"));
-            repo.save(new Category(5, "menu's"));
+            repo.save(new Bestelling(1, "broodjes"));
+            repo.save(new Bestelling(2, "snacks"));
         };
     }
 
