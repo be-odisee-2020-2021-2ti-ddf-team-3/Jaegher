@@ -3,17 +3,21 @@ package be.odisee.producten.controllers;
 import be.odisee.producten.DAO.BestellingLijnRepository;
 import be.odisee.producten.DAO.BestellingRepository;
 import be.odisee.producten.dataKlassen.BestellingModel;
+import be.odisee.producten.dataKlassen.EntryBestellingLijn;
 import be.odisee.producten.domain.Bestelling;
+import be.odisee.producten.domain.BestellingLijn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/categorieen", produces = "application/json")
+@RequestMapping(path="/bestellingen", produces = "application/json")
 public class BestellingController {
     @Autowired
     private BestellingRepository bestellingRepository;
@@ -22,10 +26,10 @@ public class BestellingController {
     private BestellingLijnRepository bestellingLijnRepository;
 
     /**
-     * Returned een lijst van alle categorieen
+     * Returned een lijst van alle bestellingen en hun lijnen
      */
     @GetMapping("/list")
-    public Object getObjectives(){
+    public Object getBestellingen(){
         List<Bestelling> myList = bestellingRepository.findAll();
         List<BestellingModel> myListModel = new ArrayList<>();
 
@@ -35,5 +39,44 @@ public class BestellingController {
         }
 
         return myListModel;
+    }
+
+    /**
+     * Returned een bestelling a.d.h.v het ID
+     */
+    @RequestMapping(value={"/bestellingdetails/{id}"},method= RequestMethod.GET)
+    public @ResponseBody
+    BestellingLijn getBestelling(@PathVariable("id") Integer id) {
+        //code
+        return null;
+    }
+    /**
+     * Aanmaken van een bestelling
+     * returned een gedetaileerde foutbootschap of bevestigings message
+     */
+    @RequestMapping(value={"/createbestelling"},method=RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public String createBestelling(@Valid @RequestBody EntryBestellingLijn entry, Errors errors) {
+        //code
+        return null;
+    }
+    /**
+     * updaten van een bestelling
+     * returned een gedetaileerde foutbootschap of bevestigings message
+     */
+    @RequestMapping(value={"/updatebestelling"},method=RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public String putBestelling(@Valid @RequestBody EntryBestellingLijn entry, Errors errors){
+        //code
+        return null;
+    }
+
+    /**
+     * Deleten van een bestelling a.d.h.v ID
+     */
+    @RequestMapping(value={"/deletebestelling/{id}"},method=RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBestelling(@PathVariable("id") Integer id){
+        //code
     }
 }
