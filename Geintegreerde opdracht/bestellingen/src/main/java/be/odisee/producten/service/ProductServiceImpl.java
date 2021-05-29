@@ -21,22 +21,24 @@ public class ProductServiceImpl implements ProductService {
     BestellingRepository bestellingRepository;
 
     @Override
-    public List<BestellingLijn> getAllBroodjes() {
+    public List<BestellingLijn> getAllLijnen() {
         return (List<BestellingLijn>) bestellingLijnRepository.findAll();
     }
 
     @Override
-    public void addTest() {
-        BestellingLijn klant = new BestellingLijn();
-        klant.setNaam("Voornaam");
-        bestellingLijnRepository.save(klant);
-    }
-    @Override
-    public BestellingLijn addBroodje(EntryBestellingLijn entryData) {
+    public BestellingLijn addBestellingLijn(EntryBestellingLijn entryData) {
         BestellingLijn entry = new BestellingLijn();
 
-        String naam = entryData.getNaam();
-        entry.setNaam(naam);
+        String naam = entryData.getProduct_naam();
+        entry.setProduct_naam(naam);
+        double prijs = entryData.getProduct_prijs();
+        entry.setProduct_prijs(prijs);
+        int aantal = entryData.getAantal();
+        entry.setAantal(aantal);
+        String commentaar = entryData.getCommentaar();
+        entry.setCommentaar(commentaar);
+        int productId = entryData.getProductId();
+        entry.setProductId(productId);
         entry.setBestelling(bestellingRepository.getById(entryData.getBestellingId()));
         bestellingLijnRepository.save(entry);
         return entry;
@@ -44,16 +46,20 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public BestellingLijn updateBroodje(EntryBestellingLijn entryData, long id) {
+    public BestellingLijn updateLijn(EntryBestellingLijn entryData, long id) {
         BestellingLijn bestellingLijn = bestellingLijnRepository.findById(id);
-        bestellingLijn.setNaam(entryData.getNaam());
+        bestellingLijn.setProduct_naam(entryData.getProduct_naam());
+        bestellingLijn.setProduct_prijs(entryData.getProduct_prijs());
+        bestellingLijn.setCommentaar(entryData.getCommentaar());
+        bestellingLijn.setProductId(entryData.getProductId());
+        bestellingLijn.setAantal(entryData.getAantal());
 
         bestellingLijnRepository.save(bestellingLijn);
         return bestellingLijn;
     }
 
     @Override
-    public void deleteBroodje(long id){
+    public void deleteLijn(long id){
         BestellingLijn bestellingLijn = bestellingLijnRepository.findById(id);
         bestellingLijnRepository.delete(bestellingLijn);
     }

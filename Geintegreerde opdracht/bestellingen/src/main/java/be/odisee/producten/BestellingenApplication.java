@@ -14,6 +14,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled=true)
 public class BestellingenApplication extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
@@ -22,11 +26,13 @@ public class BestellingenApplication extends WebSecurityConfigurerAdapter implem
         SpringApplication.run(BestellingenApplication.class, args);
     }
 
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
     @Bean
     CommandLineRunner init(BestellingRepository repo, BestellingLijnRepository repo2) {
         return (evt) -> {
-            repo.save(new Bestelling(1, "broodjes"));
-            repo.save(new Bestelling(2, "snacks"));
+            repo.save(new Bestelling(1, 2.0, 39, "opgehaald", "2021-05-29 14:55:03"));
+            repo.save(new Bestelling(2, 3.4, 39, "opgehaald", "2021-05-29 14:55:23"));
         };
     }
 

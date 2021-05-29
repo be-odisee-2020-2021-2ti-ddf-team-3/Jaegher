@@ -7,9 +7,17 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class EntryBestellingLijn {
-    private long id = 0;
+    private long id;
 
-    private String naam;
+    private String product_naam;
+
+    private double product_prijs;
+
+    private int aantal;
+
+    private String commentaar;
+
+    private int productId;
 
     private long bestellingId;
 }

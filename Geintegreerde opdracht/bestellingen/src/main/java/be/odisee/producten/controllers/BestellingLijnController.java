@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path="/producten", produces = "application/json")
+@RequestMapping(path="/bestellinglijn", produces = "application/json")
 public class BestellingLijnController {
     @Autowired
     private ProductService productService;
@@ -21,34 +21,34 @@ public class BestellingLijnController {
 
 
     /**
-     * Returned een lijst van alle producten
+     * Returned een lijst van alle bestellinglijnen
      */
     @GetMapping("/list")
     public Object getObjectives(){
-        return productService.getAllBroodjes();
+        return productService.getAllLijnen();
     }
     /**
-     * Returned een lijst van alle producten afhankelijk van hun categorie
+     * Returned een lijst van alle lijnen afhankelijk van hun bestelling
      */
-    @RequestMapping(value={"/listcategory/{id}"},method=RequestMethod.GET)
-    public Object getBroodjes2(@PathVariable("id") Integer id) {
+    @RequestMapping(value={"/listbestelling/{id}"},method=RequestMethod.GET)
+    public Object getBestellingLijnenBestelling(@PathVariable("id") Integer id) {
         return bestellingLijnRepository.findAllByBestelling_Id(id);
     }
     /**
-     * Returned een product a.d.h.v het ID
+     * Returned een lijn a.d.h.v het ID
      */
-    @RequestMapping(value={"/productdetails/{id}"},method=RequestMethod.GET)
+    @RequestMapping(value={"/details/{id}"},method=RequestMethod.GET)
     public @ResponseBody
-    BestellingLijn getBroodje(@PathVariable("id") Integer id) {
+    BestellingLijn getLijn(@PathVariable("id") Integer id) {
         return bestellingLijnRepository.findById(id);
     }
     /**
-     * Aanmaken van een product
+     * Aanmaken van een lijn
      * returned een gedetaileerde foutbootschap of bevestigings message
      */
-    @RequestMapping(value={"/createproduct"},method=RequestMethod.POST)
+    @RequestMapping(value={"/create"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createBroodje(@Valid @RequestBody EntryBestellingLijn entry, Errors errors) {
+    public String createLijn(@Valid @RequestBody EntryBestellingLijn entry, Errors errors) {
         StringBuilder message=new StringBuilder();
 
         try {
@@ -59,20 +59,20 @@ public class BestellingLijnController {
                 }
                 throw new IllegalArgumentException();
             }
-            BestellingLijn bestellingLijn = productService.addBroodje(entry);
-            message = new StringBuilder("Het product " + bestellingLijn.getNaam() + " is succesvol aangemaakt");
+            BestellingLijn bestellingLijn = productService.addBestellingLijn(entry);
+            message = new StringBuilder("Het product " + bestellingLijn.getProduct_naam() + " is succesvol toegevoegd");
 
         } catch (IllegalArgumentException e) {
         }
         return message.toString();
     }
     /**
-     * updaten van een product
+     * updaten van een lijn
      * returned een gedetaileerde foutbootschap of bevestigings message
      */
-    @RequestMapping(value={"/updateproduct"},method=RequestMethod.PUT)
+    @RequestMapping(value={"/update"},method=RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public String putBroodje(@Valid @RequestBody EntryBestellingLijn entry, Errors errors){
+    public String putLijn(@Valid @RequestBody EntryBestellingLijn entry, Errors errors){
         StringBuilder message=new StringBuilder();
 
         try {
@@ -83,8 +83,8 @@ public class BestellingLijnController {
                 }
                 throw new IllegalArgumentException();
             }
-            BestellingLijn bestellingLijn = productService.updateBroodje(entry, entry.getId());
-            message = new StringBuilder("Het product " + bestellingLijn.getNaam() + " is succesvol aangepast");
+            BestellingLijn bestellingLijn = productService.updateLijn(entry, entry.getId());
+            message = new StringBuilder("Het product " + bestellingLijn.getProduct_naam() + " is succesvol aangepast");
 
         } catch (IllegalArgumentException e) {
         }
@@ -92,22 +92,14 @@ public class BestellingLijnController {
     }
 
     /**
-     * Deleten van een product a.d.h.v ID
+     * Deleten van een Lijn a.d.h.v ID
      */
-    @RequestMapping(value={"/deleteproduct/{id}"},method=RequestMethod.DELETE)
+    @RequestMapping(value={"/delete/{id}"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBroodje(@PathVariable("id") Integer id){
-        productService.deleteBroodje(id);
+    public void deleteLijn(@PathVariable("id") Integer id){
+        productService.deleteLijn(id);
     }
 
 
-
-
-    @RequestMapping(value={"/createtestproduct"},method= RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody
-    void createTestKlant(){
-        productService.addTest();
-    }
 
 }

@@ -35,7 +35,7 @@ public class BestellingController {
 
         for (Bestelling bes : myList)
         {
-            myListModel.add( new BestellingModel(bes.getId(), bes.getNaam(), bestellingLijnRepository.findAllByBestelling_Id(bes.getId())));
+            myListModel.add( new BestellingModel(bes.getId(), bes.getTotale_prijs(), bes.getKlant_nummer(), bes.getBestelling_status(), bes.getBesteltijd(), bestellingLijnRepository.findAllByBestelling_Id(bes.getId())));
         }
 
         return myListModel;

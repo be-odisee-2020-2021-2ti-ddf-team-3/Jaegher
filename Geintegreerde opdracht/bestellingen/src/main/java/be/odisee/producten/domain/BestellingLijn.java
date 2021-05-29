@@ -18,7 +18,15 @@ public class BestellingLijn {
     private final long id;
 
     @NotEmpty(message="naam van het product is verplicht")
-    private String naam;
+    private String product_naam;
+
+    private double product_prijs;
+
+    private int aantal;
+
+    private String commentaar;
+
+    private int productId;
 
     @ManyToOne
     @JoinColumn(name="bestelling_id")
