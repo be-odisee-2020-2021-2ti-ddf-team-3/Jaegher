@@ -5,7 +5,7 @@ import be.odisee.producten.domain.BestellingLijn;
 
 import java.util.List;
 
-public interface ProductService {
+public interface BestellingLijnService {
     public BestellingLijn addBestellingLijn(EntryBestellingLijn entryData);
     public List<BestellingLijn> getAllLijnen();
     public BestellingLijn updateLijn(EntryBestellingLijn entryData, long id);

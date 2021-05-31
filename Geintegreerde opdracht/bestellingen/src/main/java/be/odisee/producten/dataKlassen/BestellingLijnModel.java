@@ -17,4 +17,13 @@ public class BestellingLijnModel {
     public String commentaar;
 
     public int productId;
+
+    public BestellingLijnModel(long id, String product_naam, double product_prijs, int aantal, String commentaar, int productId) {
+        this.id = id;
+        this.product_naam = product_naam;
+        this.product_prijs = product_prijs;
+        this.aantal = aantal;
+        this.commentaar = commentaar;
+        this.productId = productId;
+    }
 }

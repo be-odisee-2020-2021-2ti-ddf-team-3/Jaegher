@@ -28,10 +28,8 @@ public class Bestelling {
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private String besteltijd;
 
-
-
-    //@OneToMany(mappedBy = "bestelling")
-    //private List<BestellingLijn> lijnen;
+    @OneToMany(mappedBy = "bestelling", cascade = CascadeType.ALL)
+    private List<BestellingLijn> lijnen;
 
     public Bestelling(long id, double totale_prijs, long klant_nummer, String bestelling_status, String besteltijd) {
         this.id = id;

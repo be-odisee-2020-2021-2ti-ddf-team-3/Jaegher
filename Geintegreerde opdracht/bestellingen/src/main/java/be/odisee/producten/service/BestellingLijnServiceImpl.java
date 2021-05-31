@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class ProductServiceImpl implements ProductService {
+public class BestellingLijnServiceImpl implements BestellingLijnService {
 
     @Autowired
     BestellingLijnRepository bestellingLijnRepository;

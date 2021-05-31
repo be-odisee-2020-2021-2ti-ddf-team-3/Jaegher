@@ -1,21 +1,24 @@
 package be.odisee.producten.controllers;
 
 import be.odisee.producten.DAO.BestellingLijnRepository;
+import be.odisee.producten.dataKlassen.BestellingLijnModel;
 import be.odisee.producten.dataKlassen.EntryBestellingLijn;
 import be.odisee.producten.domain.BestellingLijn;
-import be.odisee.producten.service.ProductService;
+import be.odisee.producten.service.BestellingLijnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/bestellinglijn", produces = "application/json")
 public class BestellingLijnController {
     @Autowired
-    private ProductService productService;
+    private BestellingLijnService bestellingLijnService;
     @Autowired
     private BestellingLijnRepository bestellingLijnRepository;
 
@@ -25,14 +28,28 @@ public class BestellingLijnController {
      */
     @GetMapping("/list")
     public Object getObjectives(){
-        return productService.getAllLijnen();
+        List<BestellingLijn> lijnen = bestellingLijnService.getAllLijnen();
+        List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
+
+        for (BestellingLijn lijn : lijnen) {
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+        }
+
+        return lijnmodelen;
     }
     /**
      * Returned een lijst van alle lijnen afhankelijk van hun bestelling
      */
     @RequestMapping(value={"/listbestelling/{id}"},method=RequestMethod.GET)
     public Object getBestellingLijnenBestelling(@PathVariable("id") Integer id) {
-        return bestellingLijnRepository.findAllByBestelling_Id(id);
+        List<BestellingLijn> lijnen = bestellingLijnRepository.findAllByBestelling_Id(id);
+        List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
+
+        for (BestellingLijn lijn : lijnen) {
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+        }
+
+        return lijnmodelen;
     }
     /**
      * Returned een lijn a.d.h.v het ID
@@ -59,7 +76,7 @@ public class BestellingLijnController {
                 }
                 throw new IllegalArgumentException();
             }
-            BestellingLijn bestellingLijn = productService.addBestellingLijn(entry);
+            BestellingLijn bestellingLijn = bestellingLijnService.addBestellingLijn(entry);
             message = new StringBuilder("Het product " + bestellingLijn.getProduct_naam() + " is succesvol toegevoegd");
 
         } catch (IllegalArgumentException e) {
@@ -83,7 +100,7 @@ public class BestellingLijnController {
                 }
                 throw new IllegalArgumentException();
             }
-            BestellingLijn bestellingLijn = productService.updateLijn(entry, entry.getId());
+            BestellingLijn bestellingLijn = bestellingLijnService.updateLijn(entry, entry.getId());
             message = new StringBuilder("Het product " + bestellingLijn.getProduct_naam() + " is succesvol aangepast");
 
         } catch (IllegalArgumentException e) {
@@ -97,7 +114,7 @@ public class BestellingLijnController {
     @RequestMapping(value={"/delete/{id}"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteLijn(@PathVariable("id") Integer id){
-        productService.deleteLijn(id);
+        bestellingLijnService.deleteLijn(id);
     }
 
 

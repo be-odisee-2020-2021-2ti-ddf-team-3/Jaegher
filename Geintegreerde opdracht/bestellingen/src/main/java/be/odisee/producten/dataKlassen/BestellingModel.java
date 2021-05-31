@@ -24,9 +24,9 @@ public class BestellingModel {
 
 
     @OneToMany(mappedBy = "bestelling")
-    public List<BestellingLijn> lijnen;
+    public List<BestellingLijnModel> lijnen;
 
-    public BestellingModel(long id, double totale_prijs, long klant_nummer, String bestelling_status, String besteltijd, List<BestellingLijn> lijnen) {
+    public BestellingModel(long id, double totale_prijs, long klant_nummer, String bestelling_status, String besteltijd, List<BestellingLijnModel> lijnen) {
         this.id = id;
         this.totale_prijs = totale_prijs;
         this.klant_nummer = klant_nummer;
