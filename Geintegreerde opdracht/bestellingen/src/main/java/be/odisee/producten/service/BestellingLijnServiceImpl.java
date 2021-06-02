@@ -2,12 +2,16 @@ package be.odisee.producten.service;
 
 import be.odisee.producten.DAO.BestellingLijnRepository;
 import be.odisee.producten.DAO.BestellingRepository;
+import be.odisee.producten.dataKlassen.BestellingLijnModel;
+import be.odisee.producten.dataKlassen.BestellingModel;
 import be.odisee.producten.dataKlassen.EntryBestellingLijn;
+import be.odisee.producten.domain.Bestelling;
 import be.odisee.producten.domain.BestellingLijn;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -62,6 +66,14 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
     public void deleteLijn(long id){
         BestellingLijn bestellingLijn = bestellingLijnRepository.findById(id);
         bestellingLijnRepository.delete(bestellingLijn);
+    }
+    @Override
+    public BestellingLijnModel getBestellingLijn(Integer id) {
+        BestellingLijn bestelling = bestellingLijnRepository.findById(id);
+        BestellingLijnModel model = new BestellingLijnModel(bestelling.getId(), bestelling.getProduct_naam(), bestelling.getProduct_prijs(), bestelling.getAantal(), bestelling.getCommentaar(), bestelling.getProductId());
+
+
+        return model;
     }
 
 }

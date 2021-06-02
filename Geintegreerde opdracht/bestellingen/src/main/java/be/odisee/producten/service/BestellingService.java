@@ -1,5 +1,6 @@
 package be.odisee.producten.service;
 
+import be.odisee.producten.dataKlassen.BestellingLijnModel;
 import be.odisee.producten.dataKlassen.BestellingModel;
 import be.odisee.producten.dataKlassen.EntryBestelling;
 import be.odisee.producten.domain.Bestelling;

@@ -56,8 +56,8 @@ public class BestellingLijnController {
      */
     @RequestMapping(value={"/details/{id}"},method=RequestMethod.GET)
     public @ResponseBody
-    BestellingLijn getLijn(@PathVariable("id") Integer id) {
-        return bestellingLijnRepository.findById(id);
+    BestellingLijnModel getLijn(@PathVariable("id") Integer id) {
+        return bestellingLijnService.getBestellingLijn(id);
     }
     /**
      * Aanmaken van een lijn

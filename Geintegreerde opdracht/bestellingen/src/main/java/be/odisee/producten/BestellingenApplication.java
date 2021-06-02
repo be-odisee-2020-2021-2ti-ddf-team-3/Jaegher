@@ -26,15 +26,7 @@ public class BestellingenApplication extends WebSecurityConfigurerAdapter implem
         SpringApplication.run(BestellingenApplication.class, args);
     }
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    @Bean
-    CommandLineRunner init(BestellingRepository repo, BestellingLijnRepository repo2) {
-        return (evt) -> {
-            repo.save(new Bestelling(1, 2.0, 39, "opgehaald", "2021-05-29 14:55:03"));
-            repo.save(new Bestelling(2, 3.4, 39, "opgehaald", "2021-05-29 14:55:23"));
-        };
-    }
+
 
 
     @Autowired

@@ -1,5 +1,6 @@
 package be.odisee.producten.service;
 
+import be.odisee.producten.dataKlassen.BestellingLijnModel;
 import be.odisee.producten.dataKlassen.EntryBestellingLijn;
 import be.odisee.producten.domain.BestellingLijn;
 
@@ -10,4 +11,5 @@ public interface BestellingLijnService {
     public List<BestellingLijn> getAllLijnen();
     public BestellingLijn updateLijn(EntryBestellingLijn entryData, long id);
     public void deleteLijn(long id);
+    BestellingLijnModel getBestellingLijn(Integer id);
 }

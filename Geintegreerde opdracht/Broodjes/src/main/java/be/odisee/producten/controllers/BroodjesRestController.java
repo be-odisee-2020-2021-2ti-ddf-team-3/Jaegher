@@ -102,12 +102,4 @@ public class BroodjesRestController {
 
 
 
-
-    @RequestMapping(value={"/createtestproduct"},method= RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody
-    void createTestKlant(){
-        productService.addTest();
-    }
-
 }
