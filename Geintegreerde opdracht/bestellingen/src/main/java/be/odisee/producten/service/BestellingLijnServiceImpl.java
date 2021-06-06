@@ -43,7 +43,7 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
         entry.setCommentaar(commentaar);
         int productId = entryData.getProductId();
         entry.setProductId(productId);
-        entry.setBestelling(bestellingRepository.getById(entryData.getBestellingId()));
+        entry.setBestelling(bestellingRepository.getById(entryData.getBestelnummer()));
         bestellingLijnRepository.save(entry);
         return entry;
     }
@@ -70,7 +70,7 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
     @Override
     public BestellingLijnModel getBestellingLijn(Integer id) {
         BestellingLijn bestelling = bestellingLijnRepository.findById(id);
-        BestellingLijnModel model = new BestellingLijnModel(bestelling.getId(), bestelling.getProduct_naam(), bestelling.getProduct_prijs(), bestelling.getAantal(), bestelling.getCommentaar(), bestelling.getProductId());
+        BestellingLijnModel model = new BestellingLijnModel(bestelling.getId(), bestelling.getProduct_naam(), bestelling.getProduct_prijs(), bestelling.getAantal(), bestelling.getCommentaar(), bestelling.getProductId(), bestelling.getBestelnummer());
 
 
         return model;

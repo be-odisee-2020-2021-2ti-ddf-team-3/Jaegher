@@ -38,7 +38,7 @@ public class BestellingServiceImpl implements BestellingService{
             List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
             for (BestellingLijn lijn : lijnen) {
-                lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+                lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
             }
 
             myListModel.add( new BestellingModel(bes.getId(), bes.getTotale_prijs(), bes.getKlant_nummer(), bes.getBestelling_status(), bes.getBesteltijd(), lijnmodelen));
@@ -54,7 +54,7 @@ public class BestellingServiceImpl implements BestellingService{
         List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
         for (BestellingLijn lijn : lijnen) {
-            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
         }
 
         BestellingModel myListModel = new BestellingModel(bestelling.getId(), bestelling.getTotale_prijs(), bestelling.getKlant_nummer(), bestelling.getBestelling_status(), bestelling.getBesteltijd(), lijnmodelen);

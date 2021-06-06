@@ -32,7 +32,7 @@ public class BestellingLijnController {
         List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
         for (BestellingLijn lijn : lijnen) {
-            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
         }
 
         return lijnmodelen;
@@ -46,7 +46,7 @@ public class BestellingLijnController {
         List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
         for (BestellingLijn lijn : lijnen) {
-            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId()));
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
         }
 
         return lijnmodelen;

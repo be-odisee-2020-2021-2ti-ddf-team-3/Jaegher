@@ -28,6 +28,8 @@ public class BestellingLijn {
 
     private int productId;
 
+    private long bestelnummer;
+
     @ManyToOne
     @JoinColumn(name="bestelling_id")
     private Bestelling bestelling;
