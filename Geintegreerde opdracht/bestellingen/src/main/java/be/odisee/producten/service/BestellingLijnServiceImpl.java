@@ -43,7 +43,7 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
         entry.setCommentaar(commentaar);
         int productId = entryData.getProductId();
         entry.setProductId(productId);
-        entry.setBestelling(bestellingRepository.getById(entryData.getBestellingId()));
+        entry.setBestelnummer(bestellingRepository.getById(entryData.getBestelnummer()));
         bestellingLijnRepository.save(entry);
         return entry;
     }

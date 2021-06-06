@@ -30,6 +30,6 @@ public class BestellingLijn {
 
     @ManyToOne
     @JoinColumn(name="bestelling_id")
-    private Bestelling bestelling;
+    private Bestelling bestelnummer;
 
 }
