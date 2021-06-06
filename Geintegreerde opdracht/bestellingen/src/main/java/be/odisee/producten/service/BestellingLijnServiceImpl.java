@@ -41,8 +41,6 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
         entry.setAantal(aantal);
         String commentaar = entryData.getCommentaar();
         entry.setCommentaar(commentaar);
-        int productId = entryData.getProductId();
-        entry.setProductId(productId);
         entry.setBestelling(bestellingRepository.getById(entryData.getBestelnummer()));
         bestellingLijnRepository.save(entry);
         return entry;
@@ -55,7 +53,6 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
         bestellingLijn.setProduct_naam(entryData.getProduct_naam());
         bestellingLijn.setProduct_prijs(entryData.getProduct_prijs());
         bestellingLijn.setCommentaar(entryData.getCommentaar());
-        bestellingLijn.setProductId(entryData.getProductId());
         bestellingLijn.setAantal(entryData.getAantal());
 
         bestellingLijnRepository.save(bestellingLijn);
@@ -70,8 +67,7 @@ public class BestellingLijnServiceImpl implements BestellingLijnService {
     @Override
     public BestellingLijnModel getBestellingLijn(Integer id) {
         BestellingLijn bestelling = bestellingLijnRepository.findById(id);
-        BestellingLijnModel model = new BestellingLijnModel(bestelling.getId(), bestelling.getProduct_naam(), bestelling.getProduct_prijs(), bestelling.getAantal(), bestelling.getCommentaar(), bestelling.getProductId(), bestelling.getBestelnummer());
-
+        BestellingLijnModel model = new BestellingLijnModel(bestelling.getId(), bestelling.getProduct_naam(), bestelling.getProduct_prijs(), bestelling.getAantal(), bestelling.getCommentaar(), bestelling.getBestelling().getId());
 
         return model;
     }

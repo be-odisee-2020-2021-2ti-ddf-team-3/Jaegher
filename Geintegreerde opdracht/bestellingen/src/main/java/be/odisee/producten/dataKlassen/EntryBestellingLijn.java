@@ -17,7 +17,5 @@ public class EntryBestellingLijn {
 
     private String commentaar;
 
-    private int productId;
-
     private long bestelnummer;
 }

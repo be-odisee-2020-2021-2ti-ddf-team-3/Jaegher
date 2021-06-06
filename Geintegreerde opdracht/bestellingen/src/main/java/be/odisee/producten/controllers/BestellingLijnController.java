@@ -16,6 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/bestellinglijn", produces = "application/json")
+@CrossOrigin(origins={"*"},
+        maxAge = 3600)
 public class BestellingLijnController {
     @Autowired
     private BestellingLijnService bestellingLijnService;
@@ -32,7 +34,7 @@ public class BestellingLijnController {
         List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
         for (BestellingLijn lijn : lijnen) {
-            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getBestelling().getId()));
         }
 
         return lijnmodelen;
@@ -46,7 +48,7 @@ public class BestellingLijnController {
         List<BestellingLijnModel> lijnmodelen = new ArrayList<>();
 
         for (BestellingLijn lijn : lijnen) {
-            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getProductId(), lijn.getBestelnummer()));
+            lijnmodelen.add(new BestellingLijnModel(lijn.getId(), lijn.getProduct_naam(), lijn.getProduct_prijs(), lijn.getAantal(), lijn.getCommentaar(), lijn.getBestelling().getId()));
         }
 
         return lijnmodelen;

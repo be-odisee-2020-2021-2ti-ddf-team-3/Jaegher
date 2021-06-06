@@ -22,6 +22,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/bestellingen", produces = "application/json")
+@CrossOrigin(origins={"*"},
+        maxAge = 3600)
 public class BestellingController {
 
     @Autowired
