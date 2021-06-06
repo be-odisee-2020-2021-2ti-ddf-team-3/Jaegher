@@ -43,8 +43,11 @@ public class ProductenApplication extends WebSecurityConfigurerAdapter implement
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // ...
-                .csrf().disable();
+                .csrf().disable()
+                //zet alles hieronder in comment om security uit te zetten
+                .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .httpBasic();
     }
 
 
