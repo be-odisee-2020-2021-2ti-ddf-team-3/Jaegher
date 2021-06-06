@@ -34,7 +34,7 @@ public class BroodjesRestController {
      */
     @RequestMapping(value={"/listcategory/{id}"},method=RequestMethod.GET)
     public Object getBroodjes2(@PathVariable("id") Integer id) {
-        return productenRepository.findAllByCategory_Id(id);
+        return productenRepository.findAllByCategorie_Id(id);
     }
     /**
      * Returned een product a.d.h.v het ID

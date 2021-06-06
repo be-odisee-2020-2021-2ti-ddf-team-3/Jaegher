@@ -29,6 +29,6 @@ public class Product {
     private String fotolink;
 
     @ManyToOne
-    private Category categorie_id;
+    private Category categorie;
 
 }

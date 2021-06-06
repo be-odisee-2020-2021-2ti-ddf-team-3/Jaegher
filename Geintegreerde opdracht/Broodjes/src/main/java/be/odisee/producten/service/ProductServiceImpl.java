@@ -26,12 +26,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addTest() {
-        Product klant = new Product();
-        klant.setNaam("Voornaam");
-        productenRepository.save(klant);
-    }
-    @Override
     public Product addBroodje(EntryProduct entryData) {
         Product entry = new Product();
 
@@ -42,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
         entry.setFotolink(entryData.getFotolink());
-        entry.setCategorie_id(categoryRepository.getById(entryData.getCategorie_id()));
+        entry.setCategorie(categoryRepository.getById(entryData.getCategorie_id()));
         productenRepository.save(entry);
         return entry;
     }
@@ -55,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
         product.setDescription(entryData.getDescription());
         product.setPrijs(entryData.getPrijs());
         product.setFotolink(entryData.getFotolink());
-        product.setCategorie_id(categoryRepository.getById(entryData.getCategorie_id()));
+        product.setCategorie(categoryRepository.getById(entryData.getCategorie_id()));
 
         productenRepository.save(product);
         return product;
