@@ -19,5 +19,5 @@ public class EntryBestellingLijn {
 
     private int productId;
 
-    private long bestelnummer;
+    private long bestellingId;
 }
