@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(path="/producten", produces = "application/json")
 @CrossOrigin(origins={"*"},
-        maxAge = 3600, allowCredentials = "true")
+        maxAge = 3600)
 public class BroodjesRestController {
     @Autowired
     private ProductService productService;
