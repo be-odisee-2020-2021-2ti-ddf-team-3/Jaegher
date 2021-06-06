@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
         entry.setFotolink(entryData.getFotolink());
-        entry.setCategory(categoryRepository.getById(entryData.getCategoryId()));
+        entry.setCategorie_id(categoryRepository.getById(entryData.getCategorie_id()));
         productenRepository.save(entry);
         return entry;
     }
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         product.setDescription(entryData.getDescription());
         product.setPrijs(entryData.getPrijs());
         product.setFotolink(entryData.getFotolink());
-        product.setCategory(categoryRepository.getById(entryData.getCategoryId()));
+        product.setCategorie_id(categoryRepository.getById(entryData.getCategorie_id()));
 
         productenRepository.save(product);
         return product;

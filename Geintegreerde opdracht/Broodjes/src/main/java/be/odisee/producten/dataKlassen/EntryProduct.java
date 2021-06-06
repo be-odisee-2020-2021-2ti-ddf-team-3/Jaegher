@@ -20,5 +20,5 @@ public class EntryProduct {
     private String fotolink;
 
     @Min(value = 0, message="het product heeft een categorie nodig")
-    private long categoryId;
+    private long categorie_id;
 }
