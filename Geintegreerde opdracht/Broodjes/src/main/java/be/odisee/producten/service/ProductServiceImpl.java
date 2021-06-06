@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
 
         String naam = entryData.getNaam();
         entry.setNaam(naam);
-        String beschrijving = entryData.getBeschrijving();
-        entry.setBeschrijving(beschrijving);
+        String beschrijving = entryData.getDescription();
+        entry.setDescription(beschrijving);
         Double prijs = entryData.getPrijs();
         entry.setPrijs(prijs);
         entry.setFotolink(entryData.getFotolink());
@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
     public Product updateBroodje(EntryProduct entryData, long id) {
         Product product = productenRepository.findById(id);
         product.setNaam(entryData.getNaam());
-        product.setBeschrijving(entryData.getBeschrijving());
+        product.setDescription(entryData.getDescription());
         product.setPrijs(entryData.getPrijs());
         product.setFotolink(entryData.getFotolink());
         product.setCategory(categoryRepository.getById(entryData.getCategoryId()));

@@ -21,7 +21,7 @@ public class Product {
     @NotEmpty(message="naam van het product is verplicht")
     private String naam;
 
-    private String beschrijving;
+    private String description;
 
     @Min(value = 0, message = "Een prijs moet groter dan of gelijk aan 0 zijn")
     private Double prijs;
