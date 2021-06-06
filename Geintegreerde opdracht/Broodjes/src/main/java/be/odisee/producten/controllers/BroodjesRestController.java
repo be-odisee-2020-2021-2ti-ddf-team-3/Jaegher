@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin(origins={"http://localhost:5501","http://localhost:5500"},
+        maxAge = 3600, allowCredentials = "true")
+
 @RequestMapping(path="/producten", produces = "application/json")
 public class BroodjesRestController {
     @Autowired
