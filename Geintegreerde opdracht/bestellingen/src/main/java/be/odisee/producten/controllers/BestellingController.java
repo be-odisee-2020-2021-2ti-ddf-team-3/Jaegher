@@ -56,9 +56,9 @@ public class BestellingController {
      */
     @RequestMapping(value={"/createbestelling"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createBestelling(@Valid @RequestBody Bestelling entry, Errors errors) {
+    public long createBestelling(@Valid @RequestBody Bestelling entry, Errors errors) {
         StringBuilder message=new StringBuilder();
-
+        long id = 0;
         try {
             if (errors.hasErrors() ) {
                 message = new StringBuilder("Er is iets fout gelopen: ");
@@ -69,10 +69,10 @@ public class BestellingController {
             }
             Bestelling product = bestellingService.addBestelling(entry);
             message = new StringBuilder("De bestelling " + product.getId() + " is succesvol aangemaakt");
-
+            id = product.getId();
         } catch (IllegalArgumentException e) {
         }
-        return message.toString();
+        return id;
     }
     /**
      * updaten van een bestelling
